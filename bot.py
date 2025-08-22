@@ -30,6 +30,7 @@ TEMPLATES_DIR_MAIN = "templates"
 INIT_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle.png")
 PHASE_DEPLOY = os.path.join(TEMPLATES_DIR_MAIN, "deploy_phase.png")
 PHASE_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle_phase.png")
+PLAY_AGAIN_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "play_again.png")
 
 THRESHOLD = 0.8
 
@@ -81,7 +82,7 @@ def bot_loop():
                 screen = adb_screenshot()
             except:
                 print("❌ Error en capturar pantalla")
-                time.sleep(2)
+                time.sleep(1)
                 continue
 
             # Pantalla inicial
@@ -89,7 +90,15 @@ def bot_loop():
             if init_pos:
                 print("🏁 Pantalla inicial, pitjant Battle")
                 adb_tap(*init_pos)
-                time.sleep(2)
+                time.sleep(1)
+                continue
+
+            # Tornar a jugar
+            play_again = find_template(screen, PLAY_AGAIN_BATTLE)
+            if play_again:
+                print("🏁 Tornar a jugar")
+                adb_tap(*play_again)
+                time.sleep(1)
                 continue
 
             # Deploy phase
@@ -101,20 +110,20 @@ def bot_loop():
                     if pos:
                         print(f"💰 Comprant {os.path.basename(unit)}")
                         adb_tap(*pos)
-                        time.sleep(0.5)
-                time.sleep(1)
+                        time.sleep(2)
+                time.sleep(0.5)
                 continue
 
             # Battle phase
             battle_phase = find_template(screen, PHASE_BATTLE)
             if battle_phase:
                 print("🔴 Battle phase, esperant...")
-                time.sleep(3)
+                time.sleep(0.5)
                 continue
 
             # Si no detecta res
             print("… Pantalla no reconeguda")
-            time.sleep(1)
+            time.sleep(0.5)
         else:
             time.sleep(0.5)
 
