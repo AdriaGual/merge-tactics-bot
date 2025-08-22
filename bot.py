@@ -5,12 +5,14 @@ import json
 import threading
 import time
 import subprocess
+import pytesseract
 
 # 🔧 Configuració
 UNITS_DIR = "templates/units"       # cartes que es poden comprar
 FIELDS_DIR = "templates/field"     # unitats al camp
 GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
+ELIXIR_FILE = "elixir.json"
 ADB_PATH = "adb"
 THRESHOLD = 0.8
 
@@ -75,6 +77,11 @@ with open(GRID_FILE, "r") as f:
 grid_cells = [item for item in grid_data if item["name"].startswith("camp")]
 bench_cells = [item for item in grid_data if item["name"].startswith("banquillo")]
 
+# 🔹 Carregar coordenades elixir
+with open(ELIXIR_FILE, "r") as f:
+    elixir_data = json.load(f)
+elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
+print(elixir_rect)
 # 🔹 Detecció unitats a pantalla
 def find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=50):
     detected = []
@@ -103,6 +110,19 @@ def get_unit_position(center):
             return cell["name"]
     return "desconegut"
 
+# 🔹 Llegir elixir
+def read_elixir(screen):
+    x0, y0, x1, y1 = elixir_rect
+    roi = screen[y0:y1, x0:x1]
+    gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
+    text = pytesseract.image_to_string(thresh, config='--psm 7 digits')
+    try:
+        value = int("".join(filter(str.isdigit, text)))
+        return value
+    except:
+        return None
+
 # 🔹 Thread principal del bot
 def bot_loop():
     global bot_running
@@ -127,6 +147,11 @@ def bot_loop():
                 time.sleep(0.25)
                 continue
 
+            # Llegir elixir
+            elixir_amount = read_elixir(screen)
+            if elixir_amount is not None:
+                print(f"⚡ Elixir actual: {elixir_amount}")
+
             # Pantalla inicial
             init_pos = find_template(screen, INIT_BATTLE)
             if init_pos:
@@ -148,9 +173,7 @@ def bot_loop():
             if deploy:
                 print("🟢 Deploy phase")
 
-                # Detectar unitats al camp
                 detected_fields = find_units_on_screen(screen, field_imgs)
-                # Detectar cartes al banquillo
                 detected_bench = find_units_on_screen(screen, unit_imgs)
 
                 vis_screen = cv2.resize(screen, (screen.shape[1]//2, screen.shape[0]//2))
@@ -165,11 +188,6 @@ def bot_loop():
                         name_file = unit_files[i]
                     pos_name = get_unit_position(center)
                     cx, cy = int(center[0]/scale_x), int(center[1]/scale_y)
-                    cv2.circle(vis_screen, (cx, cy), 20, (0,255,0), 2)
-                    cv2.putText(vis_screen, name_file, (cx-30, cy-25),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1)
-                    cv2.putText(vis_screen, pos_name, (cx-30, cy+15),
-                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1)
 
                     if os.path.splitext(name_file)[0] not in COMPO and pos_name != "desconegut":
                         print(f"💸 Venen {name_file} a {pos_name}")
@@ -183,8 +201,6 @@ def bot_loop():
                         else:
                             print("❌ No s'ha trobat botó Sell")
 
-                cv2.imshow("Field Detection", vis_screen)
-                cv2.waitKey(1)
 
                 # Comprar unitats que falten
                 for u in COMPO:
