@@ -7,13 +7,20 @@ import time
 import subprocess
 
 # 🔧 Configuració
-TEMPLATES_DIR = "templates/units"
+UNITS_DIR = "templates/units"       # cartes que es poden comprar
+FIELDS_DIR = "templates/field"     # unitats al camp
+GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
 ADB_PATH = "adb"
+THRESHOLD = 0.8
 
-# Carreguem unitats disponibles
-unit_files = [f for f in os.listdir(TEMPLATES_DIR) if f.endswith(".png")]
-unit_imgs = [cv2.imread(os.path.join(TEMPLATES_DIR, f)) for f in unit_files]
+# Carregar cartes i unitats camp
+unit_files = [f for f in os.listdir(UNITS_DIR) if f.endswith(".png")]
+unit_imgs = [cv2.imread(os.path.join(UNITS_DIR, f)) for f in unit_files]
+
+field_files = [f for f in os.listdir(FIELDS_DIR) if f.endswith(".png")]
+field_imgs = [cv2.imread(os.path.join(FIELDS_DIR, f)) for f in field_files]
+
 selected = [False]*len(unit_imgs)
 
 # Botons Start/Stop/Confirm
@@ -25,14 +32,13 @@ BUTTONS = {
 
 bot_running = False
 
-# Templates del bot
+# Templates bot
 TEMPLATES_DIR_MAIN = "templates"
 INIT_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle.png")
 PHASE_DEPLOY = os.path.join(TEMPLATES_DIR_MAIN, "deploy_phase.png")
 PHASE_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle_phase.png")
 PLAY_AGAIN_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "play_again.png")
-
-THRESHOLD = 0.8
+SELL_BUTTON = os.path.join(TEMPLATES_DIR_MAIN, "sell.png")
 
 # 🔹 Funcions auxiliars
 def adb_screenshot():
@@ -48,7 +54,7 @@ def find_template(screen, template_path, threshold=THRESHOLD):
         return None
     template = cv2.imread(template_path, cv2.IMREAD_COLOR)
     res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
+    _, max_val, _, max_loc = cv2.minMaxLoc(res)
     if max_val >= threshold:
         h, w = template.shape[:2]
         return max_loc[0]+w//2, max_loc[1]+h//2
@@ -62,18 +68,54 @@ def save_composition():
     print(f"📦 Composició confirmada: {chosen_units}")
     return chosen_units
 
-# 🔹 Thread del bot
+# 🔹 Carregar coordenades del camp i banquillo
+with open(GRID_FILE, "r") as f:
+    grid_data = json.load(f)
+
+grid_cells = [item for item in grid_data if item["name"].startswith("camp")]
+bench_cells = [item for item in grid_data if item["name"].startswith("banquillo")]
+
+# 🔹 Detecció unitats a pantalla
+def find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=50):
+    detected = []
+    for i, template in enumerate(templates):
+        res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
+        loc = np.where(res >= threshold)
+        h, w = template.shape[:2]
+        centers = [(pt[0]+w//2, pt[1]+h//2) for pt in zip(*loc[::-1])]
+        final_centers = []
+        for c in centers:
+            if all(np.hypot(c[0]-fc[0], c[1]-fc[1]) > min_dist for fc in final_centers):
+                final_centers.append(c)
+        detected.extend([(i, c) for c in final_centers])
+    return detected
+
+# 🔹 Saber posició d’una unitat
+def get_unit_position(center):
+    x, y = center
+    for cell in grid_cells:
+        x0, y0, x1, y1 = cell["rect"]
+        if x0 <= x <= x1 and y0 <= y <= y1:
+            return cell["name"]
+    for cell in bench_cells:
+        x0, y0, x1, y1 = cell["rect"]
+        if x0 <= x <= x1 and y0 <= y <= y1:
+            return cell["name"]
+    return "desconegut"
+
+# 🔹 Thread principal del bot
 def bot_loop():
     global bot_running
-    UNITS = []
+    COMPO = []
     while True:
         if bot_running:
-            if not UNITS:
+            # Carregar composició
+            if not COMPO:
                 if os.path.exists(COMPOSITION_FILE):
                     with open(COMPOSITION_FILE, "r") as f:
                         data = json.load(f)
-                        UNITS = [os.path.join(TEMPLATES_DIR, u+".png") for u in data.get("units",[])]
-                        print(f"Bot amb composició: {data.get('units',[])}")
+                        COMPO = [os.path.splitext(u)[0] for u in data.get("units",[])]
+                        print(f"Bot amb composició: {COMPO}")
                 else:
                     print("❌ No hi ha cap composició")
                     bot_running = False
@@ -82,7 +124,7 @@ def bot_loop():
                 screen = adb_screenshot()
             except:
                 print("❌ Error en capturar pantalla")
-                time.sleep(1)
+                time.sleep(0.25)
                 continue
 
             # Pantalla inicial
@@ -90,7 +132,7 @@ def bot_loop():
             if init_pos:
                 print("🏁 Pantalla inicial, pitjant Battle")
                 adb_tap(*init_pos)
-                time.sleep(1)
+                time.sleep(0.25)
                 continue
 
             # Tornar a jugar
@@ -98,17 +140,58 @@ def bot_loop():
             if play_again:
                 print("🏁 Tornar a jugar")
                 adb_tap(*play_again)
-                time.sleep(1)
+                time.sleep(0.25)
                 continue
 
             # Deploy phase
             deploy = find_template(screen, PHASE_DEPLOY)
             if deploy:
                 print("🟢 Deploy phase")
-                for unit in UNITS:
-                    pos = find_template(screen, unit)
+
+                # Detectar unitats al camp
+                detected_fields = find_units_on_screen(screen, field_imgs)
+                # Detectar cartes al banquillo
+                detected_bench = find_units_on_screen(screen, unit_imgs)
+
+                vis_screen = cv2.resize(screen, (screen.shape[1]//2, screen.shape[0]//2))
+                scale_x = screen.shape[1]/vis_screen.shape[1]
+                scale_y = screen.shape[0]/vis_screen.shape[0]
+
+                # Vendre unitats que no estiguin a la composició
+                for i, center in detected_fields + detected_bench:
+                    if (i < len(field_imgs)):
+                        name_file = field_files[i]
+                    else:
+                        name_file = unit_files[i]
+                    pos_name = get_unit_position(center)
+                    cx, cy = int(center[0]/scale_x), int(center[1]/scale_y)
+                    cv2.circle(vis_screen, (cx, cy), 20, (0,255,0), 2)
+                    cv2.putText(vis_screen, name_file, (cx-30, cy-25),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0,0,255), 1)
+                    cv2.putText(vis_screen, pos_name, (cx-30, cy+15),
+                                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255,0,0), 1)
+
+                    if os.path.splitext(name_file)[0] not in COMPO and pos_name != "desconegut":
+                        print(f"💸 Venen {name_file} a {pos_name}")
+                        adb_tap(*center)
+                        time.sleep(2)
+                        screen = adb_screenshot()
+                        sell_pos = find_template(screen, SELL_BUTTON)
+                        if sell_pos:
+                            adb_tap(*sell_pos)
+                            time.sleep(0.5)
+                        else:
+                            print("❌ No s'ha trobat botó Sell")
+
+                cv2.imshow("Field Detection", vis_screen)
+                cv2.waitKey(1)
+
+                # Comprar unitats que falten
+                for u in COMPO:
+                    template_path = os.path.join(UNITS_DIR, u+".png")
+                    pos = find_template(screen, template_path)
                     if pos:
-                        print(f"💰 Comprant {os.path.basename(unit)}")
+                        print(f"💰 Comprant {u}")
                         adb_tap(*pos)
                         time.sleep(2)
                 time.sleep(0.5)
@@ -121,7 +204,6 @@ def bot_loop():
                 time.sleep(0.5)
                 continue
 
-            # Si no detecta res
             print("… Pantalla no reconeguda")
             time.sleep(0.5)
         else:
