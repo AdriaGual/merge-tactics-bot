@@ -82,10 +82,8 @@ def bot_loop():
             pos = get_unit_position(center)
             print(f"🔎 {name} detectada a {pos}")
 
-        time.sleep(1)
-
 # 🔹 Inici del bot
 threading.Thread(target=bot_loop, daemon=True).start()
 print("Bot arrencat, CTRL+C per aturar")
 while True:
-    time.sleep(1)
+    time.sleep(0.5)
