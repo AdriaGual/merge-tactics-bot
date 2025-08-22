@@ -1,0 +1,11 @@
+{
+    "name": "Custom Deck",
+    "units": [
+        "dart_goblin",
+        "executioner",
+        "giant_skeleton",
+        "knight",
+        "pekka",
+        "princess"
+    ]
+}

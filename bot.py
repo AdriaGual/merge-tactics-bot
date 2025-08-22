@@ -1,97 +1,187 @@
 import cv2
 import numpy as np
-import subprocess
-import time
 import os
+import json
+import threading
+import time
+import subprocess
 
-# 🔧 Ruta a adb.exe (canvia si cal)
+# 🔧 Configuració
+TEMPLATES_DIR = "templates/units"
+COMPOSITION_FILE = "composition.json"
 ADB_PATH = "adb"
 
-# 🔹 Templates
-TEMPLATES_DIR = "templates"
-INIT_BATTLE = os.path.join(TEMPLATES_DIR, "battle.png")          # Pantalla inicial
-PHASE_DEPLOY = os.path.join(TEMPLATES_DIR, "deploy_phase.png")   # Deploy phase
-PHASE_BATTLE = os.path.join(TEMPLATES_DIR, "battle_phase.png")   # Battle phase
-UNITS = [
-    os.path.join(TEMPLATES_DIR, "dart_goblin.png"),
-    os.path.join(TEMPLATES_DIR, "goblin.png"),
-    os.path.join(TEMPLATES_DIR, "knight.png"),
-    os.path.join(TEMPLATES_DIR, "spear_goblin.png"),
-    os.path.join(TEMPLATES_DIR, "barbarian.png"),
-    os.path.join(TEMPLATES_DIR, "executioner.png"),
-    os.path.join(TEMPLATES_DIR, "giant_skeleton.png"),
-    os.path.join(TEMPLATES_DIR, "golden_knight.png"),
-    os.path.join(TEMPLATES_DIR, "pekka.png"),
-    os.path.join(TEMPLATES_DIR, "princess.png"),
-    os.path.join(TEMPLATES_DIR, "royal_ghost.png")
-]
+# Carreguem unitats disponibles
+unit_files = [f for f in os.listdir(TEMPLATES_DIR) if f.endswith(".png")]
+unit_imgs = [cv2.imread(os.path.join(TEMPLATES_DIR, f)) for f in unit_files]
+selected = [False]*len(unit_imgs)
 
-THRESHOLD = 0.8  # Confiança mínima per detectar plantilles
+# Botons Start/Stop/Confirm
+BUTTONS = {
+    "start": (10, 10, 100, 50),
+    "stop":  (120, 10, 210, 50),
+    "confirm": (230, 10, 350, 50)
+}
+
+bot_running = False
+
+# Templates del bot
+TEMPLATES_DIR_MAIN = "templates"
+INIT_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle.png")
+PHASE_DEPLOY = os.path.join(TEMPLATES_DIR_MAIN, "deploy_phase.png")
+PHASE_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle_phase.png")
+
+THRESHOLD = 0.8
 
 # 🔹 Funcions auxiliars
 def adb_screenshot():
-    """Captura pantalla de l'emulador/mòbil"""
     result = subprocess.run([ADB_PATH, "exec-out", "screencap", "-p"], stdout=subprocess.PIPE)
     img = cv2.imdecode(np.frombuffer(result.stdout, np.uint8), cv2.IMREAD_COLOR)
     return img
 
 def adb_tap(x, y):
-    """Simula tap via ADB"""
     subprocess.run([ADB_PATH, "shell", "input", "tap", str(x), str(y)])
 
 def find_template(screen, template_path, threshold=THRESHOLD):
-    """Busca plantilla a la pantalla i retorna coordenades del centre"""
     if not os.path.exists(template_path):
-        print(f"❌ No existeix la plantilla {template_path}")
         return None
-
     template = cv2.imread(template_path, cv2.IMREAD_COLOR)
     res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
     min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(res)
-
     if max_val >= threshold:
         h, w = template.shape[:2]
-        return max_loc[0] + w//2, max_loc[1] + h//2
+        return max_loc[0]+w//2, max_loc[1]+h//2
     return None
 
-# 🔹 Loop principal
-def main_loop():
-    print("🤖 Bot iniciat, Ctrl+C per parar")
+def save_composition():
+    chosen_units = [os.path.splitext(unit_files[i])[0] for i, sel in enumerate(selected) if sel]
+    data = {"name": "Custom Deck", "units": chosen_units}
+    with open(COMPOSITION_FILE, "w") as f:
+        json.dump(data, f, indent=4)
+    print(f"📦 Composició confirmada: {chosen_units}")
+    return chosen_units
+
+# 🔹 Thread del bot
+def bot_loop():
+    global bot_running
+    UNITS = []
     while True:
-        screen = adb_screenshot()
+        if bot_running:
+            if not UNITS:
+                if os.path.exists(COMPOSITION_FILE):
+                    with open(COMPOSITION_FILE, "r") as f:
+                        data = json.load(f)
+                        UNITS = [os.path.join(TEMPLATES_DIR, u+".png") for u in data.get("units",[])]
+                        print(f"Bot amb composició: {data.get('units',[])}")
+                else:
+                    print("❌ No hi ha cap composició")
+                    bot_running = False
+                    continue
+            try:
+                screen = adb_screenshot()
+            except:
+                print("❌ Error en capturar pantalla")
+                time.sleep(2)
+                continue
 
-        # Detectem pantalla inicial
-        init_pos = find_template(screen, INIT_BATTLE)
-        if init_pos:
-            print("🏁 Pantalla inicial detectada, pitjant Battle")
-            adb_tap(*init_pos)
-            time.sleep(2)
-            continue
+            # Pantalla inicial
+            init_pos = find_template(screen, INIT_BATTLE)
+            if init_pos:
+                print("🏁 Pantalla inicial, pitjant Battle")
+                adb_tap(*init_pos)
+                time.sleep(2)
+                continue
 
-        # Detectem fase deploy
-        deploy = find_template(screen, PHASE_DEPLOY)
-        if deploy:
-            print("🟢 Deploy phase detectada")
-            # Busquem unitats a comprar
-            for unit in UNITS:
-                pos = find_template(screen, unit)
-                if pos:
-                    print(f"💰 Comprant unitat {os.path.basename(unit)}")
-                    adb_tap(*pos)
-                    time.sleep(0.5)
+            # Deploy phase
+            deploy = find_template(screen, PHASE_DEPLOY)
+            if deploy:
+                print("🟢 Deploy phase")
+                for unit in UNITS:
+                    pos = find_template(screen, unit)
+                    if pos:
+                        print(f"💰 Comprant {os.path.basename(unit)}")
+                        adb_tap(*pos)
+                        time.sleep(0.5)
+                time.sleep(1)
+                continue
+
+            # Battle phase
+            battle_phase = find_template(screen, PHASE_BATTLE)
+            if battle_phase:
+                print("🔴 Battle phase, esperant...")
+                time.sleep(3)
+                continue
+
+            # Si no detecta res
+            print("… Pantalla no reconeguda")
             time.sleep(1)
-            continue
+        else:
+            time.sleep(0.5)
 
-        # Detectem fase battle
-        battle_phase = find_template(screen, PHASE_BATTLE)
-        if battle_phase:
-            print("🔴 Battle phase, esperant...")
-            time.sleep(3)
-            continue
+# 🔹 GUI OpenCV
+IMG_SIZE = (100,100)
+MARGIN = 10
+COLS = 5
 
-        # Si no detecta res
-        print("… Pantalla no reconeguda, intentant de nou")
-        time.sleep(1)
+def draw_units():
+    rows = (len(unit_imgs)-1)//COLS + 1
+    canvas_h = rows*(IMG_SIZE[1]+MARGIN)+MARGIN + 70
+    canvas_w = max(COLS*(IMG_SIZE[0]+MARGIN)+MARGIN, 370)
+    canvas = np.ones((canvas_h, canvas_w,3), dtype=np.uint8)*255
+    # Miniatures
+    for idx, img in enumerate(unit_imgs):
+        row = idx//COLS
+        col = idx%COLS
+        x = col*(IMG_SIZE[0]+MARGIN)+MARGIN
+        y = row*(IMG_SIZE[1]+MARGIN)+MARGIN+70
+        thumb = cv2.resize(img, IMG_SIZE)
+        canvas[y:y+IMG_SIZE[1], x:x+IMG_SIZE[0]] = thumb
+        if selected[idx]:
+            cv2.rectangle(canvas, (x,y), (x+IMG_SIZE[0], y+IMG_SIZE[1]), (0,255,0),3)
+    # Botons
+    for name, (x0,y0,x1,y1) in BUTTONS.items():
+        color = (0,200,0) if (bot_running and name=="start") else (0,0,255) if (not bot_running and name=="stop") else (150,150,150)
+        cv2.rectangle(canvas, (x0,y0), (x1,y1), color, -1)
+        cv2.putText(canvas, name.capitalize(), (x0+5, y0+30), cv2.QT_FONT_NORMAL, 0.8, (255,255,255),2)
+    return canvas
 
-if __name__ == "__main__":
-    main_loop()
+def click_event(event, x, y, flags, param):
+    global bot_running
+    if event != cv2.EVENT_LBUTTONDOWN:
+        return
+    # Miniatures
+    for idx in range(len(unit_imgs)):
+        row = idx//COLS
+        col = idx%COLS
+        x0 = col*(IMG_SIZE[0]+MARGIN)+MARGIN
+        y0 = row*(IMG_SIZE[1]+MARGIN)+MARGIN+70
+        x1 = x0+IMG_SIZE[0]
+        y1 = y0+IMG_SIZE[1]
+        if x0 <= x <= x1 and y0 <= y <= y1:
+            selected[idx] = not selected[idx]
+            return
+    # Botons
+    for name, (x0,y0,x1,y1) in BUTTONS.items():
+        if x0 <= x <= x1 and y0 <= y <= y1:
+            if name == "start":
+                bot_running = True
+                print("▶️ Bot arrancat")
+            elif name == "stop":
+                bot_running = False
+                print("⏹ Bot aturat")
+            elif name == "confirm":
+                save_composition()
+
+# 🔹 Inici
+cv2.namedWindow("Unit Selector")
+cv2.setMouseCallback("Unit Selector", click_event)
+threading.Thread(target=bot_loop, daemon=True).start()
+
+while True:
+    canvas = draw_units()
+    cv2.imshow("Unit Selector", canvas)
+    key = cv2.waitKey(20) & 0xFF
+    if key == 27:  # ESC surt
+        break
+
+cv2.destroyAllWindows()
