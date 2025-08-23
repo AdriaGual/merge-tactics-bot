@@ -1,4 +1,4 @@
-# 🎮 MergeTacticsBot
+# 🦓 Merge Tactics Bot
 
 <div align="center">
 
@@ -11,15 +11,13 @@
 
 *Automate your gameplay with advanced computer vision and strategic decision-making*
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Configuration](#-configuration) • [Screenshots](#-screenshots)
-
 </div>
 
 ---
 
 ## 🚀 Overview
 
-MergeTacticsBot is a sophisticated automation tool that plays Merge Tactics (Clash Royale Merge mode) autonomously using advanced computer vision and strategic gameplay algorithms. The bot analyzes the game screen in real-time, makes intelligent decisions about unit purchases and deployments, and optimizes your gameplay for maximum efficiency.
+Merge Tactics Bot is a sophisticated automation tool that plays Merge Tactics (Clash Royale Merge mode) autonomously using advanced computer vision and strategic gameplay algorithms. The bot analyzes the game screen in real-time, makes intelligent decisions about unit purchases and deployments, and optimizes your gameplay for maximum efficiency.
 
 ## ✨ Features
 
@@ -63,22 +61,28 @@ The bot recognizes and strategically manages all major units:
 
 ### Quick Setup
 
-\`\`\`bash
 # Clone the repository
+```
 git clone git@github.com:AdriaGual/merge-tactics-bot.git
+```
+```
 cd merge-tactics-bot
-
+```
 # Install dependencies
+```
 pip install -r requirements.txt
-
+```
 # Connect your Android device via USB
+```
 adb devices
-
+```
 (If you can't use the adb command remember to set the environment variables PATH with the route to your adb platform-tools)
 
 # Run the bot
+```
 python bot.py
-\`\`\`
+```
+
 
 ## 🎯 Usage
 
@@ -103,20 +107,21 @@ The bot includes a comprehensive GUI that allows you to:
 ### Unit Compositions
 
 Create custom strategies by choosing your units on the composition view
+<img width="721" height="571" alt="config" src="https://github.com/user-attachments/assets/f53bf6fa-3e8e-463a-a37b-f6addc57a107" />
 
 ## 📸 Screenshots
 
 <div align="center">
 
 ### 🎮 Bot in Action
-![Bot Playing](debug_images/deploy_screen.png)
+![Animation](https://github.com/user-attachments/assets/d871cc43-376e-48a8-8f94-c62a927c5303)
 
 </div>
 
 ## 🏗️ Architecture
 
-\`\`\`
-mergetacticsbot/
+```
+merge-tactics-bot/
 ├── 🤖 bot.py                 # Main bot entry point
 ├── 🎮 core/
 │   ├── game_logic.py         # Core gameplay algorithms
@@ -133,7 +138,7 @@ mergetacticsbot/
 ├── 🛠️ utils/
 │   └── cache_manager.py      # Performance optimization
 └── 📁 templates/             # Unit recognition templates
-\`\`\`
+```
 
 ## 🤝 Contributing
 
