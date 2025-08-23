@@ -4994,3 +4994,1164 @@
 2025-08-23 10:27:45,307 - INFO - [SHOP] Available non-composition cards: ['giant_skeleton(3)', 'skeleton_king(5)', 'spear_goblin(2)']
 2025-08-23 10:27:45,307 - INFO - [FIELD] Non-composition field units: []
 2025-08-23 10:27:45,307 - INFO - [BUY] High elixir (11), buying any unit: skeleton_king (cost: 5)
+2025-08-23 10:49:08,041 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 10:49:08,041 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 10:49:08,066 - INFO - [BOT] Bot loop started
+2025-08-23 10:49:09,303 - INFO - [BOT] Bot arrancat
+2025-08-23 10:49:09,374 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 10:49:12,252 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:49:12,252 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:49:12,253 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:49:12,254 - INFO - [TIME] read_elixir: 2.358s
+2025-08-23 10:49:12,467 - INFO - [ACTION] Play again screen detected
+2025-08-23 10:49:15,692 - INFO - [OCR] Best result so far: 7 (enhanced+basic)
+2025-08-23 10:49:15,943 - INFO - [SUCCESS] OCR only: 7
+2025-08-23 10:49:15,943 - INFO - [TIME] read_elixir: 1.980s
+2025-08-23 10:49:19,660 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:49:19,660 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:49:19,661 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:49:19,662 - INFO - [CACHE] Using cached value: 7
+2025-08-23 10:49:19,662 - INFO - [TIME] read_elixir: 1.982s
+2025-08-23 10:49:22,859 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:49:22,859 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:49:22,860 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:49:22,860 - INFO - [CACHE] Using cached value: 7
+2025-08-23 10:49:22,860 - INFO - [TIME] read_elixir: 1.885s
+2025-08-23 10:49:23,200 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:49:23,200 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:49:28,326 - INFO - [TIME] All units detection: 5.125s
+2025-08-23 10:49:28,326 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:49:28,327 - INFO -    [FIELD] Field units: 1
+2025-08-23 10:49:28,328 - INFO -    [BENCH] Bench units: 0
+2025-08-23 10:49:28,328 - INFO -    [SHOP] Available cards: 0
+2025-08-23 10:49:28,328 - INFO -    [ELIXIR] Current elixir: 7
+2025-08-23 10:49:28,329 - INFO - [SHOP] Available composition cards: []
+2025-08-23 10:49:28,329 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 10:49:28,329 - INFO - [FIELD] Non-composition field units: []
+2025-08-23 10:49:28,329 - INFO - [SKIP] Skipping sell phase, elixir manageable: 7
+2025-08-23 10:49:28,330 - INFO - [FINAL] Final elixir after deploy: 7
+2025-08-23 10:49:28,330 - INFO - [TIME] deploy_units: 5.130s
+2025-08-23 10:49:29,317 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:49:29,320 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:49:31,230 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:49:31,230 - INFO - [TIME] read_elixir: 1.916s
+2025-08-23 10:49:31,592 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:49:31,592 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:49:36,752 - INFO - [TIME] All units detection: 5.159s
+2025-08-23 10:49:36,752 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:49:36,753 - INFO -    [FIELD] Field units: 0
+2025-08-23 10:49:36,754 - INFO -    [BENCH] Bench units: 0
+2025-08-23 10:49:36,754 - INFO -    [SHOP] Available cards: 3
+2025-08-23 10:49:36,754 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 10:49:36,755 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 10:49:36,755 - INFO - [SHOP] Available non-composition cards: ['executioner(3)', 'pekka(3)']
+2025-08-23 10:49:36,755 - INFO - [FIELD] Non-composition field units: []
+2025-08-23 10:49:36,756 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 10:49:37,115 - INFO - [SUCCESS] Made 1 purchases in 0.359s
+2025-08-23 10:49:37,115 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 10:49:37,116 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 10:49:37,116 - INFO - [TIME] deploy_units: 5.525s
+2025-08-23 10:49:38,120 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:49:38,122 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:49:40,095 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:49:40,096 - INFO - [TIME] read_elixir: 1.979s
+2025-08-23 10:49:40,507 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:49:41,503 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:49:41,505 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:49:43,501 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:49:43,502 - INFO - [TIME] read_elixir: 2.003s
+2025-08-23 10:49:43,924 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:49:44,934 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:49:44,937 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:49:46,948 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:49:46,949 - INFO - [TIME] read_elixir: 2.018s
+2025-08-23 10:49:47,361 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:49:48,371 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:49:48,374 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:49:50,396 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:49:50,396 - INFO - [TIME] read_elixir: 2.027s
+2025-08-23 10:49:50,804 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:49:53,788 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:49:53,788 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:49:53,789 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:49:53,789 - INFO - [CACHE] Using cached value: 2
+2025-08-23 10:49:53,790 - INFO - [TIME] read_elixir: 1.996s
+2025-08-23 10:49:57,057 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:49:57,057 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:49:57,058 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:49:57,059 - INFO - [CACHE] Using cached value: 2
+2025-08-23 10:49:57,059 - INFO - [TIME] read_elixir: 1.988s
+2025-08-23 10:49:58,370 - INFO - [TEMPLATE] Multi-digit match: 10 (method: simple, conf: 0.901)
+2025-08-23 10:49:58,371 - INFO - [TEMPLATE] Multi-digit match: 10 (method: otsu, conf: 1.000)
+2025-08-23 10:49:58,504 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 10:50:00,317 - INFO - [SUCCESS] High confidence template: 10 (conf: 1.000)
+2025-08-23 10:50:00,317 - INFO - [TIME] read_elixir: 1.948s
+2025-08-23 10:50:00,671 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:50:00,672 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:50:05,835 - INFO - [TIME] All units detection: 5.163s
+2025-08-23 10:50:05,835 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:50:05,836 - INFO -    [FIELD] Field units: 1
+2025-08-23 10:50:05,836 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:50:05,837 - INFO -    [SHOP] Available cards: 3
+2025-08-23 10:50:05,837 - INFO -    [ELIXIR] Current elixir: 10
+2025-08-23 10:50:05,837 - INFO - [SHOP] Available composition cards: ['archer(3)', 'barbarian(2)']
+2025-08-23 10:50:05,837 - INFO - [SHOP] Available non-composition cards: ['spear_goblin(2)']
+2025-08-23 10:50:05,838 - INFO - [FIELD] Non-composition field units: []
+2025-08-23 10:50:05,838 - INFO - [BUY] Buying composition card: archer (cost: 3)
+2025-08-23 10:50:06,200 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 10:50:06,536 - INFO - [BUY] Medium elixir (5), buying: spear_goblin (cost: 2)
+2025-08-23 10:50:06,871 - INFO - [SUCCESS] Made 3 purchases in 1.033s
+2025-08-23 10:50:06,871 - INFO - [SKIP] Skipping sell phase, elixir manageable: 3
+2025-08-23 10:50:06,872 - INFO - [FINAL] Final elixir after deploy: 3
+2025-08-23 10:50:06,872 - INFO - [TIME] deploy_units: 6.200s
+2025-08-23 10:50:07,885 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:50:07,888 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:50:09,860 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:50:09,860 - INFO - [TIME] read_elixir: 1.977s
+2025-08-23 10:50:10,216 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:50:10,216 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:50:15,529 - INFO - [TIME] All units detection: 5.312s
+2025-08-23 10:50:15,530 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:50:15,531 - INFO -    [FIELD] Field units: 1
+2025-08-23 10:50:15,531 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:50:15,532 - INFO -    [SHOP] Available cards: 0
+2025-08-23 10:50:15,532 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 10:50:15,532 - INFO - [SHOP] Available composition cards: []
+2025-08-23 10:50:15,532 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 10:50:15,533 - INFO - [FIELD] Non-composition field units: []
+2025-08-23 10:50:15,533 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 10:50:15,533 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 10:50:15,534 - INFO - [TIME] deploy_units: 5.318s
+2025-08-23 10:50:18,436 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:50:18,436 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:50:18,437 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:50:18,438 - INFO - [CACHE] Using cached value: 2
+2025-08-23 10:50:18,438 - INFO - [TIME] read_elixir: 1.901s
+2025-08-23 10:50:19,806 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:50:19,808 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:50:20,468 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:50:21,850 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:50:21,850 - INFO - [TIME] read_elixir: 2.047s
+2025-08-23 10:50:22,264 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:50:23,291 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:50:23,294 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:50:24,017 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:50:25,334 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:50:25,334 - INFO - [TIME] read_elixir: 2.046s
+2025-08-23 10:50:25,749 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:50:26,806 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:50:26,809 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:50:27,495 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:50:28,853 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:50:28,853 - INFO - [TIME] read_elixir: 2.050s
+2025-08-23 10:50:29,274 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:50:30,297 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:50:30,299 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:50:30,970 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:50:32,262 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:50:32,263 - INFO - [TIME] read_elixir: 1.969s
+2025-08-23 10:50:32,685 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:50:33,706 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:50:33,709 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:50:34,391 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:50:35,703 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:50:35,703 - INFO - [TIME] read_elixir: 2.000s
+2025-08-23 10:50:36,126 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:50:39,042 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:50:39,042 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:50:39,043 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:50:39,043 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:50:39,043 - INFO - [TIME] read_elixir: 2.036s
+2025-08-23 10:50:40,420 - INFO - [TEMPLATE] Best result so far: 7 (method: simple, conf: 0.620)
+2025-08-23 10:50:40,422 - INFO - [TEMPLATE] Best result so far: 7 (method: otsu, conf: 0.661)
+2025-08-23 10:50:42,451 - INFO - [SUCCESS] Template only: 7 (conf: 0.661)
+2025-08-23 10:50:42,452 - INFO - [TIME] read_elixir: 2.035s
+2025-08-23 10:50:42,821 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:50:42,821 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:50:48,148 - INFO - [TIME] All units detection: 5.326s
+2025-08-23 10:50:48,149 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:50:48,149 - INFO -    [FIELD] Field units: 2
+2025-08-23 10:50:48,150 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:50:48,150 - INFO -    [SHOP] Available cards: 3
+2025-08-23 10:50:48,150 - INFO -    [ELIXIR] Current elixir: 7
+2025-08-23 10:50:48,151 - INFO - [SHOP] Available composition cards: []
+2025-08-23 10:50:48,151 - INFO - [SHOP] Available non-composition cards: ['pekka(3)', 'princess(4)', 'spear_goblin(2)']
+2025-08-23 10:50:48,151 - INFO - [FIELD] Non-composition field units: []
+2025-08-23 10:50:48,151 - INFO - [BUY] High elixir (7), buying any unit: princess (cost: 4)
+2025-08-23 10:50:48,505 - INFO - [SUCCESS] Made 1 purchases in 0.353s
+2025-08-23 10:50:48,505 - INFO - [SKIP] Skipping sell phase, elixir manageable: 3
+2025-08-23 10:50:48,506 - INFO - [FINAL] Final elixir after deploy: 3
+2025-08-23 10:50:48,506 - INFO - [TIME] deploy_units: 5.685s
+2025-08-23 10:50:49,590 - INFO - [TEMPLATE] Best result so far: 7 (method: simple, conf: 0.803)
+2025-08-23 10:50:49,592 - INFO - [TEMPLATE] Best result so far: 7 (method: otsu, conf: 0.999)
+2025-08-23 10:50:51,575 - INFO - [SUCCESS] Template only: 7 (conf: 0.999)
+2025-08-23 10:50:51,575 - INFO - [TIME] read_elixir: 1.988s
+2025-08-23 10:50:52,912 - INFO - [TEMPLATE] Best result so far: 7 (method: simple, conf: 0.803)
+2025-08-23 10:50:52,915 - INFO - [TEMPLATE] Best result so far: 7 (method: otsu, conf: 0.999)
+2025-08-23 10:50:54,938 - INFO - [SUCCESS] Template only: 7 (conf: 0.999)
+2025-08-23 10:50:54,938 - INFO - [TIME] read_elixir: 2.029s
+2025-08-23 10:50:55,297 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:50:55,297 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:51:00,644 - INFO - [TIME] All units detection: 5.345s
+2025-08-23 10:51:00,645 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:51:00,645 - INFO -    [FIELD] Field units: 4
+2025-08-23 10:51:00,646 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:51:00,646 - INFO -    [SHOP] Available cards: 3
+2025-08-23 10:51:00,646 - INFO -    [ELIXIR] Current elixir: 7
+2025-08-23 10:51:00,647 - INFO - [SHOP] Available composition cards: ['archer_queen(5)', 'valkyrie(3)']
+2025-08-23 10:51:00,647 - INFO - [SHOP] Available non-composition cards: ['goblin(2)']
+2025-08-23 10:51:00,647 - INFO - [FIELD] Non-composition field units: ['bomber@camp[3,0]', 'princess@camp[3,2]']
+2025-08-23 10:51:00,648 - INFO - [BUY] Buying composition card: archer_queen (cost: 5)
+2025-08-23 10:51:00,999 - INFO - [SUCCESS] Made 1 purchases in 0.352s
+2025-08-23 10:51:00,999 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 10:51:01,000 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 10:51:01,000 - INFO - [TIME] deploy_units: 5.703s
+2025-08-23 10:51:02,014 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:51:02,018 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:51:04,115 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:51:04,116 - INFO - [TIME] read_elixir: 2.104s
+2025-08-23 10:51:04,477 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:51:04,477 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:51:09,774 - INFO - [TIME] All units detection: 5.296s
+2025-08-23 10:51:09,774 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:51:09,775 - INFO -    [FIELD] Field units: 2
+2025-08-23 10:51:09,776 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:51:09,776 - INFO -    [SHOP] Available cards: 0
+2025-08-23 10:51:09,776 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 10:51:09,777 - INFO - [SHOP] Available composition cards: []
+2025-08-23 10:51:09,777 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 10:51:09,778 - INFO - [FIELD] Non-composition field units: []
+2025-08-23 10:51:09,778 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 10:51:09,778 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 10:51:09,779 - INFO - [TIME] deploy_units: 5.302s
+2025-08-23 10:51:10,794 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:51:10,797 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:51:12,982 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:51:12,982 - INFO - [TIME] read_elixir: 2.191s
+2025-08-23 10:51:13,452 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:51:14,466 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:51:14,469 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:51:16,452 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:51:16,453 - INFO - [TIME] read_elixir: 1.991s
+2025-08-23 10:51:16,870 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:51:17,940 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:51:17,943 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:51:19,914 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:51:19,914 - INFO - [TIME] read_elixir: 1.978s
+2025-08-23 10:51:20,320 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:51:23,218 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:51:23,218 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:51:23,219 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:51:23,219 - INFO - [CACHE] Using cached value: 2
+2025-08-23 10:51:23,220 - INFO - [TIME] read_elixir: 1.912s
+2025-08-23 10:51:26,058 - INFO - [OCR] Best result so far: 4 (inverted_otsu+single_char)
+2025-08-23 10:51:26,577 - INFO - [SUCCESS] OCR only: 4
+2025-08-23 10:51:26,577 - INFO - [TIME] read_elixir: 2.018s
+2025-08-23 10:51:26,969 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:51:26,969 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:51:32,045 - INFO - [TIME] All units detection: 5.075s
+2025-08-23 10:51:32,045 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:51:32,045 - INFO -    [FIELD] Field units: 3
+2025-08-23 10:51:32,046 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:51:32,046 - INFO -    [SHOP] Available cards: 3
+2025-08-23 10:51:32,046 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 10:51:32,047 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 10:51:32,047 - INFO - [SHOP] Available non-composition cards: ['pekka(3)', 'princess(4)']
+2025-08-23 10:51:32,047 - INFO - [FIELD] Non-composition field units: ['princess@camp[3,2]']
+2025-08-23 10:51:32,048 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 10:51:32,405 - INFO - [SUCCESS] Made 1 purchases in 0.357s
+2025-08-23 10:51:32,405 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 10:51:32,406 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 10:51:32,407 - INFO - [TIME] deploy_units: 5.438s
+2025-08-23 10:51:33,409 - INFO - [TEMPLATE] Best result so far: 8 (method: simple, conf: 0.867)
+2025-08-23 10:51:33,412 - INFO - [TEMPLATE] Best result so far: 8 (method: otsu, conf: 0.996)
+2025-08-23 10:51:34,069 - INFO - [OCR] Best result so far: 8 (otsu+single_char)
+2025-08-23 10:51:35,367 - INFO - [SUCCESS] Both methods agree: 8
+2025-08-23 10:51:35,368 - INFO - [TIME] read_elixir: 1.962s
+2025-08-23 10:51:35,733 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:51:35,733 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:51:41,211 - INFO - [TIME] All units detection: 5.476s
+2025-08-23 10:51:41,211 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:51:41,213 - INFO -    [FIELD] Field units: 4
+2025-08-23 10:51:41,214 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:51:41,214 - INFO -    [SHOP] Available cards: 0
+2025-08-23 10:51:41,215 - INFO -    [ELIXIR] Current elixir: 8
+2025-08-23 10:51:41,215 - INFO - [SHOP] Available composition cards: []
+2025-08-23 10:51:41,216 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 10:51:41,216 - INFO - [FIELD] Non-composition field units: ['bomber@camp[3,0]', 'princess@camp[3,2]']
+2025-08-23 10:51:41,217 - INFO - [SKIP] Skipping sell phase, elixir manageable: 8
+2025-08-23 10:51:41,217 - INFO - [FINAL] Final elixir after deploy: 8
+2025-08-23 10:51:41,218 - INFO - [TIME] deploy_units: 5.484s
+2025-08-23 10:51:42,249 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 10:51:42,252 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 10:51:42,394 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 10:51:44,231 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 10:51:44,231 - INFO - [TIME] read_elixir: 1.984s
+2025-08-23 10:51:44,576 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:51:44,576 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 10:51:50,008 - INFO - [TIME] All units detection: 5.430s
+2025-08-23 10:51:50,008 - INFO - [SUMMARY] Detection summary:
+2025-08-23 10:51:50,009 - INFO -    [FIELD] Field units: 3
+2025-08-23 10:51:50,009 - INFO -    [BENCH] Bench units: 1
+2025-08-23 10:51:50,010 - INFO -    [SHOP] Available cards: 3
+2025-08-23 10:51:50,010 - INFO -    [ELIXIR] Current elixir: 9
+2025-08-23 10:51:50,010 - INFO - [SHOP] Available composition cards: []
+2025-08-23 10:51:50,011 - INFO - [SHOP] Available non-composition cards: ['goblin(2)', 'knight(2)', 'prince(3)']
+2025-08-23 10:51:50,011 - INFO - [FIELD] Non-composition field units: ['princess@camp[3,2]']
+2025-08-23 10:51:50,011 - INFO - [BUY] High elixir (9), buying any unit: prince (cost: 3)
+2025-08-23 10:51:50,355 - INFO - [BUY] Medium elixir (6), buying: goblin (cost: 2)
+2025-08-23 10:51:50,699 - INFO - [BUY] Medium elixir (4), buying: knight (cost: 2)
+2025-08-23 10:51:51,029 - INFO - [SUCCESS] Made 3 purchases in 1.018s
+2025-08-23 10:51:51,029 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 10:51:51,030 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 10:51:51,030 - INFO - [TIME] deploy_units: 6.454s
+2025-08-23 10:51:53,995 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:51:53,995 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:51:53,996 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:51:53,997 - INFO - [CACHE] Using cached value: 9
+2025-08-23 10:51:53,998 - INFO - [TIME] read_elixir: 1.944s
+2025-08-23 10:51:55,374 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 10:51:55,376 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 10:51:55,520 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 10:51:57,492 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 10:51:57,493 - INFO - [TIME] read_elixir: 2.122s
+2025-08-23 10:51:57,940 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:51:58,980 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 10:51:58,982 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 10:51:59,115 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 10:52:00,945 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 10:52:00,945 - INFO - [TIME] read_elixir: 1.968s
+2025-08-23 10:52:01,377 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:52:02,378 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 10:52:02,381 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 10:52:02,516 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 10:52:04,364 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 10:52:04,364 - INFO - [TIME] read_elixir: 1.989s
+2025-08-23 10:52:23,123 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 10:52:23,123 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 10:52:23,147 - INFO - [BOT] Bot loop started
+2025-08-23 10:52:23,995 - INFO - [BOT] Bot arrancat
+2025-08-23 10:52:24,052 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 10:52:26,407 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:52:26,407 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:52:26,408 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:52:26,408 - INFO - [TIME] read_elixir: 1.979s
+2025-08-23 10:52:26,693 - INFO - [ACTION] Quit screen detected
+2025-08-23 10:52:29,432 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:52:29,432 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:52:29,433 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:52:29,433 - INFO - [TIME] read_elixir: 1.924s
+2025-08-23 10:52:29,643 - INFO - [ACTION] Play again screen detected
+2025-08-23 10:52:32,471 - INFO - [OCR] Best result so far: 6 (inverted_otsu+single_char)
+2025-08-23 10:52:32,980 - INFO - [SUCCESS] OCR only: 6
+2025-08-23 10:52:32,980 - INFO - [TIME] read_elixir: 1.963s
+2025-08-23 10:52:36,147 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:52:36,147 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:52:36,148 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:52:36,148 - INFO - [CACHE] Using cached value: 6
+2025-08-23 10:52:36,149 - INFO - [TIME] read_elixir: 1.960s
+2025-08-23 10:52:39,316 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:52:39,316 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:52:39,317 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:52:39,318 - INFO - [CACHE] Using cached value: 6
+2025-08-23 10:52:39,318 - INFO - [TIME] read_elixir: 1.945s
+2025-08-23 10:52:42,420 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:52:42,421 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:52:42,422 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:52:42,422 - INFO - [CACHE] Using cached value: 6
+2025-08-23 10:52:42,422 - INFO - [TIME] read_elixir: 1.899s
+2025-08-23 10:52:43,651 - INFO - [TEMPLATE] Best result so far: 4 (method: adaptive, conf: 0.608)
+2025-08-23 10:52:44,161 - INFO - [OCR] Best result so far: 4 (otsu+basic)
+2025-08-23 10:52:45,559 - INFO - [SUCCESS] Both methods agree: 4
+2025-08-23 10:52:45,559 - INFO - [TIME] read_elixir: 1.915s
+2025-08-23 10:52:45,907 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:52:45,908 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:52:50,969 - INFO - [TIME] Combined detection: 5.061s
+2025-08-23 10:52:50,969 - INFO - [SUMMARY] Field:0 Bench:0 Shop:2 Elixir:4
+2025-08-23 10:52:50,970 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 10:52:51,213 - INFO - [SUCCESS] 1 purchases in 0.243s
+2025-08-23 10:52:51,213 - INFO - [FINAL] Elixir: 2
+2025-08-23 10:52:51,213 - INFO - [TIME] deploy_units: 5.306s
+2025-08-23 10:52:52,201 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:52:52,203 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:52:54,128 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:52:54,128 - INFO - [TIME] read_elixir: 1.930s
+2025-08-23 10:52:54,474 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:52:54,474 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:52:59,556 - INFO - [TIME] Combined detection: 5.082s
+2025-08-23 10:52:59,556 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:2
+2025-08-23 10:52:59,557 - INFO - [FINAL] Elixir: 2
+2025-08-23 10:52:59,557 - INFO - [TIME] deploy_units: 5.084s
+2025-08-23 10:53:00,573 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:53:00,576 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:53:02,504 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:53:02,504 - INFO - [TIME] read_elixir: 1.934s
+2025-08-23 10:53:02,907 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:03,929 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:53:03,932 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:53:05,857 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:53:05,857 - INFO - [TIME] read_elixir: 1.932s
+2025-08-23 10:53:06,278 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:07,296 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:53:07,299 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:53:09,205 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:53:09,206 - INFO - [TIME] read_elixir: 1.912s
+2025-08-23 10:53:09,621 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:10,659 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:53:10,662 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:53:12,600 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:53:12,600 - INFO - [TIME] read_elixir: 1.944s
+2025-08-23 10:53:13,020 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:15,984 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:53:15,985 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:53:15,985 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:53:15,986 - INFO - [CACHE] Using cached value: 2
+2025-08-23 10:53:15,986 - INFO - [TIME] read_elixir: 1.954s
+2025-08-23 10:53:17,313 - INFO - [TEMPLATE] Best result so far: 6 (method: simple, conf: 0.857)
+2025-08-23 10:53:17,316 - INFO - [TEMPLATE] Best result so far: 6 (method: otsu, conf: 0.997)
+2025-08-23 10:53:17,966 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:53:19,235 - INFO - [SUCCESS] High confidence template: 6 (conf: 0.997)
+2025-08-23 10:53:19,235 - INFO - [TIME] read_elixir: 1.926s
+2025-08-23 10:53:19,586 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:53:19,586 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:53:24,707 - INFO - [TIME] Combined detection: 5.120s
+2025-08-23 10:53:24,707 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:6
+2025-08-23 10:53:24,708 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 10:53:24,939 - INFO - [SUCCESS] 1 purchases in 0.230s
+2025-08-23 10:53:24,939 - INFO - [FINAL] Elixir: 3
+2025-08-23 10:53:24,940 - INFO - [TIME] deploy_units: 5.353s
+2025-08-23 10:53:25,934 - INFO - [TEMPLATE] Best result so far: 7 (method: simple, conf: 0.803)
+2025-08-23 10:53:25,936 - INFO - [TEMPLATE] Best result so far: 7 (method: otsu, conf: 0.999)
+2025-08-23 10:53:27,892 - INFO - [SUCCESS] Template only: 7 (conf: 0.999)
+2025-08-23 10:53:27,892 - INFO - [TIME] read_elixir: 1.960s
+2025-08-23 10:53:28,240 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:53:28,240 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:53:33,313 - INFO - [TIME] Combined detection: 5.072s
+2025-08-23 10:53:33,313 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:7
+2025-08-23 10:53:33,314 - INFO - [BUY] archer_queen (cost: 5)
+2025-08-23 10:53:33,567 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 10:53:33,797 - INFO - [SUCCESS] 2 purchases in 0.483s
+2025-08-23 10:53:33,797 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:53:33,798 - INFO - [TIME] deploy_units: 5.558s
+2025-08-23 10:53:34,830 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:53:34,833 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:53:36,761 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:53:36,761 - INFO - [TIME] read_elixir: 1.932s
+2025-08-23 10:53:37,102 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:53:37,102 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:53:42,216 - INFO - [TIME] Combined detection: 5.112s
+2025-08-23 10:53:42,217 - INFO - [SUMMARY] Field:2 Bench:0 Shop:0 Elixir:0
+2025-08-23 10:53:42,217 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:53:42,218 - INFO - [TIME] deploy_units: 5.115s
+2025-08-23 10:53:43,239 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:53:43,242 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:53:45,198 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:53:45,198 - INFO - [TIME] read_elixir: 1.962s
+2025-08-23 10:53:45,647 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:46,655 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:53:46,658 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:53:48,551 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:53:48,551 - INFO - [TIME] read_elixir: 1.897s
+2025-08-23 10:53:48,967 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:49,957 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:53:49,959 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:53:51,910 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:53:51,910 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 10:53:52,323 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:53:55,234 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:53:55,234 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:53:55,235 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:53:55,235 - INFO - [TIME] read_elixir: 1.927s
+2025-08-23 10:53:56,533 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:53:56,534 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:53:58,451 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:53:58,452 - INFO - [TIME] read_elixir: 1.922s
+2025-08-23 10:53:58,797 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:53:58,797 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:54:03,929 - INFO - [TIME] Combined detection: 5.132s
+2025-08-23 10:54:03,930 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:54:03,931 - INFO - [BUY] mega_knight (cost: 4)
+2025-08-23 10:54:04,163 - INFO - [SUCCESS] 1 purchases in 0.231s
+2025-08-23 10:54:04,163 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:54:04,164 - INFO - [TIME] deploy_units: 5.367s
+2025-08-23 10:54:05,162 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:05,165 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:07,091 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:07,091 - INFO - [TIME] read_elixir: 1.931s
+2025-08-23 10:54:07,432 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:54:07,433 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:54:12,484 - INFO - [TIME] Combined detection: 5.051s
+2025-08-23 10:54:12,484 - INFO - [SUMMARY] Field:1 Bench:1 Shop:0 Elixir:0
+2025-08-23 10:54:12,485 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:54:12,486 - INFO - [TIME] deploy_units: 5.053s
+2025-08-23 10:54:13,486 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:13,488 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:15,407 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:15,407 - INFO - [TIME] read_elixir: 1.924s
+2025-08-23 10:54:15,750 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:54:15,750 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:54:20,876 - INFO - [TIME] Combined detection: 5.124s
+2025-08-23 10:54:20,877 - INFO - [SUMMARY] Field:3 Bench:1 Shop:0 Elixir:0
+2025-08-23 10:54:20,877 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:54:20,877 - INFO - [TIME] deploy_units: 5.127s
+2025-08-23 10:54:21,900 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:21,903 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:23,853 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:23,854 - INFO - [TIME] read_elixir: 1.957s
+2025-08-23 10:54:24,271 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:54:25,280 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:25,283 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:27,223 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:27,223 - INFO - [TIME] read_elixir: 1.945s
+2025-08-23 10:54:27,641 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:54:28,662 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:28,664 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:30,598 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:30,599 - INFO - [TIME] read_elixir: 1.940s
+2025-08-23 10:54:31,009 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:54:33,996 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:54:33,996 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:54:33,997 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:54:33,997 - INFO - [TIME] read_elixir: 1.986s
+2025-08-23 10:54:37,258 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:54:37,258 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:54:37,259 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:54:37,260 - INFO - [TIME] read_elixir: 1.988s
+2025-08-23 10:54:38,573 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:54:38,576 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:54:40,514 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:54:40,514 - INFO - [TIME] read_elixir: 1.943s
+2025-08-23 10:54:40,857 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:54:40,857 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:54:45,986 - INFO - [TIME] Combined detection: 5.128s
+2025-08-23 10:54:45,986 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:54:45,988 - INFO - [BUY] Medium elixir: royal_ghost (cost: 4)
+2025-08-23 10:54:46,245 - INFO - [SUCCESS] 1 purchases in 0.257s
+2025-08-23 10:54:46,245 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:54:46,246 - INFO - [TIME] deploy_units: 5.389s
+2025-08-23 10:54:47,240 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:47,243 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:49,180 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:49,180 - INFO - [TIME] read_elixir: 1.942s
+2025-08-23 10:54:49,544 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:54:49,544 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:54:54,668 - INFO - [TIME] Combined detection: 5.123s
+2025-08-23 10:54:54,668 - INFO - [SUMMARY] Field:3 Bench:0 Shop:0 Elixir:0
+2025-08-23 10:54:54,669 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:54:54,670 - INFO - [TIME] deploy_units: 5.126s
+2025-08-23 10:54:55,657 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:54:55,659 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:54:57,562 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:54:57,562 - INFO - [TIME] read_elixir: 1.907s
+2025-08-23 10:54:57,911 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:54:57,911 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:55:03,070 - INFO - [TIME] Combined detection: 5.157s
+2025-08-23 10:55:03,070 - INFO - [SUMMARY] Field:3 Bench:0 Shop:0 Elixir:0
+2025-08-23 10:55:03,071 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:55:03,072 - INFO - [TIME] deploy_units: 5.159s
+2025-08-23 10:55:04,061 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.886)
+2025-08-23 10:55:04,063 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.985)
+2025-08-23 10:55:05,511 - INFO - [OCR] Best result so far: 6 (inverted_otsu+single_char)
+2025-08-23 10:55:06,030 - INFO - [SUCCESS] High confidence template: 0 (conf: 0.985)
+2025-08-23 10:55:06,030 - INFO - [TIME] read_elixir: 1.972s
+2025-08-23 10:55:06,481 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:07,486 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:07,489 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:09,616 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:09,616 - INFO - [TIME] read_elixir: 2.133s
+2025-08-23 10:55:10,054 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:11,091 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:11,094 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:13,016 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:13,016 - INFO - [TIME] read_elixir: 1.929s
+2025-08-23 10:55:13,432 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:14,458 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:14,460 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:16,515 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:16,515 - INFO - [TIME] read_elixir: 2.061s
+2025-08-23 10:55:16,964 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:17,973 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:17,976 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:20,029 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:20,029 - INFO - [TIME] read_elixir: 2.059s
+2025-08-23 10:55:20,440 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:21,453 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:21,456 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:23,422 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:23,422 - INFO - [TIME] read_elixir: 1.972s
+2025-08-23 10:55:23,836 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:24,835 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:24,837 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:26,858 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:26,859 - INFO - [TIME] read_elixir: 2.027s
+2025-08-23 10:55:27,267 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:55:30,210 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:55:30,210 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:55:30,211 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:55:30,211 - INFO - [TIME] read_elixir: 1.928s
+2025-08-23 10:55:33,420 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:55:33,420 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:55:33,421 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:55:33,421 - INFO - [TIME] read_elixir: 1.930s
+2025-08-23 10:55:34,749 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:55:34,752 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:55:36,678 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:55:36,678 - INFO - [TIME] read_elixir: 1.931s
+2025-08-23 10:55:37,019 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:55:37,019 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:55:42,118 - INFO - [TIME] Combined detection: 5.098s
+2025-08-23 10:55:42,118 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:55:42,119 - INFO - [BUY] Medium elixir: princess (cost: 4)
+2025-08-23 10:55:42,344 - INFO - [SUCCESS] 1 purchases in 0.225s
+2025-08-23 10:55:42,344 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:55:42,345 - INFO - [TIME] deploy_units: 5.326s
+2025-08-23 10:55:43,325 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:43,328 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:45,272 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:45,272 - INFO - [TIME] read_elixir: 1.950s
+2025-08-23 10:55:45,641 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:55:45,641 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:55:50,774 - INFO - [TIME] Combined detection: 5.132s
+2025-08-23 10:55:50,774 - INFO - [SUMMARY] Field:3 Bench:0 Shop:0 Elixir:0
+2025-08-23 10:55:50,775 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:55:50,776 - INFO - [TIME] deploy_units: 5.135s
+2025-08-23 10:55:51,772 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:55:51,775 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:55:53,783 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:55:53,783 - INFO - [TIME] read_elixir: 2.014s
+2025-08-23 10:55:54,142 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:55:54,142 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:55:59,315 - INFO - [TIME] Combined detection: 5.172s
+2025-08-23 10:55:59,315 - INFO - [SUMMARY] Field:4 Bench:0 Shop:0 Elixir:0
+2025-08-23 10:55:59,316 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:55:59,316 - INFO - [TIME] deploy_units: 5.174s
+2025-08-23 10:56:00,288 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:56:00,290 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:56:02,243 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:56:02,244 - INFO - [TIME] read_elixir: 1.960s
+2025-08-23 10:56:02,591 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:56:02,592 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:56:07,724 - INFO - [TIME] Combined detection: 5.133s
+2025-08-23 10:56:07,724 - INFO - [SUMMARY] Field:4 Bench:0 Shop:0 Elixir:0
+2025-08-23 10:56:07,725 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:56:07,726 - INFO - [TIME] deploy_units: 5.135s
+2025-08-23 10:56:08,746 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:56:08,748 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:56:10,698 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:56:10,698 - INFO - [TIME] read_elixir: 1.954s
+2025-08-23 10:56:11,105 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:56:12,094 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:56:12,096 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:56:14,019 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:56:14,020 - INFO - [TIME] read_elixir: 1.929s
+2025-08-23 10:56:14,425 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:56:15,418 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:56:15,421 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:56:17,346 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:56:17,346 - INFO - [TIME] read_elixir: 1.931s
+2025-08-23 10:56:17,761 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:56:18,739 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:56:18,742 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:56:20,684 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:56:20,684 - INFO - [TIME] read_elixir: 1.947s
+2025-08-23 10:56:21,087 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:56:22,111 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.883)
+2025-08-23 10:56:22,114 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.983)
+2025-08-23 10:56:24,114 - INFO - [SUCCESS] Template only: 0 (conf: 0.983)
+2025-08-23 10:56:24,114 - INFO - [TIME] read_elixir: 2.004s
+2025-08-23 10:56:27,220 - INFO - [OCR] Best result so far: 7 (enhanced+single_char)
+2025-08-23 10:56:27,352 - INFO - [SUCCESS] OCR only: 7
+2025-08-23 10:56:27,352 - INFO - [TIME] read_elixir: 2.015s
+2025-08-23 10:56:28,651 - INFO - [TEMPLATE] Best result so far: 8 (method: simple, conf: 0.867)
+2025-08-23 10:56:28,654 - INFO - [TEMPLATE] Best result so far: 8 (method: otsu, conf: 0.996)
+2025-08-23 10:56:29,329 - INFO - [OCR] Best result so far: 8 (otsu+single_char)
+2025-08-23 10:56:30,591 - INFO - [SUCCESS] Both methods agree: 8
+2025-08-23 10:56:30,592 - INFO - [TIME] read_elixir: 1.944s
+2025-08-23 10:56:30,951 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:56:30,951 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:56:36,125 - INFO - [TIME] Combined detection: 5.173s
+2025-08-23 10:56:36,125 - INFO - [SUMMARY] Field:4 Bench:0 Shop:3 Elixir:8
+2025-08-23 10:56:36,126 - INFO - [BUY] archer (cost: 3)
+2025-08-23 10:56:36,374 - INFO - [BUY] Medium elixir: princess (cost: 4)
+2025-08-23 10:56:36,604 - INFO - [SUCCESS] 2 purchases in 0.478s
+2025-08-23 10:56:36,604 - INFO - [FINAL] Elixir: 1
+2025-08-23 10:56:36,605 - INFO - [TIME] deploy_units: 5.654s
+2025-08-23 10:56:37,592 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 10:56:37,594 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 10:56:39,546 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 10:56:39,546 - INFO - [TIME] read_elixir: 1.957s
+2025-08-23 10:56:39,887 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:56:39,887 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:56:45,040 - INFO - [TIME] Combined detection: 5.152s
+2025-08-23 10:56:45,040 - INFO - [SUMMARY] Field:4 Bench:2 Shop:0 Elixir:2
+2025-08-23 10:56:45,041 - INFO - [FINAL] Elixir: 2
+2025-08-23 10:56:45,041 - INFO - [TIME] deploy_units: 5.153s
+2025-08-23 10:56:46,030 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:56:46,032 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:56:46,698 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:56:47,967 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:56:47,967 - INFO - [TIME] read_elixir: 1.939s
+2025-08-23 10:56:48,309 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:56:48,309 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:56:53,405 - INFO - [TIME] Combined detection: 5.095s
+2025-08-23 10:56:53,406 - INFO - [SUMMARY] Field:4 Bench:1 Shop:1 Elixir:3
+2025-08-23 10:56:53,407 - INFO - [FINAL] Elixir: 3
+2025-08-23 10:56:53,407 - INFO - [TIME] deploy_units: 5.098s
+2025-08-23 10:56:54,409 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:56:54,412 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:56:55,109 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:56:56,433 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:56:56,433 - INFO - [TIME] read_elixir: 2.026s
+2025-08-23 10:56:56,782 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:56:56,782 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:57:01,995 - INFO - [TIME] Combined detection: 5.213s
+2025-08-23 10:57:01,996 - INFO - [SUMMARY] Field:4 Bench:1 Shop:1 Elixir:3
+2025-08-23 10:57:01,997 - INFO - [FINAL] Elixir: 3
+2025-08-23 10:57:01,997 - INFO - [TIME] deploy_units: 5.216s
+2025-08-23 10:57:02,999 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:57:03,002 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:57:03,658 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:57:04,953 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:57:04,953 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 10:57:05,365 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:57:06,403 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:57:06,405 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:57:07,081 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:57:08,378 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:57:08,378 - INFO - [TIME] read_elixir: 1.979s
+2025-08-23 10:57:08,791 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:57:09,797 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:57:09,799 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:57:10,450 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:57:11,778 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:57:11,778 - INFO - [TIME] read_elixir: 1.984s
+2025-08-23 10:57:12,186 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:57:13,205 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:57:13,207 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:57:13,859 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:57:15,278 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:57:15,278 - INFO - [TIME] read_elixir: 2.076s
+2025-08-23 10:57:15,699 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:57:16,732 - INFO - [TEMPLATE] Best result so far: 3 (method: simple, conf: 0.890)
+2025-08-23 10:57:16,735 - INFO - [TEMPLATE] Best result so far: 3 (method: otsu, conf: 0.992)
+2025-08-23 10:57:17,389 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 10:57:18,683 - INFO - [SUCCESS] Both methods agree: 3
+2025-08-23 10:57:18,684 - INFO - [TIME] read_elixir: 1.955s
+2025-08-23 10:57:19,094 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:57:22,053 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:22,053 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:22,054 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:22,055 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:22,055 - INFO - [TIME] read_elixir: 1.958s
+2025-08-23 10:57:24,981 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:24,981 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:24,982 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:24,982 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:24,983 - INFO - [TIME] read_elixir: 1.929s
+2025-08-23 10:57:25,272 - INFO - [ACTION] Quit screen detected
+2025-08-23 10:57:27,978 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:27,978 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:27,979 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:27,980 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:27,980 - INFO - [TIME] read_elixir: 1.904s
+2025-08-23 10:57:28,196 - INFO - [ACTION] Play again screen detected
+2025-08-23 10:57:31,627 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:31,627 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:31,627 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:31,627 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:31,627 - INFO - [TIME] read_elixir: 1.978s
+2025-08-23 10:57:34,816 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:34,816 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:34,817 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:34,817 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:34,817 - INFO - [TIME] read_elixir: 2.004s
+2025-08-23 10:57:38,567 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:38,567 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:38,568 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:38,568 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:38,569 - INFO - [TIME] read_elixir: 2.011s
+2025-08-23 10:57:41,878 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:57:41,878 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:57:41,879 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:57:41,880 - INFO - [CACHE] Using cached value: 3
+2025-08-23 10:57:41,880 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 10:57:42,221 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:57:42,221 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:57:47,339 - INFO - [TIME] Combined detection: 5.117s
+2025-08-23 10:57:47,339 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:3
+2025-08-23 10:57:47,340 - INFO - [FINAL] Elixir: 3
+2025-08-23 10:57:47,341 - INFO - [TIME] deploy_units: 5.120s
+2025-08-23 10:57:48,324 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:57:48,326 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:57:50,391 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:57:50,391 - INFO - [TIME] read_elixir: 2.070s
+2025-08-23 10:57:50,744 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:57:50,744 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:57:56,157 - INFO - [TIME] Combined detection: 5.412s
+2025-08-23 10:57:56,157 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:57:56,158 - INFO - [BUY] Medium elixir: royal_ghost (cost: 4)
+2025-08-23 10:57:56,393 - INFO - [SUCCESS] 1 purchases in 0.235s
+2025-08-23 10:57:56,393 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:57:56,394 - INFO - [TIME] deploy_units: 5.650s
+2025-08-23 10:57:57,409 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:57:57,413 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:57:59,407 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:57:59,407 - INFO - [TIME] read_elixir: 1.999s
+2025-08-23 10:57:59,854 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:00,895 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:58:00,897 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:58:03,007 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:58:03,007 - INFO - [TIME] read_elixir: 2.115s
+2025-08-23 10:58:03,430 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:04,464 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:58:04,466 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:58:06,521 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:58:06,521 - INFO - [TIME] read_elixir: 2.060s
+2025-08-23 10:58:06,954 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:07,977 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:58:07,980 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:58:10,040 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:58:10,040 - INFO - [TIME] read_elixir: 2.066s
+2025-08-23 10:58:10,479 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:13,603 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:58:13,603 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:58:13,604 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:58:13,605 - INFO - [TIME] read_elixir: 2.090s
+2025-08-23 10:58:15,021 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:58:15,024 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:58:17,165 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:58:17,165 - INFO - [TIME] read_elixir: 2.148s
+2025-08-23 10:58:17,537 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:58:17,537 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:58:23,252 - INFO - [TIME] Combined detection: 5.714s
+2025-08-23 10:58:23,252 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:58:23,253 - INFO - [BUY] mega_knight (cost: 4)
+2025-08-23 10:58:23,492 - INFO - [SUCCESS] 1 purchases in 0.239s
+2025-08-23 10:58:23,492 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:58:23,493 - INFO - [TIME] deploy_units: 5.956s
+2025-08-23 10:58:24,533 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:58:24,536 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:58:26,630 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:58:26,630 - INFO - [TIME] read_elixir: 2.100s
+2025-08-23 10:58:26,990 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:58:26,990 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:58:32,395 - INFO - [TIME] Combined detection: 5.403s
+2025-08-23 10:58:32,395 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:58:32,396 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 10:58:32,638 - INFO - [SUCCESS] 1 purchases in 0.243s
+2025-08-23 10:58:32,638 - INFO - [FINAL] Elixir: 1
+2025-08-23 10:58:32,639 - INFO - [TIME] deploy_units: 5.649s
+2025-08-23 10:58:33,718 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 10:58:33,722 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 10:58:35,914 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 10:58:35,914 - INFO - [TIME] read_elixir: 2.201s
+2025-08-23 10:58:36,302 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:58:36,302 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:58:41,893 - INFO - [TIME] Combined detection: 5.590s
+2025-08-23 10:58:41,893 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:1
+2025-08-23 10:58:41,894 - INFO - [FINAL] Elixir: 1
+2025-08-23 10:58:41,894 - INFO - [TIME] deploy_units: 5.592s
+2025-08-23 10:58:42,958 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 10:58:42,961 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 10:58:45,048 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 10:58:45,048 - INFO - [TIME] read_elixir: 2.093s
+2025-08-23 10:58:45,486 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:46,521 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 10:58:46,523 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 10:58:48,663 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 10:58:48,663 - INFO - [TIME] read_elixir: 2.144s
+2025-08-23 10:58:49,082 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:50,101 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 10:58:50,103 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 10:58:52,131 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 10:58:52,131 - INFO - [TIME] read_elixir: 2.034s
+2025-08-23 10:58:52,552 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:53,599 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 10:58:53,602 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 10:58:55,648 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 10:58:55,648 - INFO - [TIME] read_elixir: 2.051s
+2025-08-23 10:58:56,115 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:58:59,259 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 10:58:59,260 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 10:58:59,261 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 10:58:59,262 - INFO - [CACHE] Using cached value: 1
+2025-08-23 10:58:59,262 - INFO - [TIME] read_elixir: 2.162s
+2025-08-23 10:59:00,651 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 10:59:00,654 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 10:59:00,798 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 10:59:03,014 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 10:59:03,014 - INFO - [TIME] read_elixir: 2.365s
+2025-08-23 10:59:03,444 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:59:03,444 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:59:09,322 - INFO - [TIME] Combined detection: 5.877s
+2025-08-23 10:59:09,323 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:9
+2025-08-23 10:59:09,324 - INFO - [BUY] bandit (cost: 4)
+2025-08-23 10:59:09,598 - INFO - [BUY] mega_knight (cost: 4)
+2025-08-23 10:59:09,842 - INFO - [SUCCESS] 2 purchases in 0.518s
+2025-08-23 10:59:09,842 - INFO - [FINAL] Elixir: 1
+2025-08-23 10:59:09,843 - INFO - [TIME] deploy_units: 6.399s
+2025-08-23 10:59:10,851 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:59:10,854 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:59:12,834 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:59:12,835 - INFO - [TIME] read_elixir: 1.989s
+2025-08-23 10:59:13,178 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:59:13,179 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:59:18,324 - INFO - [TIME] Combined detection: 5.145s
+2025-08-23 10:59:18,324 - INFO - [SUMMARY] Field:1 Bench:1 Shop:0 Elixir:0
+2025-08-23 10:59:18,325 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:59:18,325 - INFO - [TIME] deploy_units: 5.146s
+2025-08-23 10:59:19,312 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:59:19,315 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:59:21,200 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:59:21,200 - INFO - [TIME] read_elixir: 1.890s
+2025-08-23 10:59:21,547 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:59:21,547 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:59:26,728 - INFO - [TIME] Combined detection: 5.179s
+2025-08-23 10:59:26,728 - INFO - [SUMMARY] Field:3 Bench:2 Shop:0 Elixir:0
+2025-08-23 10:59:26,729 - INFO - [FINAL] Elixir: 0
+2025-08-23 10:59:26,729 - INFO - [TIME] deploy_units: 5.182s
+2025-08-23 10:59:27,741 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 10:59:27,743 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 10:59:29,766 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 10:59:29,766 - INFO - [TIME] read_elixir: 2.029s
+2025-08-23 10:59:30,206 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:31,552 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 10:59:31,552 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 10:59:31,578 - INFO - [BOT] Bot loop started
+2025-08-23 10:59:35,630 - INFO - [BOT] Bot arrancat
+2025-08-23 10:59:35,697 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 10:59:36,815 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:38,229 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:39,637 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:41,057 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:42,453 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:43,867 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 10:59:48,980 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:59:48,983 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 10:59:48,985 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 10:59:50,910 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 10:59:50,910 - INFO - [TIME] read_elixir: 1.930s
+2025-08-23 10:59:50,911 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 10:59:56,040 - INFO - [TIME] Combined detection: 5.128s
+2025-08-23 10:59:56,040 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:4
+2025-08-23 10:59:56,041 - INFO - [REPLACE] knight -> valkyrie
+2025-08-23 10:59:56,590 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 10:59:56,825 - INFO - [SUCCESS] 1 purchases in 0.784s
+2025-08-23 10:59:56,825 - INFO - [FINAL] Elixir: 1
+2025-08-23 10:59:56,825 - INFO - [TIME] deploy_units: 5.915s
+2025-08-23 10:59:58,150 - INFO - [PHASE] Deploy phase detected
+2025-08-23 10:59:58,153 - INFO - [TEMPLATE] Best result so far: 8 (method: simple, conf: 0.867)
+2025-08-23 10:59:58,156 - INFO - [TEMPLATE] Best result so far: 8 (method: otsu, conf: 0.996)
+2025-08-23 10:59:58,790 - INFO - [OCR] Best result so far: 8 (otsu+single_char)
+2025-08-23 11:00:00,067 - INFO - [SUCCESS] Both methods agree: 8
+2025-08-23 11:00:00,067 - INFO - [TIME] read_elixir: 1.916s
+2025-08-23 11:00:00,068 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:00:05,175 - INFO - [TIME] Combined detection: 5.107s
+2025-08-23 11:00:05,176 - INFO - [SUMMARY] Field:2 Bench:2 Shop:3 Elixir:8
+2025-08-23 11:00:05,176 - INFO - [REPLACE] knight -> valkyrie
+2025-08-23 11:00:05,732 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 11:00:05,961 - INFO - [REPLACE] knight -> barbarian
+2025-08-23 11:00:06,533 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 11:00:06,770 - INFO - [SUCCESS] 2 purchases in 1.594s
+2025-08-23 11:00:06,770 - INFO - [FINAL] Elixir: 3
+2025-08-23 11:00:06,771 - INFO - [TIME] deploy_units: 6.703s
+2025-08-23 11:00:08,099 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:00:08,102 - INFO - [TEMPLATE] Best result so far: 8 (method: simple, conf: 0.867)
+2025-08-23 11:00:08,104 - INFO - [TEMPLATE] Best result so far: 8 (method: otsu, conf: 0.996)
+2025-08-23 11:00:08,763 - INFO - [OCR] Best result so far: 8 (otsu+single_char)
+2025-08-23 11:00:10,117 - INFO - [SUCCESS] Both methods agree: 8
+2025-08-23 11:00:10,117 - INFO - [TIME] read_elixir: 2.019s
+2025-08-23 11:00:10,118 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:00:15,318 - INFO - [TIME] Combined detection: 5.199s
+2025-08-23 11:00:15,319 - INFO - [SUMMARY] Field:2 Bench:1 Shop:3 Elixir:8
+2025-08-23 11:00:15,320 - INFO - [REPLACE] knight -> valkyrie
+2025-08-23 11:00:15,884 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 11:00:16,110 - INFO - [REPLACE] knight -> barbarian
+2025-08-23 11:00:16,682 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 11:00:16,927 - INFO - [SUCCESS] 2 purchases in 1.607s
+2025-08-23 11:00:16,927 - INFO - [FINAL] Elixir: 3
+2025-08-23 11:00:16,928 - INFO - [TIME] deploy_units: 6.810s
+2025-08-23 11:00:18,349 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:19,753 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:21,211 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:22,650 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:24,152 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:25,599 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:27,037 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:28,454 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:29,856 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:31,282 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:32,686 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:00:34,952 - INFO - [ACTION] Quit screen detected
+2025-08-23 11:00:55,716 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 11:00:55,716 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 11:00:55,741 - INFO - [BOT] Bot loop started
+2025-08-23 11:01:27,668 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 11:01:27,668 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 11:01:27,691 - INFO - [BOT] Bot loop started
+2025-08-23 11:01:28,906 - INFO - [BOT] Bot arrancat
+2025-08-23 11:01:28,999 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 11:01:29,787 - INFO - [ACTION] Initial screen detected, clicking Battle
+2025-08-23 11:01:36,366 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:01:38,293 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 11:01:38,293 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 11:01:38,294 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 11:01:38,294 - INFO - [TIME] read_elixir: 1.929s
+2025-08-23 11:01:38,294 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:01:43,369 - INFO - [TIME] Combined detection: 5.074s
+2025-08-23 11:01:43,369 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:0
+2025-08-23 11:01:43,370 - INFO - [FINAL] Elixir: 0
+2025-08-23 11:01:43,370 - INFO - [TIME] deploy_units: 5.076s
+2025-08-23 11:01:44,702 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:01:44,704 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 11:01:44,707 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 11:01:44,837 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 11:01:46,640 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 11:01:46,640 - INFO - [TIME] read_elixir: 1.939s
+2025-08-23 11:01:46,641 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:01:51,684 - INFO - [TIME] Combined detection: 5.043s
+2025-08-23 11:01:51,684 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:9
+2025-08-23 11:01:51,685 - INFO - [BUY] High elixir: golden_knight (cost: 5)
+2025-08-23 11:01:51,921 - INFO - [BUY] Medium elixir: executioner (cost: 3)
+2025-08-23 11:01:52,169 - INFO - [SUCCESS] 2 purchases in 0.484s
+2025-08-23 11:01:52,169 - INFO - [FINAL] Elixir: 1
+2025-08-23 11:01:52,170 - INFO - [TIME] deploy_units: 5.529s
+2025-08-23 11:01:56,132 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:01:57,534 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:01:58,997 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:00,429 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:01,837 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:03,244 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:04,702 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:06,167 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:07,565 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:08,962 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:14,230 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:02:14,232 - INFO - [TEMPLATE] Best result so far: 8 (method: simple, conf: 0.867)
+2025-08-23 11:02:14,235 - INFO - [TEMPLATE] Best result so far: 8 (method: otsu, conf: 0.996)
+2025-08-23 11:02:14,901 - INFO - [OCR] Best result so far: 8 (otsu+single_char)
+2025-08-23 11:02:16,258 - INFO - [SUCCESS] Both methods agree: 8
+2025-08-23 11:02:16,258 - INFO - [TIME] read_elixir: 2.028s
+2025-08-23 11:02:16,259 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:02:21,375 - INFO - [TIME] Combined detection: 5.116s
+2025-08-23 11:02:21,376 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:8
+2025-08-23 11:02:21,376 - INFO - [REPLACE] golden_knight -> bandit
+2025-08-23 11:02:22,900 - INFO - [BUY] bandit (cost: 4)
+2025-08-23 11:02:23,133 - INFO - [BUY] archer (cost: 3)
+2025-08-23 11:02:23,382 - INFO - [BUY] Medium elixir: skeleton_king (cost: 5)
+2025-08-23 11:02:23,619 - INFO - [SUCCESS] 3 purchases in 2.243s
+2025-08-23 11:02:23,619 - INFO - [FINAL] Elixir: 0
+2025-08-23 11:02:23,620 - INFO - [TIME] deploy_units: 7.361s
+2025-08-23 11:02:24,951 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:02:24,954 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 11:02:24,956 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 11:02:26,941 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 11:02:26,941 - INFO - [TIME] read_elixir: 1.990s
+2025-08-23 11:02:26,942 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:02:32,079 - INFO - [TIME] Combined detection: 5.136s
+2025-08-23 11:02:32,079 - INFO - [SUMMARY] Field:3 Bench:0 Shop:0 Elixir:2
+2025-08-23 11:02:32,080 - INFO - [FINAL] Elixir: 2
+2025-08-23 11:02:32,080 - INFO - [TIME] deploy_units: 5.138s
+2025-08-23 11:02:36,084 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:37,485 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:38,921 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:40,324 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:41,785 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:43,216 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:44,627 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:46,050 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:47,515 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:02:54,090 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:02:54,093 - INFO - [TEMPLATE] Best result so far: 6 (method: simple, conf: 0.857)
+2025-08-23 11:02:54,094 - INFO - [TEMPLATE] Best result so far: 6 (method: otsu, conf: 0.997)
+2025-08-23 11:02:54,668 - INFO - [OCR] Best result so far: 2 (otsu+basic)
+2025-08-23 11:02:56,141 - INFO - [SUCCESS] High confidence template: 6 (conf: 0.997)
+2025-08-23 11:02:56,141 - INFO - [TIME] read_elixir: 2.052s
+2025-08-23 11:02:56,142 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:03:01,286 - INFO - [TIME] Combined detection: 5.143s
+2025-08-23 11:03:01,287 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:6
+2025-08-23 11:03:01,288 - INFO - [REPLACE] goblin -> archer_queen
+2025-08-23 11:03:02,784 - INFO - [BUY] archer_queen (cost: 5)
+2025-08-23 11:03:03,020 - INFO - [SUCCESS] 1 purchases in 1.732s
+2025-08-23 11:03:03,020 - INFO - [FINAL] Elixir: 2
+2025-08-23 11:03:03,021 - INFO - [TIME] deploy_units: 6.878s
+2025-08-23 11:03:04,348 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:03:04,351 - INFO - [TEMPLATE] Best result so far: 6 (method: simple, conf: 0.857)
+2025-08-23 11:03:04,354 - INFO - [TEMPLATE] Best result so far: 6 (method: otsu, conf: 1.000)
+2025-08-23 11:03:05,073 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 11:03:06,431 - INFO - [SUCCESS] High confidence template: 6 (conf: 1.000)
+2025-08-23 11:03:06,431 - INFO - [TIME] read_elixir: 2.082s
+2025-08-23 11:03:06,432 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:03:11,504 - INFO - [TIME] Combined detection: 5.070s
+2025-08-23 11:03:11,504 - INFO - [SUMMARY] Field:2 Bench:1 Shop:0 Elixir:6
+2025-08-23 11:03:11,504 - INFO - [FINAL] Elixir: 6
+2025-08-23 11:03:11,504 - INFO - [TIME] deploy_units: 5.072s
+2025-08-23 11:03:12,850 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:03:12,853 - INFO - [TEMPLATE] Best result so far: 6 (method: simple, conf: 0.857)
+2025-08-23 11:03:12,856 - INFO - [TEMPLATE] Best result so far: 6 (method: otsu, conf: 1.000)
+2025-08-23 11:03:13,544 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 11:03:14,872 - INFO - [SUCCESS] High confidence template: 6 (conf: 1.000)
+2025-08-23 11:03:14,872 - INFO - [TIME] read_elixir: 2.021s
+2025-08-23 11:03:14,873 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:03:20,082 - INFO - [TIME] Combined detection: 5.209s
+2025-08-23 11:03:20,083 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:6
+2025-08-23 11:03:20,084 - INFO - [BUY] archer_queen (cost: 5)
+2025-08-23 11:03:20,322 - INFO - [SUCCESS] 1 purchases in 0.238s
+2025-08-23 11:03:20,322 - INFO - [FINAL] Elixir: 1
+2025-08-23 11:03:20,323 - INFO - [TIME] deploy_units: 5.450s
+2025-08-23 11:03:21,749 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:23,187 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:24,622 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:26,024 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:27,461 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:28,853 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:30,269 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:31,685 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:33,097 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:34,533 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:03:41,049 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:03:41,053 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 11:03:41,055 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 11:03:41,734 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 11:03:43,004 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 11:03:43,005 - INFO - [TIME] read_elixir: 1.955s
+2025-08-23 11:03:43,006 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:03:48,121 - INFO - [TIME] Combined detection: 5.115s
+2025-08-23 11:03:48,121 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:5
+2025-08-23 11:03:48,122 - INFO - [BUY] mega_knight (cost: 4)
+2025-08-23 11:03:48,356 - INFO - [SUCCESS] 1 purchases in 0.235s
+2025-08-23 11:03:48,356 - INFO - [FINAL] Elixir: 1
+2025-08-23 11:03:48,357 - INFO - [TIME] deploy_units: 5.352s
+2025-08-23 11:03:49,713 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:03:49,717 - INFO - [TEMPLATE] Best result so far: 6 (method: simple, conf: 0.857)
+2025-08-23 11:03:49,719 - INFO - [TEMPLATE] Best result so far: 6 (method: otsu, conf: 1.000)
+2025-08-23 11:03:50,351 - INFO - [OCR] Best result so far: 3 (otsu+single_char)
+2025-08-23 11:03:51,644 - INFO - [SUCCESS] High confidence template: 6 (conf: 1.000)
+2025-08-23 11:03:51,644 - INFO - [TIME] read_elixir: 1.930s
+2025-08-23 11:03:51,645 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:03:56,750 - INFO - [TIME] Combined detection: 5.104s
+2025-08-23 11:03:56,750 - INFO - [SUMMARY] Field:3 Bench:0 Shop:0 Elixir:6
+2025-08-23 11:03:56,751 - INFO - [FINAL] Elixir: 6
+2025-08-23 11:03:56,751 - INFO - [TIME] deploy_units: 5.106s
+2025-08-23 11:03:58,101 - INFO - [PHASE] Deploy phase detected
+2025-08-23 11:03:58,105 - INFO - [TEMPLATE] Best result so far: 7 (method: simple, conf: 0.803)
+2025-08-23 11:03:58,107 - INFO - [TEMPLATE] Best result so far: 7 (method: otsu, conf: 0.999)
+2025-08-23 11:04:00,048 - INFO - [SUCCESS] Template only: 7 (conf: 0.999)
+2025-08-23 11:04:00,048 - INFO - [TIME] read_elixir: 1.947s
+2025-08-23 11:04:00,049 - INFO - [DEPLOY] Starting optimized deploy phase...
+2025-08-23 11:04:05,240 - INFO - [TIME] Combined detection: 5.191s
+2025-08-23 11:04:05,240 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:7
+2025-08-23 11:04:05,241 - INFO - [REPLACE] knight -> archer
+2025-08-23 11:04:06,742 - INFO - [BUY] archer (cost: 3)
+2025-08-23 11:04:06,983 - INFO - [BUY] Medium elixir: princess (cost: 4)
+2025-08-23 11:04:07,231 - INFO - [SUCCESS] 2 purchases in 1.991s
+2025-08-23 11:04:07,231 - INFO - [FINAL] Elixir: 1
+2025-08-23 11:04:07,232 - INFO - [TIME] deploy_units: 7.183s
+2025-08-23 11:04:08,661 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:10,055 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:11,493 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:12,902 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:14,314 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:15,708 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:17,103 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 11:04:18,533 - INFO - [PHASE] Battle phase detected, waiting...

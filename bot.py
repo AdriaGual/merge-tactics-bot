@@ -12,11 +12,12 @@ from functools import wraps
 # 🔧 Configuració
 UNITS_DIR = "templates/units"       # cartes que es poden comprar
 FIELDS_DIR = "templates/field"      # unitats al camp
+BENCH_DIR = "templates/bench"       # unitats al banquillo
 GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
 ELIXIR_FILE = "elixir.json"
 ADB_PATH = "adb"
-THRESHOLD = 0.7
+THRESHOLD = 0.8
 
 # Botons Start/Stop/Confirm
 BUTTONS = {
@@ -45,20 +46,23 @@ selected = [False]*len(unit_imgs)
 field_files = [f for f in os.listdir(FIELDS_DIR) if f.endswith(".png")]
 field_imgs = [cv2.imread(os.path.join(FIELDS_DIR, f)) for f in field_files]
 
+bench_files = [f for f in os.listdir(BENCH_DIR) if f.endswith(".png")]
+bench_imgs = [cv2.imread(os.path.join(BENCH_DIR, f)) for f in bench_files]
+
 # Assigna el cost manualment aquí
 unit_costs = {
-    "archer_queen": 5,
-    "archer": 2,
-    "bandit": 4,
     "barbarian": 2,
+    "archer": 3,
+    "knight": 2,
+    "archer_queen": 5,
+    "bandit": 4,
     "bomber": 2,
     "dart_goblin": 3,
     "executioner": 3,
     "giant_skeleton": 3,
-    "goblin_machine": 4,
     "goblin": 2,
+    "goblin_machine": 4,
     "golden_knight": 5,
-    "knight": 2,
     "mega_knight": 4,
     "pekka": 3,
     "prince": 3,
@@ -235,7 +239,7 @@ digit_templates = load_digit_templates()
 @profile_time("read_elixir")
 def read_elixir(screen):
     global digit_templates
-
+    
     current_time = time.time()
     
     if (_elixir_cache["value"] is not None and 
@@ -430,7 +434,7 @@ def read_elixir(screen):
 # 🔹 Funció intel·ligent de deploy (OPTIMITZADA I MÉS AGRESSIVA)
 @profile_time("deploy_units")
 def deploy_units(screen, COMPO, elixir_amount):
-    logger.info("[DEPLOY] Starting deploy phase detection...")
+    logger.info("[DEPLOY] Starting optimized deploy phase...")
     
     if DEBUG_SAVE_IMAGES:
         debug_dir = "debug_images"
@@ -438,200 +442,154 @@ def deploy_units(screen, COMPO, elixir_amount):
             os.makedirs(debug_dir)
         cv2.imwrite(f"{debug_dir}/deploy_screen.png", screen)
     
-    # Detect all units on screen once (both field and available for purchase)
     start_time = time.time()
-    all_detected_units = find_units_on_screen(screen, unit_imgs, threshold=THRESHOLD, min_dist=30)
-    units_detection_time = time.time() - start_time
-    logger.info(f"[TIME] Units detection: {units_detection_time:.3f}s")
     
-    start_time = time.time()
-    all_detected_fields = find_units_on_screen(screen, field_imgs, threshold=THRESHOLD, min_dist=30)
-    fields_detection_time = time.time() - start_time
-    logger.info(f"[TIME] Fields detection: {fields_detection_time:.3f}s")
+    all_templates = unit_imgs + field_imgs + bench_imgs
+    all_template_names = (
+        [('shop', os.path.splitext(f)[0]) for f in unit_files] +
+        [('field', os.path.splitext(f)[0]) for f in field_files] +
+        [('bench', os.path.splitext(f)[0]) for f in bench_files]
+    )
+    
+    # Single template matching pass for all units
+    all_detections = find_units_on_screen(screen, all_templates, threshold=THRESHOLD, min_dist=30)
+    
+    units_detection_time = time.time() - start_time
+    logger.info(f"[TIME] Combined detection: {units_detection_time:.3f}s")
     
     field_units = []
     bench_units = []
     available_cards = []
     
-    for i, center in all_detected_units:
+    for i, center in all_detections:
         pos_name = get_unit_position(center)
-        unit_name = os.path.splitext(unit_files[i])[0]
+        template_type, unit_name = all_template_names[i]
         
-        logger.debug(f"[UNIT] {unit_name} at {center} -> {pos_name}")
-        
-        if pos_name.startswith("camp"):
-            field_units.append((i, center, unit_name, pos_name))
-        elif pos_name.startswith("banquillo"):
-            bench_units.append((i, center, unit_name, pos_name))
-        elif pos_name == "desconegut":  # Available for purchase
+        if template_type == 'shop' and pos_name == "desconegut":
             cost = unit_costs.get(unit_name, 0)
             if cost <= elixir_amount:
                 available_cards.append((unit_name, cost, center))
-                logger.debug(f"[SHOP] Available: {unit_name} (cost: {cost})")
-    
-    # Add field units detected with field templates
-    for i, center in all_detected_fields:
-        pos_name = get_unit_position(center)
-        if pos_name.startswith("camp"):
-            unit_name = os.path.splitext(field_files[i])[0]
+        elif template_type == 'field' and pos_name.startswith("camp"):
             field_units.append((i, center, unit_name, pos_name))
-            logger.debug(f"[FIELD] Field unit: {unit_name} at {pos_name}")
+        elif template_type == 'bench' and pos_name.startswith("banquillo"):
+            bench_units.append((i, center, unit_name, pos_name))
+        elif template_type == 'shop':
+            # Shop unit detected on field/bench - add to appropriate list
+            if pos_name.startswith("camp"):
+                field_units.append((i, center, unit_name, pos_name))
+            elif pos_name.startswith("banquillo"):
+                bench_units.append((i, center, unit_name, pos_name))
     
-    logger.info(f"[SUMMARY] Detection summary:")
-    logger.info(f"   [FIELD] Field units: {len(field_units)}")
-    for field_unit in field_units:
-        logger.info(f"   [FIELD] - {field_unit[2]} at {field_unit[3]}") 
-    logger.info(f"   [BENCH] Bench units: {len(bench_units)}")
-    logger.info(f"   [SHOP] Available cards: {len(available_cards)}")
-    logger.info(f"   [ELIXIR] Current elixir: {elixir_amount}")
+    logger.info(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
 
     available_compo_cards = [card for card in available_cards if card[0] in COMPO]
     available_non_compo_cards = [card for card in available_cards if card[0] not in COMPO]
-    
     non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
-    
-    logger.info(f"[SHOP] Available composition cards: {[f'{name}({cost})' for name, cost, _ in available_compo_cards]}")
-    logger.info(f"[SHOP] Available non-composition cards: {[f'{name}({cost})' for name, cost, _ in available_non_compo_cards]}")
-    logger.info(f"[FIELD] Non-composition field units: {[f'{unit[2]}@{unit[3]}' for unit in non_compo_field_units]}")
     
     buy_start_time = time.time()
     purchases_made = 0
     
-    while elixir_amount >= 2 and available_cards and purchases_made < 3:  # Max 3 purchases per cycle
+    while elixir_amount >= 2 and available_cards and purchases_made < 4:  # Increased max purchases
         purchased = False
         
-        # Priority 1: Buy composition cards (most expensive first)
+        # Priority 1: Buy composition cards
         if available_compo_cards:
             affordable_compo = [card for card in available_compo_cards if card[1] <= elixir_amount]
             if affordable_compo:
                 most_expensive_compo = max(affordable_compo, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive_compo
                 
-                should_replace_field = False
-                field_unit_to_replace = None
-
-                if unit_name:
-                    logger.info(f"[BUY] Buying composition card: {unit_name} (cost: {cost})")
-                    adb_tap(*center)
-                    elixir_amount -= cost
-                    purchases_made += 1
-                    purchased = True
-                    
-                    available_compo_cards.remove(most_expensive_compo)
-                    available_cards.remove(most_expensive_compo)
-                    time.sleep(0.2)
-                
-                if non_compo_field_units and purchased:
+                if non_compo_field_units:
                     cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
                     field_unit_cost = unit_costs.get(cheapest_field[2], 0)
                     
-                    if cost >= field_unit_cost:
-                        should_replace_field = True
-                        field_unit_to_replace = cheapest_field
-                        logger.info(f"[REPLACE] Will replace {cheapest_field[2]} (cost: {field_unit_cost}) with {unit_name} (cost: {cost})")
-                
-                if should_replace_field and field_unit_to_replace:
-                    _, field_center, field_unit_name, field_pos = field_unit_to_replace
-                    logger.info(f"[SELLING] Selling field unit {field_unit_name} at {field_pos} for replacement")
+                    _, field_center, field_unit_name, field_pos = cheapest_field
+                    logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
                     adb_tap(*field_center)
-                    time.sleep(0.5)
+                    time.sleep(0.3)  # Reduced delay
+                    screen = adb_screenshot()
                     
-                    current_screen = adb_screenshot()
-                    sell_pos = find_template(current_screen, SELL_BUTTON)
+                    sell_pos = find_template(screen, SELL_BUTTON)
                     if sell_pos:
                         adb_tap(*sell_pos)
-                        time.sleep(0.3)
-                        elixir_refund = max(unit_costs.get(field_unit_name, 0) - 1, 0)
+                        time.sleep(0.2)  # Reduced delay
+                        elixir_refund = max(field_unit_cost - 1, 0)
                         elixir_amount += elixir_refund
-                        logger.info(f"[SUCCESS] Sold {field_unit_name}, got {elixir_refund} elixir, total: {elixir_amount}")
-                        
-                        field_units.remove(field_unit_to_replace)
-                        non_compo_field_units.remove(field_unit_to_replace)
-                    else:
-                        logger.error(f"[ERROR] Sell button not found for {field_unit_name}")
-                        should_replace_field = False  # Don't buy if we couldn't sell
-            
+                        field_units.remove(cheapest_field)
+                        non_compo_field_units.remove(cheapest_field)
+                
+                logger.info(f"[BUY] {unit_name} (cost: {cost})")
+                adb_tap(*center)
+                elixir_amount -= cost
+                purchases_made += 1
+                purchased = True
+                
+                available_compo_cards.remove(most_expensive_compo)
+                available_cards.remove(most_expensive_compo)
+                time.sleep(0.1)  # Minimal delay
         
-        # Priority 2: If elixir is high (>6), buy any available unit
-        if not purchased and elixir_amount > 6 and available_cards:
+        # Priority 2: High elixir - buy anything
+        if not purchased and elixir_amount > 6:
             affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
             if affordable_cards:
                 most_expensive = max(affordable_cards, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive
                 
-                logger.info(f"[BUY] High elixir ({elixir_amount}), buying any unit: {unit_name} (cost: {cost})")
+                logger.info(f"[BUY] High elixir: {unit_name} (cost: {cost})")
                 adb_tap(*center)
                 elixir_amount -= cost
                 purchases_made += 1
                 purchased = True
                 
                 available_cards.remove(most_expensive)
-                if most_expensive in available_non_compo_cards:
-                    available_non_compo_cards.remove(most_expensive)
-                time.sleep(0.2)  # Reduced delay
+                time.sleep(0.1)  # Minimal delay
         
-        # Priority 3: If elixir is medium (4-6), buy composition or cheap units
-        if not purchased and 4 <= elixir_amount <= 6 and available_cards:
+        # Priority 3: Medium elixir - smart buying
+        if not purchased and 4 <= elixir_amount <= 6:
             affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
             if affordable_cards:
+                # Prefer composition cards, then expensive cards
                 affordable_cards.sort(key=lambda x: (x[0] not in COMPO, -x[1]))
                 best_card = affordable_cards[0]
                 unit_name, cost, center = best_card
                 
-                logger.info(f"[BUY] Medium elixir ({elixir_amount}), buying: {unit_name} (cost: {cost})")
+                logger.info(f"[BUY] Medium elixir: {unit_name} (cost: {cost})")
                 adb_tap(*center)
                 elixir_amount -= cost
                 purchases_made += 1
                 purchased = True
                 
                 available_cards.remove(best_card)
-                if best_card in available_compo_cards:
-                    available_compo_cards.remove(best_card)
-                elif best_card in available_non_compo_cards:
-                    available_non_compo_cards.remove(best_card)
-                time.sleep(0.2)  # Reduced delay
+                time.sleep(0.1)  # Minimal delay
         
         if not purchased:
-            break  # No more affordable cards
+            break
     
     buy_time = time.time() - buy_start_time
     if purchases_made > 0:
-        logger.info(f"[SUCCESS] Made {purchases_made} purchases in {buy_time:.3f}s")
+        logger.info(f"[SUCCESS] {purchases_made} purchases in {buy_time:.3f}s")
     
-    if elixir_amount > 8:  # Only sell if elixir is still very high
+    if elixir_amount > 8:
         units_to_sell = []
-        for i, center, unit_name, pos_name in field_units + bench_units:
+        for i, center, unit_name, pos_name in (field_units + bench_units)[:3]:  # Max 3 units to check
             if unit_name not in COMPO:
-                potential_elixir = elixir_amount + max(unit_costs.get(unit_name,0)-1,0)
-                can_buy_expensive = any(unit_costs.get(u,0) <= potential_elixir for u in COMPO if unit_costs.get(u,0) >= 3)
-                if can_buy_expensive and len(units_to_sell) < 2:  # Max 2 sells per cycle
-                    units_to_sell.append((center, unit_name, pos_name))
-                    logger.info(f"[SELL] Will sell {unit_name} at {pos_name} (high elixir: {elixir_amount})")
+                units_to_sell.append((center, unit_name, pos_name))
+                if len(units_to_sell) >= 2:  # Max 2 sells
+                    break
         
-        sell_start_time = time.time()
         for center, unit_name, pos_name in units_to_sell:
-            logger.info(f"[SELLING] Selling {unit_name} at {pos_name}")
+            logger.info(f"[SELL] {unit_name}")
             adb_tap(*center)
-            time.sleep(0.5)  # Reduced delay from 1s to 0.5s
+            time.sleep(0.3)
             
-            current_screen = adb_screenshot()
-            sell_pos = find_template(current_screen, SELL_BUTTON)
+            # Try to find sell button quickly
+            sell_pos = find_template(screen, SELL_BUTTON)
             if sell_pos:
                 adb_tap(*sell_pos)
-                time.sleep(0.2)  # Reduced delay from 0.3s to 0.2s
-                elixir_amount += unit_costs.get(unit_name,0)-1
-                logger.info(f"[SUCCESS] Sold {unit_name}, elixir now: {elixir_amount}")
-            else:
-                logger.error(f"[ERROR] Sell button not found for {unit_name}")
-        
-        sell_time = time.time() - sell_start_time
-        if units_to_sell:
-            logger.info(f"[TIME] Selling phase: {sell_time:.3f}s")
-    else:
-        logger.info(f"[SKIP] Skipping sell phase, elixir manageable: {elixir_amount}")
-
-    logger.info(f"[FINAL] Final elixir after deploy: {elixir_amount}")
+                elixir_amount += max(unit_costs.get(unit_name, 0) - 1, 0)
+                time.sleep(0.1)  # Minimal delay
     
+    logger.info(f"[FINAL] Elixir: {elixir_amount}")
     return elixir_amount
 
 # 🔹 Thread principal del bot
@@ -672,12 +630,6 @@ def bot_loop():
                 time.sleep(0.1)
                 continue
 
-            if current_time - last_screen_time > 0.25:
-                elixir_value = read_elixir(screen)
-                if elixir_value is not None:
-                    elixir_amount = elixir_value
-                last_screen_time = current_time
-
             template_start = time.time()
             
             reward_pos = find_template(screen, REWARD)
@@ -711,14 +663,20 @@ def bot_loop():
             deploy = find_template(screen, PHASE_DEPLOY)
             if deploy:
                 logger.info("[PHASE] Deploy phase detected")
+                if current_time - last_screen_time > 1.0:
+                    elixir_value = read_elixir(screen)
+                    if elixir_value is not None:
+                        elixir_amount = elixir_value
+                    last_screen_time = current_time
+
                 elixir_amount = deploy_units(screen, COMPO, elixir_amount)
-                time.sleep(0.1)
+                time.sleep(0.3)
                 continue
 
             battle_phase = find_template(screen, PHASE_BATTLE)
             if battle_phase:
                 logger.info("[PHASE] Battle phase detected, waiting...")
-                time.sleep(0.1)
+                time.sleep(0.3)
                 continue
 
             template_time = time.time() - template_start
