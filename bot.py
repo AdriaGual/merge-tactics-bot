@@ -5,59 +5,23 @@ import json
 import threading
 import time
 import subprocess
-import pytesseract
 import logging
 from functools import wraps
-
-# 🔧 Configuració
-UNITS_DIR = "templates/units"       
-FIELDS_DIR = "templates/field"      
-BENCH_DIR = "templates/bench"       
-GRID_FILE = "grid_positions.json"
-COMPOSITION_FILE = "composition.json"
-ELIXIR_FILE = "elixir.json"
-ADB_PATH = "adb"
-THRESHOLD = 0.6
-
-# Botons Start/Stop/Confirm
-BUTTONS = {
-    "start": (10, 10, 100, 50),
-    "stop":  (120, 10, 210, 50),
-    "confirm": (230, 10, 350, 50)
-}
+from config.paths import INIT_BATTLE, PHASE_DEPLOY, PHASE_BATTLE
+from config.paths import PLAY_AGAIN_BATTLE, QUIT, SELL_BUTTON
+from config.paths import REWARD, EMPTY_BENCH
+from config.paths import UNITS_DIR, FIELDS_DIR, BENCH_DIR
+from config.paths import GRID_FILE, COMPOSITION_FILE, ELIXIR_FILE
+from config.paths import ADB_PATH, THRESHOLD
+from config.ui import BUTTONS
+from config.unit_costs import unit_costs
+from config.paths import load_unit_images, load_field_images, load_bench_images
 
 bot_running = False
 
-# Templates bot
-TEMPLATES_DIR_MAIN = "templates"
-INIT_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle.png")
-PHASE_DEPLOY = os.path.join(TEMPLATES_DIR_MAIN, "deploy_phase.png")
-PHASE_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle_phase.png")
-PLAY_AGAIN_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "play_again.png")
-QUIT = os.path.join(TEMPLATES_DIR_MAIN, "quit.png")
-SELL_BUTTON = os.path.join(TEMPLATES_DIR_MAIN, "sell.png")
-REWARD = os.path.join(TEMPLATES_DIR_MAIN, "reward.png")
-EMPTY_BENCH = os.path.join(TEMPLATES_DIR_MAIN, "empty_bench.png")
-
-# 🔹 Carregar unitats i costos
-unit_files = [f for f in os.listdir(UNITS_DIR) if f.endswith(".png")]
-unit_imgs = [cv2.imread(os.path.join(UNITS_DIR, f)) for f in unit_files]
-selected = [False]*len(unit_imgs)
-
-field_files = [f for f in os.listdir(FIELDS_DIR) if f.endswith(".png")]
-field_imgs = [cv2.imread(os.path.join(FIELDS_DIR, f)) for f in field_files]
-
-bench_files = [f for f in os.listdir(BENCH_DIR) if f.endswith(".png")]
-bench_imgs = [cv2.imread(os.path.join(BENCH_DIR, f)) for f in bench_files]
-
-# Assigna el cost manualment aquí
-unit_costs = {
-    "barbarian": 2, "archer": 3, "knight": 2, "archer_queen": 5, "bandit": 4,
-    "bomber": 2, "dart_goblin": 3, "executioner": 3, "giant_skeleton": 3,
-    "goblin": 2, "goblin_machine": 4, "golden_knight": 5, "mega_knight": 4,
-    "pekka": 3, "prince": 3, "princess": 4, "royal_ghost": 4, "skeleton_king": 5,
-    "spear_goblin": 2, "valkyrie": 3,   
-}
+unit_files, unit_imgs, selected = load_unit_images()
+field_files, field_imgs = load_field_images()
+bench_files, bench_imgs = load_bench_images()
 
 # Carregar coordenades del camp i banquillo
 with open(GRID_FILE, "r") as f:
@@ -86,7 +50,7 @@ def load_digit_templates():
     if not os.path.exists(templates_dir):
         return {}
     
-    for digit in range(16):  # Only 0-15 for common elixir values
+    for digit in range(20):  # Only 0-15 for common elixir values
         template_path = os.path.join(templates_dir, f"{digit}.png")
         if os.path.exists(template_path):
             template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
@@ -171,109 +135,46 @@ ELIXIR_CACHE_DURATION = 1.0  # Reduced cache duration for better accuracy
 
 def read_elixir(screen):
     global digit_templates
-    
+
     current_time = time.time()
-    
-    if (_elixir_cache["value"] is not None and 
+
+    # Cache
+    if (_elixir_cache["value"] is not None and
         current_time - _elixir_cache["timestamp"] < ELIXIR_CACHE_DURATION):
         return _elixir_cache["value"]
-    
+
+    # Retalla ROI i passa a gray
     x0, y0, x1, y1 = elixir_rect
     roi = screen[y0:y1, x0:x1]
-    gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    
-    _, thresh_otsu = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    _, thresh_adaptive = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
-    
-    # Try with inverted image too
-    thresh_otsu_inv = cv2.bitwise_not(thresh_otsu)
-    
-    processed_images = [thresh_otsu, thresh_adaptive, thresh_otsu_inv]
-    
-    if digit_templates:
-        for processed_img in processed_images:
-            for number in range(10, 16):
-                if number in digit_templates:
-                    res = cv2.matchTemplate(processed_img, digit_templates[number], cv2.TM_CCOEFF_NORMED)
-                    _, max_val, _, _ = cv2.minMaxLoc(res)
-                    if max_val >= 0.8:  # Restored higher threshold for accuracy
-                        _elixir_cache["value"] = number
-                        _elixir_cache["timestamp"] = current_time
-                        return number
-        
-        for processed_img in processed_images:
-            detected_digits = []
-            for digit in range(10):
-                if digit in digit_templates:
-                    res = cv2.matchTemplate(processed_img, digit_templates[digit], cv2.TM_CCOEFF_NORMED)
-                    locations = np.where(res >= 0.75)  # Increased threshold for better accuracy
-                    h, w = digit_templates[digit].shape[:2]
-                    for pt in zip(*locations[::-1]):
-                        confidence = res[pt[1], pt[0]]
-                        detected_digits.append((pt[0], pt[1], digit, confidence, w))
-            
-            if detected_digits:
-                # Remove overlapping detections
-                detected_digits.sort(key=lambda x: x[3], reverse=True)  # Sort by confidence
-                final_digits = []
-                for digit_info in detected_digits:
-                    x, y, digit, conf, w = digit_info
-                    # Check if this digit overlaps with any already selected
-                    overlap = False
-                    for fx, fy, _, _, fw in final_digits:
-                        if abs(x - fx) < max(w, fw) * 0.5:  # 50% overlap threshold
-                            overlap = True
-                            break
-                    if not overlap:
-                        final_digits.append(digit_info)
-                
-                if final_digits:
-                    final_digits.sort(key=lambda x: x[0])  # Sort by x position
-                    elixir_str = ''.join([str(digit) for _, _, digit, _, _ in final_digits[:2]])  # Max 2 digits
-                    if elixir_str and len(elixir_str) <= 2:
-                        try:
-                            value = int(elixir_str)
-                            if 0 <= value <= 15:  # Reasonable elixir range
-                                _elixir_cache["value"] = value
-                                _elixir_cache["timestamp"] = current_time
-                                return value
-                        except ValueError:
-                            continue
-    
-    for processed_img in processed_images:
-        try:
-            config = r'--oem 3 --psm 8 -c tessedit_char_whitelist=0123456789'
-            text = pytesseract.image_to_string(processed_img, config=config)
-            digits_only = ''.join(filter(str.isdigit, text.strip()))
-            if digits_only and len(digits_only) <= 2:
-                value = int(digits_only)
-                if 0 <= value <= 15:
-                    _elixir_cache["value"] = value
-                    _elixir_cache["timestamp"] = current_time
-                    return value
-        except:
-            continue
-    
-    try:
-        config = r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789'
-        text = pytesseract.image_to_string(gray, config=config)
-        digits_only = ''.join(filter(str.isdigit, text.strip()))
-        if digits_only and len(digits_only) <= 2:
-            value = int(digits_only)
-            if 0 <= value <= 15:
-                _elixir_cache["value"] = value
-                _elixir_cache["timestamp"] = current_time
-                return value
-    except:
-        pass
-    
-    # Return cached value if available, otherwise return 0 as fallback
+    roi_gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY) if roi.ndim == 3 else roi
+
+    best_match, best_val = None, 1
+
+    for value, template in digit_templates.items():
+        # Assegura que el template també és gray
+        tpl_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY) if template.ndim == 3 else template
+
+        # Redimensiona si cal
+        if roi_gray.shape != tpl_gray.shape:
+            tpl_gray = cv2.resize(tpl_gray, (roi_gray.shape[1], roi_gray.shape[0]))
+
+        res = cv2.matchTemplate(roi_gray, tpl_gray, cv2.TM_CCOEFF_NORMED)
+        _, max_val, _, _ = cv2.minMaxLoc(res)
+        if max_val < best_val:
+            best_val = max_val
+            best_match = value
+    if best_match is not None and best_val <= -0.7:  # ajusta el threshold si cal
+        _elixir_cache["value"] = best_match
+        _elixir_cache["timestamp"] = current_time
+        return best_match
+
     return _elixir_cache.get("value", 0)
+
+
 
 # 🔹 ULTRA-OPTIMIZED deploy function
 def deploy_units(screen, COMPO, elixir_amount):
     print("[DEPLOY] Starting optimized deploy...")
-
     if is_bench_empty(screen):
         cleanup_bench_units(screen, COMPO)
     else:
@@ -295,6 +196,8 @@ def deploy_units(screen, COMPO, elixir_amount):
     relevant_templates.extend(bench_imgs)
     relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
     relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
+    for relevant_name in relevant_names:
+        logger.info("DEBUG", f"Relevant template: {relevant_name}")
     
     all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
     
@@ -318,12 +221,11 @@ def deploy_units(screen, COMPO, elixir_amount):
     print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
 
     purchases_made = 0
-    max_purchases = min(4, elixir_amount // 2)  # Reduced max purchases
     
     # Priority: composition cards first
     available_compo_cards = [card for card in available_cards if card[0] in COMPO]
     
-    for _ in range(max_purchases):
+    for _ in range(4):
         purchased = False
         
         # Buy composition cards
@@ -339,34 +241,6 @@ def deploy_units(screen, COMPO, elixir_amount):
                 elixir_amount -= cost
                 available_compo_cards.remove(most_expensive_compo)
                 purchased = True
-                time.sleep(0.3)
-                screen = adb_screenshot()
-                # Always add field/bench for optimization
-                relevant_templates.extend(field_imgs)
-                relevant_templates.extend(bench_imgs)
-                relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
-                relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
-                
-                all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
-                
-                field_units = []
-                bench_units = []
-                available_cards = []
-                
-                for i, center in all_detections:
-                    pos_name = get_unit_position(center)
-                    template_type, unit_name = relevant_names[i]
-                    
-                    if template_type == 'shop':
-                        cost = unit_costs.get(unit_name, 0)
-                        if cost <= elixir_amount:
-                            available_cards.append((unit_name, cost, center))
-                    elif template_type == 'field' and pos_name.startswith("camp"):
-                        field_units.append((i, center, unit_name, pos_name))
-                    elif template_type == 'bench' and pos_name.startswith("banquillo"):
-                        bench_units.append((i, center, unit_name, pos_name))
-                
-                print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
         
         # Buy any valuable card if high elixir
         elif elixir_amount >= 6:  # Only if we have plenty of elixir
@@ -381,10 +255,39 @@ def deploy_units(screen, COMPO, elixir_amount):
                 elixir_amount -= cost
                 purchased = True
                 available_cards.remove(most_expensive)
-                time.sleep(0.3)  # Reduced delay
         
-        if not purchased:
+        if not purchased or find_template(screen, PHASE_BATTLE):
             break
+        else:
+            time.sleep(0.5)
+            screen = adb_screenshot()
+            # Always add field/bench for optimization
+            relevant_templates.extend(field_imgs)
+            relevant_templates.extend(bench_imgs)
+            relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
+            relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
+            
+            all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
+            
+            field_units = []
+            bench_units = []
+            available_cards = []
+            
+            for i, center in all_detections:
+                pos_name = get_unit_position(center)
+                template_type, unit_name = relevant_names[i]
+                
+                if template_type == 'shop':
+                    cost = unit_costs.get(unit_name, 0)
+                    if cost <= elixir_amount:
+                        available_cards.append((unit_name, cost, center))
+                elif template_type == 'field' and pos_name.startswith("camp"):
+                    field_units.append((i, center, unit_name, pos_name))
+                elif template_type == 'bench' and pos_name.startswith("banquillo"):
+                    bench_units.append((i, center, unit_name, pos_name))
+            elixir_amount = read_elixir(screen)
+            
+            print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
     
     if purchases_made > 0:
         time.sleep(0.5)  # Let units settle
@@ -583,8 +486,8 @@ def bot_loop():
                     if elixir_value is not None:
                         elixir_amount = elixir_value
                     last_elixir_read = current_time
-                
-                elixir_amount = deploy_units(screen, COMPO, elixir_amount)
+                if elixir_amount > 0:
+                    elixir_amount = deploy_units(screen, COMPO, elixir_amount)
                 time.sleep(0.2)  # Reduced delay
                 continue
 
