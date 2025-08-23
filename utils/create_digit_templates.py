@@ -38,7 +38,7 @@ def create_digit_templates():
     
     # Load elixir coordinates
     try:
-        with open("elixir.json", "r") as f:
+        with open("../elixir.json", "r") as f:
             elixir_data = json.load(f)
         elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
     except:

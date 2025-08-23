@@ -78,7 +78,7 @@ for i in range(5):
     ask_rectangle(name, screen)
 
 # 🔹 Guardar coordenades
-with open("grid_positions.json", "w") as f:
+with open("../grid_positions.json", "w") as f:
     json.dump(coords, f, indent=4)
 
 print("\n✅ Totes les coordenades guardades a 'grid_positions.json'")

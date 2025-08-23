@@ -68,7 +68,7 @@ scale = min(max_w/w, max_h/h, 1.0)
 ask_rectangle('elixir', screen)
 
 # 🔹 Guardar coordenades
-with open("elixir.json", "w") as f:
+with open("../elixir.json", "w") as f:
     json.dump(coords, f, indent=4)
 
 print("\n✅ Totes les coordenades guardades a 'elixir.json'")

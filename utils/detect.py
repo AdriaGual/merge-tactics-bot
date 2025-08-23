@@ -8,7 +8,7 @@ import json
 
 # 🔧 Configuració
 TEMPLATES_DIR = "templates/field"
-GRID_FILE = "grid_positions.json"
+GRID_FILE = "../grid_positions.json"
 ADB_PATH = "adb"
 THRESHOLD = 0.7
 
