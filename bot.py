@@ -283,7 +283,7 @@ def deploy_units(screen, COMPO, elixir_amount):
             if can_buy:
                 print(f"💸 Venen {unit_name} a {pos_name}")
                 adb_tap(*center)
-                time.sleep(2)
+                time.sleep(1)
                 screen = adb_screenshot()
                 sell_pos = find_template(screen, SELL_BUTTON)
                 if sell_pos:
