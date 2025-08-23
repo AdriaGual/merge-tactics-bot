@@ -1,7 +1,9 @@
 # 🦓 Merge Tactics Bot
 
 <div align="center">
-
+  
+<a><img src="https://github.com/user-attachments/assets/490d6d3e-6ddf-4a59-8744-06d36a083e4b" alt="Markdownify" width="200"></a>
+  
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
 ![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green.svg)
 ![ADB](https://img.shields.io/badge/ADB-Compatible-orange.svg)
