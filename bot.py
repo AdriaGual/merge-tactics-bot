@@ -8,10 +8,10 @@ import subprocess
 import logging
 from functools import wraps
 from config.paths import INIT_BATTLE, PHASE_DEPLOY, PHASE_BATTLE
-from config.paths import PLAY_AGAIN_BATTLE, QUIT, SELL_BUTTON
+from config.paths import PLAY_AGAIN_BATTLE, QUIT, SELL_BUTTON, BACK
 from config.paths import REWARD, EMPTY_BENCH
 from config.paths import UNITS_DIR, FIELDS_DIR, BENCH_DIR
-from config.paths import GRID_FILE, COMPOSITION_FILE, ELIXIR_FILE
+from config.paths import GRID_FILE, COMPOSITION_FILE, ELIXIR_FILE, BENCH_FILE
 from config.paths import ADB_PATH, THRESHOLD
 from config.ui import BUTTONS
 from config.unit_costs import unit_costs
@@ -34,6 +34,11 @@ bench_cells = [item for item in grid_data if item["name"].startswith("banquillo"
 with open(ELIXIR_FILE, "r") as f:
     elixir_data = json.load(f)
 elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
+
+# Carregar coordenades bench
+with open(BENCH_FILE, "r") as f:
+    bench_data = json.load(f)
+bench_rect = next(item["rect"] for item in bench_data if item["name"]=="bench")
 
 logging.basicConfig(level=logging.WARNING, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
@@ -175,10 +180,11 @@ def read_elixir(screen):
 # 🔹 ULTRA-OPTIMIZED deploy function
 def deploy_units(screen, COMPO, elixir_amount):
     print("[DEPLOY] Starting optimized deploy...")
-    if is_bench_empty(screen):
-        cleanup_bench_units(screen, COMPO)
+    if not is_bench_empty(screen):
+        logger.info("[DEPLOY] Bench not empty, cleaning")
+        optimize_unit_positions(screen, COMPO)
     else:
-        logger.info("[DEPLOY] Bench is already empty, skipping cleanup.")    
+        logger.info("[DEPLOY] Bench empty, no cleanup needed")
     
     relevant_templates = []
     relevant_names = []
@@ -196,11 +202,9 @@ def deploy_units(screen, COMPO, elixir_amount):
     relevant_templates.extend(bench_imgs)
     relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
     relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
-    for relevant_name in relevant_names:
-        logger.info("DEBUG", f"Relevant template: {relevant_name}")
     
-    all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
-    
+    all_detections = find_units_on_screen(screen, relevant_templates, threshold=THRESHOLD, min_dist=30)
+
     field_units = []
     bench_units = []
     available_cards = []
@@ -208,7 +212,6 @@ def deploy_units(screen, COMPO, elixir_amount):
     for i, center in all_detections:
         pos_name = get_unit_position(center)
         template_type, unit_name = relevant_names[i]
-        
         if template_type == 'shop':
             cost = unit_costs.get(unit_name, 0)
             if cost <= elixir_amount:
@@ -221,11 +224,10 @@ def deploy_units(screen, COMPO, elixir_amount):
     print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
 
     purchases_made = 0
-    
-    # Priority: composition cards first
-    available_compo_cards = [card for card in available_cards if card[0] in COMPO]
-    
+       
     for _ in range(4):
+        available_compo_cards = [card for card in available_cards if card[0] in COMPO]
+
         purchased = False
         
         # Buy composition cards
@@ -234,22 +236,22 @@ def deploy_units(screen, COMPO, elixir_amount):
             if affordable_compo:
                 most_expensive_compo = max(affordable_compo, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive_compo
-                
+                time.sleep(0.4)
                 print(f"[BUY] {unit_name} (cost: {cost})")
                 adb_tap(*center)
                 purchases_made += 1
+
                 elixir_amount -= cost
                 available_compo_cards.remove(most_expensive_compo)
                 purchased = True
         
-        # Buy any valuable card if high elixir
-        elif elixir_amount >= 6:  # Only if we have plenty of elixir
-            affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
+        else:
+            affordable_cards = [card for card in available_cards if card[1] <= 5]
             if affordable_cards:
                 most_expensive = max(affordable_cards, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive
                 
-                print(f"[BUY] High elixir: {unit_name} (cost: {cost})")
+                print(f"[BUY] Non compo buy: {unit_name} (cost: {cost})")
                 adb_tap(*center)
                 purchases_made += 1
                 elixir_amount -= cost
@@ -261,13 +263,8 @@ def deploy_units(screen, COMPO, elixir_amount):
         else:
             time.sleep(0.5)
             screen = adb_screenshot()
-            # Always add field/bench for optimization
-            relevant_templates.extend(field_imgs)
-            relevant_templates.extend(bench_imgs)
-            relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
-            relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
             
-            all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
+            all_detections = find_units_on_screen(screen, relevant_templates, threshold=THRESHOLD, min_dist=30)
             
             field_units = []
             bench_units = []
@@ -289,10 +286,6 @@ def deploy_units(screen, COMPO, elixir_amount):
             
             print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
     
-    if purchases_made > 0:
-        time.sleep(0.5)  # Let units settle
-        optimize_unit_positions(screen, COMPO)
-    
     print(f"[SUCCESS] {purchases_made} purchases completed")
     return elixir_amount
 
@@ -303,7 +296,7 @@ def optimize_unit_positions(screen, COMPO):
     templates = field_imgs + bench_imgs
     names = [('field', os.path.splitext(f)[0]) for f in field_files] + [('bench', os.path.splitext(f)[0]) for f in bench_files]
     
-    detections = find_units_on_screen(screen, templates, threshold=0.8, min_dist=30)
+    detections = find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=30)
     
     field_units = []
     bench_units = []
@@ -340,81 +333,34 @@ def optimize_unit_positions(screen, COMPO):
     
     return False
 
-# 🔹 NOVA FUNCIO: Netejar unitats del banquillo que no són de la composició
-def cleanup_bench_units(screen, COMPO):
-    """Elimina unitats del banquillo que no són de la composició actual"""
-    print("[CLEANUP] Checking bench for non-composition units...")
-    
-    # Detectar només unitats del banquillo
-    bench_detections = find_units_on_screen(screen, bench_imgs, threshold=0.8, min_dist=30)
-    
-    bench_units = []
-    for i, center in bench_detections:
-        pos_name = get_unit_position(center)
-        if pos_name.startswith("banquillo"):
-            unit_name = os.path.splitext(bench_files[i])[0]
-            bench_units.append((unit_name, center))
-    
-    # Trobar unitats que no són de la composició
-    non_compo_bench = [unit for unit in bench_units if unit[0] not in COMPO]
-    
-    if not non_compo_bench:
-        print("[CLEANUP] No non-composition units found on bench")
-        return False
-    
-    print(f"[CLEANUP] Found {len(non_compo_bench)} non-composition units on bench: {[u[0] for u in non_compo_bench]}")
-    
-    # Vendre les unitats que no són de la composició
-    units_sold = 0
-    for unit_name, center in non_compo_bench:
-        print(f"[CLEANUP] Selling {unit_name} from bench")
-        adb_tap(*center)
-        time.sleep(0.3)  # Esperar que aparegui el botó de venda
-        
-        # Buscar i clicar el botó de venda
-        current_screen = adb_screenshot()
-        sell_pos = find_template(current_screen, SELL_BUTTON)
-        if sell_pos:
-            adb_tap(*sell_pos)
-            units_sold += 1
-            time.sleep(0.3)  # Esperar que es completi la venda
-        else:
-            print(f"[CLEANUP] Could not find sell button for {unit_name}")
-    
-    if units_sold > 0:
-        print(f"[CLEANUP] Successfully sold {units_sold} non-composition units")
-        time.sleep(0.5)  # Esperar que es completi tot
-    
-    return units_sold > 0
-
 def is_bench_empty(screen):
-    """Detecta si el banquillo està completament buit"""
+    """Detecta si el banquillo està completament buit, com la funció de read_elixir"""
     if not os.path.exists(EMPTY_BENCH):
         return False  # Si no tenim template, assumim que no està buit
-    
-    # Agafar la regió del banquillo complet
-    bench_region_x0 = min(cell["rect"][0] for cell in bench_cells)
-    bench_region_y0 = min(cell["rect"][1] for cell in bench_cells)
-    bench_region_x1 = max(cell["rect"][2] for cell in bench_cells)
-    bench_region_y1 = max(cell["rect"][3] for cell in bench_cells)
-    
-    bench_roi = screen[bench_region_y0:bench_region_y1, bench_region_x0:bench_region_x1]
-    
-    # Comparar amb el template del banquillo buit
+
+    # Retalla ROI i passa a grayscale
+    x0, y0, x1, y1 = bench_rect
+    bench_roi = screen[y0:y1, x0:x1]
+    bench_gray = cv2.cvtColor(bench_roi, cv2.COLOR_BGR2GRAY) if bench_roi.ndim == 3 else bench_roi
+
+    # Carrega i prepara el template
     empty_template = cv2.imread(EMPTY_BENCH)
     if empty_template is None:
         return False
-    
-    # Redimensionar template si cal
-    if bench_roi.shape[:2] != empty_template.shape[:2]:
-        empty_template = cv2.resize(empty_template, (bench_roi.shape[1], bench_roi.shape[0]))
-    
-    # Template matching
-    res = cv2.matchTemplate(bench_roi, empty_template, cv2.TM_CCOEFF_NORMED)
-    _, max_val, _, _ = cv2.minMaxLoc(res)
-    
-    # Si la similitud és alta, el banquillo està buit
-    return max_val >= 0.85
+    tpl_gray = cv2.cvtColor(empty_template, cv2.COLOR_BGR2GRAY) if empty_template.ndim == 3 else empty_template
+
+    # Redimensiona si cal
+    if bench_gray.shape != tpl_gray.shape:
+        tpl_gray = cv2.resize(tpl_gray, (bench_gray.shape[1], bench_gray.shape[0]))
+
+    # Template matching amb TM_SQDIFF_NORMED
+    res = cv2.matchTemplate(bench_gray, tpl_gray, cv2.TM_SQDIFF_NORMED)
+    min_val, _, _, _ = cv2.minMaxLoc(res)
+
+    print("min_val", min_val)  # Debugging info
+    # Si la diferència és molt baixa, considerem el banquillo buit
+    return min_val <= 0.13  # Threshold ajustable
+
 
 # 🔹 OPTIMIZED bot loop
 def bot_loop():
@@ -470,6 +416,13 @@ def bot_loop():
                 adb_tap(*play_again)
                 time.sleep(0.1)  # Reduced delay
                 continue
+            
+            back = find_template(screen, BACK)
+            if back:
+                print("[ACTION] Play again")
+                adb_tap(*back)
+                time.sleep(0.1)  # Reduced delay
+                continue
 
             quit_pos = find_template(screen, QUIT)
             if quit_pos:
@@ -485,9 +438,17 @@ def bot_loop():
                     elixir_value = read_elixir(screen)
                     if elixir_value is not None:
                         elixir_amount = elixir_value
-                    last_elixir_read = current_time
+                        last_elixir_read = current_time
+                    else:
+                        logger.info("[WARN] Elixir read elixir failed, keeping last value")
+                        logger.info("Trying to buy random unit")
+                        adb_tap(200,1500)
+                        adb_tap(400,1500)
+                        adb_tap(550,1500)
                 if elixir_amount > 0:
                     elixir_amount = deploy_units(screen, COMPO, elixir_amount)
+                else:
+                    logger.info("[DEPLOY] No elixir detected, waiting")    
                 time.sleep(0.2)  # Reduced delay
                 continue
 

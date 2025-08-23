@@ -7,8 +7,9 @@ BENCH_DIR = "templates/bench"
 GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
 ELIXIR_FILE = "elixir.json"
+BENCH_FILE = "bench.json"
 ADB_PATH = "adb"
-THRESHOLD = 0.55
+THRESHOLD = 0.85
 
 TEMPLATES_DIR_MAIN = "templates"
 INIT_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle.png")
@@ -19,6 +20,7 @@ QUIT = os.path.join(TEMPLATES_DIR_MAIN, "quit.png")
 SELL_BUTTON = os.path.join(TEMPLATES_DIR_MAIN, "sell.png")
 REWARD = os.path.join(TEMPLATES_DIR_MAIN, "reward.png")
 EMPTY_BENCH = os.path.join(TEMPLATES_DIR_MAIN, "empty_bench.png")
+BACK = os.path.join(TEMPLATES_DIR_MAIN, "back.png")
 
 def load_unit_images():
     unit_files = [f for f in os.listdir(UNITS_DIR) if f.endswith(".png")]
