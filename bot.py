@@ -501,6 +501,17 @@ def deploy_units(screen, COMPO, elixir_amount):
             if affordable_compo:
                 most_expensive_compo = max(affordable_compo, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive_compo
+
+                                
+                logger.info(f"[BUY] {unit_name} (cost: {cost})")
+                adb_tap(*center)
+                
+                purchases_made += 1
+                purchased = True
+                
+                available_compo_cards.remove(most_expensive_compo)
+                available_cards.remove(most_expensive_compo)
+                time.sleep(0.5)
                 
                 if non_compo_field_units:
                     cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
@@ -528,16 +539,6 @@ def deploy_units(screen, COMPO, elixir_amount):
                         adb_tap(*sell_pos)
                         bench_units.remove(cheapest_field)
                         non_compo_bench_units.remove(cheapest_field)
-                
-                logger.info(f"[BUY] {unit_name} (cost: {cost})")
-                adb_tap(*center)
-                
-                purchases_made += 1
-                purchased = True
-                
-                available_compo_cards.remove(most_expensive_compo)
-                available_cards.remove(most_expensive_compo)
-                time.sleep(0.5)  # Minimal delay from 0.1 to 0.05
         
         # Priority 2: High elixir - buy anything valuable
         if not purchased:
@@ -561,25 +562,6 @@ def deploy_units(screen, COMPO, elixir_amount):
     if purchases_made > 0:
         logger.info(f"[SUCCESS] {purchases_made} purchases in {buy_time:.3f}s")
     
-    units_to_sell = []
-    for i, center, unit_name, pos_name in (field_units + bench_units)[:2]:  # Reduced from 3 to 2 units max
-        if unit_name not in COMPO:
-            units_to_sell.append((center, unit_name, pos_name))
-            if len(units_to_sell) >= 1:  # Max 1 sell instead of 2
-                break
-    
-    for center, unit_name, pos_name in units_to_sell:
-        logger.info(f"[SELL] {unit_name}")
-        adb_tap(*center)
-        time.sleep(0.3)
-    
-        screen = adb_screenshot()
-    
-        sell_pos = find_template(screen, SELL_BUTTON)
-        if sell_pos:
-            adb_tap(*sell_pos)
-
-    logger.info(f"[FINAL] Elixir: {elixir_amount}")
     return elixir_amount
 
 # 🔹 Thread principal del bot
