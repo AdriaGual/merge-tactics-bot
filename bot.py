@@ -17,7 +17,7 @@ GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
 ELIXIR_FILE = "elixir.json"
 ADB_PATH = "adb"
-THRESHOLD = 0.8
+THRESHOLD = 0.6
 
 # Botons Start/Stop/Confirm
 BUTTONS = {
