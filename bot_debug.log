@@ -1,0 +1,1995 @@
+2025-08-23 09:33:51,381 - INFO - [BOT] Bot loop started
+2025-08-23 09:33:53,601 - INFO - [BOT] Bot arrancat
+2025-08-23 09:33:53,694 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:33:54,075 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:33:54,077 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:33:54,080 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:33:56,010 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:33:56,010 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:33:56,011 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:33:56,011 - INFO - [TIME] read_elixir: 1.935s
+2025-08-23 09:33:56,215 - INFO - [ACTION] Quit screen detected
+2025-08-23 09:33:57,016 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:33:57,017 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:33:57,019 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:33:59,029 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:33:59,030 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:33:59,031 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:33:59,031 - INFO - [TIME] read_elixir: 2.016s
+2025-08-23 09:33:59,165 - INFO - [ACTION] Play again screen detected
+2025-08-23 09:34:00,587 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:00,588 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:00,590 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:01,541 - INFO - [OCR] Best result so far: 7 (adaptive+basic)
+2025-08-23 09:34:02,586 - INFO - [SUCCESS] OCR only: 7
+2025-08-23 09:34:02,586 - INFO - [TIME] read_elixir: 2.000s
+2025-08-23 09:34:04,241 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:04,243 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:04,246 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:06,245 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:34:06,245 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:34:06,246 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:34:06,246 - INFO - [CACHE] Using cached value: 7
+2025-08-23 09:34:06,246 - INFO - [TIME] read_elixir: 2.006s
+2025-08-23 09:34:07,335 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:07,337 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:07,340 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:09,245 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:34:09,245 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:34:09,246 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:34:09,247 - INFO - [CACHE] Using cached value: 7
+2025-08-23 09:34:09,247 - INFO - [TIME] read_elixir: 1.912s
+2025-08-23 09:34:09,512 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:34:09,512 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:34:11,326 - INFO - [TIME] Units detection: 1.768s
+2025-08-23 09:34:13,013 - INFO - [TIME] Fields detection: 1.686s
+2025-08-23 09:34:13,013 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:34:13,014 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:34:13,014 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:34:13,014 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:34:13,015 - INFO -    [ELIXIR] Current elixir: 7
+2025-08-23 09:34:13,015 - INFO - [ELIXIR] Final elixir available: 7
+2025-08-23 09:34:13,015 - INFO - [COMPO] Affordable composition units: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:34:13,016 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:34:13,016 - INFO - [SHOP] All available cards: ['goblin(2)', 'golden_knight(5)', 'princess(4)']
+2025-08-23 09:34:13,016 - INFO - [BUY] No composition cards available, buying most expensive: golden_knight (cost: 5)
+2025-08-23 09:34:14,147 - INFO - [TIME] Buying phase: 1.131s
+2025-08-23 09:34:14,147 - INFO - [TIME] deploy_units: 4.635s
+2025-08-23 09:34:15,127 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:15,128 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:15,130 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:15,132 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:34:15,134 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:34:17,012 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:34:17,012 - INFO - [TIME] read_elixir: 1.885s
+2025-08-23 09:34:17,276 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:34:17,277 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:34:19,125 - INFO - [TIME] Units detection: 1.791s
+2025-08-23 09:34:20,830 - INFO - [TIME] Fields detection: 1.704s
+2025-08-23 09:34:20,830 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:34:20,831 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:34:20,831 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:34:20,832 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:34:20,832 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:34:20,832 - INFO - [ELIXIR] Final elixir available: 4
+2025-08-23 09:34:20,833 - INFO - [COMPO] Affordable composition units: ['archer', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:34:20,833 - INFO - [SHOP] Available composition cards: ['mega_knight(4)']
+2025-08-23 09:34:20,834 - INFO - [SHOP] All available cards: ['mega_knight(4)', 'prince(3)']
+2025-08-23 09:34:20,834 - INFO - [BUY] Buying most expensive composition card: mega_knight (cost: 4)
+2025-08-23 09:34:21,969 - INFO - [TIME] Buying phase: 1.135s
+2025-08-23 09:34:21,969 - INFO - [TIME] deploy_units: 4.692s
+2025-08-23 09:34:22,947 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:22,948 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:22,950 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:24,866 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:34:24,866 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:34:24,867 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:34:24,868 - INFO - [CACHE] Using cached value: 4
+2025-08-23 09:34:24,868 - INFO - [TIME] read_elixir: 1.922s
+2025-08-23 09:34:26,098 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:26,099 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:26,100 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:26,102 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:34:26,104 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:34:27,993 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:34:27,993 - INFO - [TIME] read_elixir: 1.897s
+2025-08-23 09:34:28,323 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:34:29,327 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:29,328 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:29,330 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:29,332 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:34:29,334 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:34:31,238 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:34:31,238 - INFO - [TIME] read_elixir: 1.912s
+2025-08-23 09:34:31,570 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:34:32,563 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:32,565 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:32,567 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:32,569 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:34:32,570 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:34:34,456 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:34:34,456 - INFO - [TIME] read_elixir: 1.894s
+2025-08-23 09:34:34,789 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:34:35,799 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:35,800 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:35,802 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:37,735 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:34:37,736 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:34:37,737 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:34:37,737 - INFO - [CACHE] Using cached value: 4
+2025-08-23 09:34:37,738 - INFO - [TIME] read_elixir: 1.940s
+2025-08-23 09:34:38,905 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:38,907 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:38,909 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:40,888 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:34:40,888 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:34:40,889 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:34:40,889 - INFO - [CACHE] Using cached value: 4
+2025-08-23 09:34:40,889 - INFO - [TIME] read_elixir: 1.985s
+2025-08-23 09:34:42,120 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:42,121 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:42,123 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:42,125 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.699)
+2025-08-23 09:34:42,127 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 0.742)
+2025-08-23 09:34:42,129 - INFO - [TEMPLATE] Best result so far: 2 (method: adaptive, conf: 0.747)
+2025-08-23 09:34:42,264 - INFO - [OCR] Best result so far: 3 (simple+basic)
+2025-08-23 09:34:44,075 - WARNING - [CONFLICT] Template: 2 (conf: 0.747), OCR: 3, using template
+2025-08-23 09:34:44,075 - INFO - [TIME] read_elixir: 1.955s
+2025-08-23 09:34:44,344 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:34:44,344 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:34:46,190 - INFO - [TIME] Units detection: 1.783s
+2025-08-23 09:34:47,870 - INFO - [TIME] Fields detection: 1.680s
+2025-08-23 09:34:47,870 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:34:47,871 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:34:47,872 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:34:47,872 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:34:47,872 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 09:34:47,873 - INFO - [SELL] Will sell golden_knight at camp[0,2] (not in composition)
+2025-08-23 09:34:47,873 - INFO - [SELLING] Selling golden_knight at camp[0,2]
+2025-08-23 09:34:50,234 - INFO - [SUCCESS] Sold golden_knight, elixir now: 6
+2025-08-23 09:34:50,234 - INFO - [TIME] Selling phase: 2.361s
+2025-08-23 09:34:50,235 - INFO - [ELIXIR] Final elixir available: 6
+2025-08-23 09:34:50,235 - INFO - [COMPO] Affordable composition units: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:34:50,235 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:34:50,236 - INFO - [SHOP] All available cards: []
+2025-08-23 09:34:50,326 - WARNING - [ERROR] Template not found for archer_queen
+2025-08-23 09:34:50,326 - INFO - [TIME] Buying phase: 0.090s
+2025-08-23 09:34:50,327 - INFO - [TIME] deploy_units: 5.983s
+2025-08-23 09:34:51,304 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:51,305 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:51,307 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:51,309 - INFO - [TEMPLATE] Best result so far: 16 (method: simple, conf: 0.613)
+2025-08-23 09:34:51,310 - INFO - [TEMPLATE] Best result so far: 6 (method: otsu, conf: 0.664)
+2025-08-23 09:34:51,454 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:34:53,262 - WARNING - [CONFLICT] Template: 6 (conf: 0.664), OCR: 16, using template
+2025-08-23 09:34:53,262 - INFO - [TIME] read_elixir: 1.960s
+2025-08-23 09:34:53,527 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:34:53,527 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:34:55,359 - INFO - [TIME] Units detection: 1.776s
+2025-08-23 09:34:57,047 - INFO - [TIME] Fields detection: 1.688s
+2025-08-23 09:34:57,047 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:34:57,048 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:34:57,049 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:34:57,049 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:34:57,049 - INFO -    [ELIXIR] Current elixir: 6
+2025-08-23 09:34:57,049 - INFO - [ELIXIR] Final elixir available: 6
+2025-08-23 09:34:57,050 - INFO - [COMPO] Affordable composition units: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:34:57,050 - INFO - [SHOP] Available composition cards: ['mega_knight(4)']
+2025-08-23 09:34:57,050 - INFO - [SHOP] All available cards: ['golden_knight(5)', 'mega_knight(4)', 'prince(3)']
+2025-08-23 09:34:57,051 - INFO - [BUY] Buying most expensive composition card: mega_knight (cost: 4)
+2025-08-23 09:34:58,191 - INFO - [TIME] Buying phase: 1.140s
+2025-08-23 09:34:58,191 - INFO - [TIME] deploy_units: 4.664s
+2025-08-23 09:34:59,175 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:34:59,555 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:34:59,557 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:34:59,559 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.699)
+2025-08-23 09:34:59,561 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 0.742)
+2025-08-23 09:34:59,562 - INFO - [TEMPLATE] Best result so far: 2 (method: adaptive, conf: 0.747)
+2025-08-23 09:34:59,697 - INFO - [OCR] Best result so far: 3 (simple+basic)
+2025-08-23 09:39:54,729 - INFO - [BOT] Bot loop started
+2025-08-23 09:39:56,096 - INFO - [BOT] Bot arrancat
+2025-08-23 09:39:56,137 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:39:56,533 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:39:56,534 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:39:56,536 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:39:58,448 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:39:58,448 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:39:58,449 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:39:58,450 - INFO - [TIME] read_elixir: 1.917s
+2025-08-23 09:39:58,662 - INFO - [ACTION] Quit screen detected
+2025-08-23 09:39:59,541 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:39:59,542 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:39:59,544 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:01,479 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:40:01,480 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:40:01,481 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:40:01,481 - INFO - [TIME] read_elixir: 1.941s
+2025-08-23 09:40:01,613 - INFO - [ACTION] Play again screen detected
+2025-08-23 09:40:02,997 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:02,999 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:03,001 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:04,937 - INFO - [OCR] Best result so far: 7 (enhanced+single_char)
+2025-08-23 09:40:05,066 - INFO - [SUCCESS] OCR only: 7
+2025-08-23 09:40:05,066 - INFO - [TIME] read_elixir: 2.069s
+2025-08-23 09:40:06,197 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:06,199 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:06,201 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:08,282 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:40:08,283 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:40:08,283 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:40:08,284 - INFO - [CACHE] Using cached value: 7
+2025-08-23 09:40:08,284 - INFO - [TIME] read_elixir: 2.088s
+2025-08-23 09:40:09,356 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:09,358 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:09,360 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:11,301 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:40:11,301 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:40:11,302 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:40:11,302 - INFO - [CACHE] Using cached value: 7
+2025-08-23 09:40:11,303 - INFO - [TIME] read_elixir: 1.948s
+2025-08-23 09:40:11,575 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:40:11,575 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:40:13,414 - INFO - [TIME] Units detection: 1.793s
+2025-08-23 09:40:15,126 - INFO - [TIME] Fields detection: 1.712s
+2025-08-23 09:40:15,127 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:40:15,127 - INFO -    [FIELD] Field units: 0
+2025-08-23 09:40:15,128 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:40:15,128 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:40:15,129 - INFO -    [ELIXIR] Current elixir: 7
+2025-08-23 09:40:15,129 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:40:15,129 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:40:15,129 - INFO - [SKIP] Skipping sell phase, elixir manageable: 7
+2025-08-23 09:40:15,130 - INFO - [FINAL] Final elixir after deploy: 7
+2025-08-23 09:40:15,130 - INFO - [TIME] deploy_units: 3.555s
+2025-08-23 09:40:16,123 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:16,124 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:16,127 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:16,128 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:40:16,130 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:40:18,034 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:40:18,035 - INFO - [TIME] read_elixir: 1.913s
+2025-08-23 09:40:18,310 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:40:18,311 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:40:20,153 - INFO - [TIME] Units detection: 1.784s
+2025-08-23 09:40:21,866 - INFO - [TIME] Fields detection: 1.713s
+2025-08-23 09:40:21,867 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:40:21,867 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:40:21,868 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:40:21,868 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:40:21,868 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:40:21,869 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:40:21,869 - INFO - [SHOP] Available non-composition cards: ['princess(4)', 'royal_ghost(4)']
+2025-08-23 09:40:21,869 - INFO - [BUY] Medium elixir (4), buying: princess (cost: 4)
+2025-08-23 09:40:22,205 - INFO - [SUCCESS] Made 1 purchases in 0.336s
+2025-08-23 09:40:22,205 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:40:22,206 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:40:22,206 - INFO - [TIME] deploy_units: 3.895s
+2025-08-23 09:40:23,212 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:23,214 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:23,217 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:23,219 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:40:23,221 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:40:25,193 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:40:25,193 - INFO - [TIME] read_elixir: 1.982s
+2025-08-23 09:40:25,474 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:40:25,475 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:40:27,330 - INFO - [TIME] Units detection: 1.799s
+2025-08-23 09:40:29,029 - INFO - [TIME] Fields detection: 1.698s
+2025-08-23 09:40:29,030 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:40:29,031 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:40:29,031 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:40:29,031 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:40:29,032 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:40:29,032 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:40:29,032 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:40:29,033 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:40:29,033 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:40:29,033 - INFO - [TIME] deploy_units: 3.558s
+2025-08-23 09:40:30,046 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:30,048 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:30,050 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:30,051 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:40:30,052 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:40:32,003 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:40:32,003 - INFO - [TIME] read_elixir: 1.957s
+2025-08-23 09:40:32,336 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:40:33,327 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:33,328 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:33,330 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:33,332 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:40:33,334 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:40:35,271 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:40:35,271 - INFO - [TIME] read_elixir: 1.945s
+2025-08-23 09:40:35,615 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:40:36,631 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:36,632 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:36,634 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:36,636 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:40:36,637 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:40:38,555 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:40:38,556 - INFO - [TIME] read_elixir: 1.925s
+2025-08-23 09:40:38,882 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:40:39,894 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:39,896 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:39,898 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:39,900 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:40:39,902 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:40:41,880 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:40:41,881 - INFO - [TIME] read_elixir: 1.987s
+2025-08-23 09:40:42,206 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:40:43,237 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:43,239 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:43,241 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:45,166 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:40:45,167 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:40:45,167 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:40:45,168 - INFO - [TIME] read_elixir: 1.931s
+2025-08-23 09:40:46,395 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:46,397 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:46,400 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:48,322 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:40:48,322 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:40:48,323 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:40:48,324 - INFO - [TIME] read_elixir: 1.928s
+2025-08-23 09:40:49,563 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:49,565 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:49,567 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:49,569 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:40:49,571 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:40:51,507 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:40:51,507 - INFO - [TIME] read_elixir: 1.944s
+2025-08-23 09:40:51,778 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:40:51,779 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:40:53,602 - INFO - [TIME] Units detection: 1.766s
+2025-08-23 09:40:55,332 - INFO - [TIME] Fields detection: 1.731s
+2025-08-23 09:40:55,332 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:40:55,334 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:40:55,334 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:40:55,334 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:40:55,335 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:40:55,335 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 09:40:55,335 - INFO - [SHOP] Available non-composition cards: ['goblin(2)']
+2025-08-23 09:40:55,336 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 09:40:55,700 - INFO - [SUCCESS] Made 1 purchases in 0.365s
+2025-08-23 09:40:55,700 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 09:40:55,701 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 09:40:55,701 - INFO - [TIME] deploy_units: 3.922s
+2025-08-23 09:40:56,740 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:40:56,742 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:40:56,744 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:40:56,746 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:40:56,747 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:40:58,718 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:40:58,718 - INFO - [TIME] read_elixir: 1.979s
+2025-08-23 09:40:58,984 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:40:58,984 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:41:00,811 - INFO - [TIME] Units detection: 1.772s
+2025-08-23 09:41:02,575 - INFO - [TIME] Fields detection: 1.764s
+2025-08-23 09:41:02,575 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:41:02,576 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:41:02,576 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:41:02,577 - INFO -    [SHOP] Available cards: 1
+2025-08-23 09:41:02,577 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 09:41:02,577 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:41:02,577 - INFO - [SHOP] Available non-composition cards: ['goblin(2)']
+2025-08-23 09:41:02,578 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 09:41:02,578 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 09:41:02,578 - INFO - [TIME] deploy_units: 3.594s
+2025-08-23 09:41:03,563 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:03,565 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:03,567 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:03,569 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:03,571 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:05,568 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:05,569 - INFO - [TIME] read_elixir: 2.006s
+2025-08-23 09:41:05,834 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:41:05,834 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:41:07,720 - INFO - [TIME] Units detection: 1.830s
+2025-08-23 09:41:09,420 - INFO - [TIME] Fields detection: 1.699s
+2025-08-23 09:41:09,421 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:41:09,422 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:41:09,422 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:41:09,422 - INFO -    [SHOP] Available cards: 1
+2025-08-23 09:41:09,423 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 09:41:09,423 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:41:09,423 - INFO - [SHOP] Available non-composition cards: ['goblin(2)']
+2025-08-23 09:41:09,424 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 09:41:09,424 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 09:41:09,424 - INFO - [TIME] deploy_units: 3.589s
+2025-08-23 09:41:10,458 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:10,459 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:10,461 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:10,463 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:10,465 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:12,417 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:12,417 - INFO - [TIME] read_elixir: 1.960s
+2025-08-23 09:41:12,748 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:41:13,751 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:13,753 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:13,755 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:13,756 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:13,758 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:15,719 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:15,719 - INFO - [TIME] read_elixir: 1.969s
+2025-08-23 09:41:16,049 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:41:17,061 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:17,063 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:17,065 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:17,067 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:17,069 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:19,074 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:19,074 - INFO - [TIME] read_elixir: 2.014s
+2025-08-23 09:41:19,427 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:41:20,443 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:20,445 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:20,447 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:20,449 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:20,450 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:22,386 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:22,386 - INFO - [TIME] read_elixir: 1.944s
+2025-08-23 09:41:22,716 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:41:23,738 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:23,740 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:23,742 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:23,743 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:23,746 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:25,723 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:25,724 - INFO - [TIME] read_elixir: 1.986s
+2025-08-23 09:41:26,054 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:41:27,068 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:27,069 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:27,072 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:27,073 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:41:27,075 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:41:29,011 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:41:29,011 - INFO - [TIME] read_elixir: 1.944s
+2025-08-23 09:41:29,349 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:41:30,300 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:30,301 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:30,303 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:32,305 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:41:32,306 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:41:32,307 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:41:32,307 - INFO - [CACHE] Using cached value: 2
+2025-08-23 09:41:32,308 - INFO - [TIME] read_elixir: 2.009s
+2025-08-23 09:41:33,535 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:33,537 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:33,538 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:33,690 - INFO - [OCR] Best result so far: 10 (simple+basic)
+2025-08-23 09:41:35,491 - INFO - [SUCCESS] OCR only: 10
+2025-08-23 09:41:35,491 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 09:41:35,754 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:41:35,754 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:41:37,618 - INFO - [TIME] Units detection: 1.806s
+2025-08-23 09:41:39,315 - INFO - [TIME] Fields detection: 1.697s
+2025-08-23 09:41:39,315 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:41:39,316 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:41:39,316 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:41:39,317 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:41:39,317 - INFO -    [ELIXIR] Current elixir: 10
+2025-08-23 09:41:39,318 - INFO - [SHOP] Available composition cards: ['archer(3)', 'archer_queen(5)']
+2025-08-23 09:41:39,318 - INFO - [SHOP] Available non-composition cards: ['goblin(2)']
+2025-08-23 09:41:39,319 - INFO - [BUY] Buying composition card: archer_queen (cost: 5)
+2025-08-23 09:41:39,678 - INFO - [BUY] Buying composition card: archer (cost: 3)
+2025-08-23 09:41:40,022 - INFO - [SUCCESS] Made 2 purchases in 0.703s
+2025-08-23 09:41:40,022 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 09:41:40,022 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 09:41:40,023 - INFO - [TIME] deploy_units: 4.269s
+2025-08-23 09:41:41,012 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:41,013 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:41,015 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:41,017 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:41:41,019 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:41:42,959 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:41:42,959 - INFO - [TIME] read_elixir: 1.948s
+2025-08-23 09:41:44,178 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:44,180 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:44,182 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:44,184 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:41:44,186 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:41:46,075 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:41:46,076 - INFO - [TIME] read_elixir: 1.897s
+2025-08-23 09:41:46,339 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:41:46,339 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:41:48,166 - INFO - [TIME] Units detection: 1.771s
+2025-08-23 09:41:49,853 - INFO - [TIME] Fields detection: 1.687s
+2025-08-23 09:41:49,853 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:41:49,854 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:41:49,854 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:41:49,854 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:41:49,855 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:41:49,855 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:41:49,855 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:41:49,856 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:41:49,857 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:41:49,857 - INFO - [TIME] deploy_units: 3.518s
+2025-08-23 09:41:50,848 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:50,850 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:50,853 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:50,855 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:41:50,857 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:41:52,819 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:41:52,820 - INFO - [TIME] read_elixir: 1.971s
+2025-08-23 09:41:53,086 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:41:53,086 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:41:54,929 - INFO - [TIME] Units detection: 1.788s
+2025-08-23 09:41:56,635 - INFO - [TIME] Fields detection: 1.705s
+2025-08-23 09:41:56,635 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:41:56,636 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:41:56,636 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:41:56,636 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:41:56,637 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:41:56,637 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:41:56,637 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:41:56,637 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:41:56,638 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:41:56,638 - INFO - [TIME] deploy_units: 3.552s
+2025-08-23 09:41:57,635 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:41:57,637 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:41:57,638 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:41:57,640 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:41:57,642 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:41:59,578 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:41:59,579 - INFO - [TIME] read_elixir: 1.945s
+2025-08-23 09:41:59,910 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:00,911 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:00,913 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:00,915 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:00,916 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:00,918 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:02,881 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:02,881 - INFO - [TIME] read_elixir: 1.971s
+2025-08-23 09:42:03,211 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:04,287 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:04,287 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:04,290 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:04,292 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:04,294 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:06,433 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:06,433 - INFO - [TIME] read_elixir: 2.147s
+2025-08-23 09:42:06,759 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:07,763 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:07,764 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:07,766 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:07,768 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:07,769 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:09,717 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:09,717 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 09:42:10,050 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:11,077 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:11,079 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:11,081 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:11,083 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:11,085 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:13,495 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:13,496 - INFO - [TIME] read_elixir: 2.420s
+2025-08-23 09:42:13,878 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:14,824 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:14,825 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:14,827 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:17,231 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:42:17,231 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:42:17,232 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:42:17,232 - INFO - [CACHE] Using cached value: 1
+2025-08-23 09:42:17,233 - INFO - [TIME] read_elixir: 2.409s
+2025-08-23 09:42:18,507 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:18,509 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:18,512 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:18,515 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 09:42:18,517 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 09:42:18,665 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 09:42:20,598 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 09:42:20,599 - INFO - [TIME] read_elixir: 2.093s
+2025-08-23 09:42:20,879 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:42:20,879 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:42:22,797 - INFO - [TIME] Units detection: 1.859s
+2025-08-23 09:42:24,532 - INFO - [TIME] Fields detection: 1.735s
+2025-08-23 09:42:24,532 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:42:24,533 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:42:24,533 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:42:24,533 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:42:24,533 - INFO -    [ELIXIR] Current elixir: 9
+2025-08-23 09:42:24,534 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 09:42:24,534 - INFO - [SHOP] Available non-composition cards: ['giant_skeleton(3)', 'spear_goblin(2)']
+2025-08-23 09:42:24,534 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 09:42:24,876 - INFO - [BUY] High elixir (7), buying any unit: giant_skeleton (cost: 3)
+2025-08-23 09:42:25,221 - INFO - [BUY] Medium elixir (4), buying: spear_goblin (cost: 2)
+2025-08-23 09:42:25,561 - INFO - [SUCCESS] Made 3 purchases in 1.027s
+2025-08-23 09:42:25,561 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 09:42:25,562 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 09:42:25,562 - INFO - [TIME] deploy_units: 4.684s
+2025-08-23 09:42:26,555 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:26,556 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:26,559 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:26,560 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:42:26,562 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:42:28,835 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:42:28,835 - INFO - [TIME] read_elixir: 2.281s
+2025-08-23 09:42:29,131 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:42:29,132 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:42:31,185 - INFO - [TIME] Units detection: 1.994s
+2025-08-23 09:42:33,075 - INFO - [TIME] Fields detection: 1.890s
+2025-08-23 09:42:33,075 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:42:33,076 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:42:33,077 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:42:33,078 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:42:33,078 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:42:33,078 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:42:33,078 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:42:33,079 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:42:33,079 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:42:33,079 - INFO - [TIME] deploy_units: 3.947s
+2025-08-23 09:42:34,079 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:34,081 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:34,083 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:34,085 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:34,087 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:36,392 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:36,393 - INFO - [TIME] read_elixir: 2.314s
+2025-08-23 09:42:36,672 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:42:36,672 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:42:38,633 - INFO - [TIME] Units detection: 1.897s
+2025-08-23 09:42:40,392 - INFO - [TIME] Fields detection: 1.759s
+2025-08-23 09:42:40,392 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:42:40,393 - INFO -    [FIELD] Field units: 5
+2025-08-23 09:42:40,393 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:42:40,393 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:42:40,394 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:42:40,394 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:42:40,394 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:42:40,395 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:42:40,395 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:42:40,395 - INFO - [TIME] deploy_units: 3.723s
+2025-08-23 09:42:41,435 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:41,436 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:41,439 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:41,440 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:41,442 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:43,469 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:43,470 - INFO - [TIME] read_elixir: 2.036s
+2025-08-23 09:42:43,733 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:42:43,733 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:42:45,601 - INFO - [TIME] Units detection: 1.812s
+2025-08-23 09:42:47,287 - INFO - [TIME] Fields detection: 1.685s
+2025-08-23 09:42:47,287 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:42:47,288 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:42:47,288 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:42:47,288 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:42:47,289 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:42:47,289 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:42:47,289 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:42:47,289 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:42:47,290 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:42:47,290 - INFO - [TIME] deploy_units: 3.557s
+2025-08-23 09:42:48,292 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:48,294 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:48,296 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:48,298 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:48,300 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:50,246 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:50,247 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 09:42:50,579 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:51,581 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:51,583 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:51,585 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:51,587 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:51,589 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:53,509 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:53,510 - INFO - [TIME] read_elixir: 1.930s
+2025-08-23 09:42:53,836 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:54,838 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:54,839 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:54,842 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:54,843 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:54,845 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:42:56,768 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:42:56,768 - INFO - [TIME] read_elixir: 1.931s
+2025-08-23 09:42:57,117 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:42:58,135 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:42:58,136 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:42:58,138 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:42:58,139 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:42:58,141 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:43:00,118 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:43:00,119 - INFO - [TIME] read_elixir: 1.986s
+2025-08-23 09:43:00,461 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:01,503 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:01,505 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:01,506 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:01,510 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:43:01,513 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:43:03,526 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:43:03,527 - INFO - [TIME] read_elixir: 2.026s
+2025-08-23 09:43:03,877 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:04,936 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:04,938 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:04,940 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:04,942 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:43:04,942 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:43:06,970 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:43:06,971 - INFO - [TIME] read_elixir: 2.036s
+2025-08-23 09:43:07,326 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:08,310 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:08,311 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:08,314 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:10,395 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:43:10,395 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:43:10,396 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:43:10,396 - INFO - [CACHE] Using cached value: 1
+2025-08-23 09:43:10,396 - INFO - [TIME] read_elixir: 2.087s
+2025-08-23 09:43:11,636 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:11,638 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:11,641 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:11,643 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:11,645 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:11,647 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:11,785 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:13,632 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:13,632 - INFO - [TIME] read_elixir: 1.997s
+2025-08-23 09:43:13,909 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:43:13,909 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:43:15,792 - INFO - [TIME] Units detection: 1.826s
+2025-08-23 09:43:17,482 - INFO - [TIME] Fields detection: 1.689s
+2025-08-23 09:43:17,482 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:43:17,483 - INFO -    [FIELD] Field units: 5
+2025-08-23 09:43:17,484 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:43:17,484 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:43:17,485 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:43:17,485 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:43:17,485 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:43:17,486 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:43:17,486 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:43:17,486 - INFO - [TIME] deploy_units: 3.577s
+2025-08-23 09:43:18,504 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:18,506 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:18,508 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:18,510 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:18,512 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:18,514 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:18,651 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:20,553 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:20,553 - INFO - [TIME] read_elixir: 2.049s
+2025-08-23 09:43:20,820 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:43:20,820 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:43:22,685 - INFO - [TIME] Units detection: 1.806s
+2025-08-23 09:43:24,380 - INFO - [TIME] Fields detection: 1.694s
+2025-08-23 09:43:24,381 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:43:24,381 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:43:24,382 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:43:24,382 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:43:24,382 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:43:24,383 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:43:24,383 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:43:24,383 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:43:24,384 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:43:24,384 - INFO - [TIME] deploy_units: 3.563s
+2025-08-23 09:43:25,423 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:25,424 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:25,426 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:25,427 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:25,429 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:25,431 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:25,574 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:27,491 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:27,491 - INFO - [TIME] read_elixir: 2.070s
+2025-08-23 09:43:28,727 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:28,729 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:28,731 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:28,733 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:28,735 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:28,737 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:28,866 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:30,773 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:30,773 - INFO - [TIME] read_elixir: 2.047s
+2025-08-23 09:43:32,055 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:32,056 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:32,058 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:32,060 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:32,062 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:32,063 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:32,198 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:34,048 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:34,049 - INFO - [TIME] read_elixir: 1.995s
+2025-08-23 09:43:34,315 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:43:34,316 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:43:36,198 - INFO - [TIME] Units detection: 1.824s
+2025-08-23 09:43:37,935 - INFO - [TIME] Fields detection: 1.737s
+2025-08-23 09:43:37,935 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:43:37,936 - INFO -    [FIELD] Field units: 5
+2025-08-23 09:43:37,936 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:43:37,937 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:43:37,937 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:43:37,938 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:43:37,938 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:43:37,938 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:43:37,939 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:43:37,940 - INFO - [TIME] deploy_units: 3.624s
+2025-08-23 09:43:38,922 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:38,924 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:38,926 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:40,872 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:43:40,872 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:43:40,874 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:43:40,874 - INFO - [TIME] read_elixir: 1.953s
+2025-08-23 09:43:42,163 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:42,164 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:42,166 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:42,168 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:42,170 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:42,171 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:42,315 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:44,214 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:44,214 - INFO - [TIME] read_elixir: 2.052s
+2025-08-23 09:43:44,551 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:45,556 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:45,558 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:45,560 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:45,562 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:45,563 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:45,564 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:45,691 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:47,529 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:47,529 - INFO - [TIME] read_elixir: 1.973s
+2025-08-23 09:43:47,857 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:48,839 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:48,841 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:48,844 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:48,846 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:48,848 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:48,850 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:48,994 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:50,820 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:50,820 - INFO - [TIME] read_elixir: 1.981s
+2025-08-23 09:43:51,148 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:52,172 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:52,174 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:52,176 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:52,178 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:52,179 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:52,181 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:52,316 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:54,170 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:54,171 - INFO - [TIME] read_elixir: 2.000s
+2025-08-23 09:43:54,504 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:55,510 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:55,511 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:55,513 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:55,515 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:55,517 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:55,519 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:55,657 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:43:57,456 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:43:57,456 - INFO - [TIME] read_elixir: 1.947s
+2025-08-23 09:43:57,794 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:43:58,787 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:43:58,788 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:43:58,790 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:43:58,792 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:43:58,794 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:43:58,795 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:43:58,928 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:00,690 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:00,690 - INFO - [TIME] read_elixir: 1.904s
+2025-08-23 09:44:01,017 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:02,001 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:02,002 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:02,004 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:02,006 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:02,008 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:02,010 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:02,139 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:03,893 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:03,893 - INFO - [TIME] read_elixir: 1.893s
+2025-08-23 09:44:04,223 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:05,133 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:05,135 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:05,136 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:07,055 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:44:07,055 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:44:07,056 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:44:07,057 - INFO - [TIME] read_elixir: 1.925s
+2025-08-23 09:44:08,267 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:08,268 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:08,270 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:08,272 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 0.655)
+2025-08-23 09:44:08,918 - INFO - [OCR] Best result so far: 14 (otsu+single_char)
+2025-08-23 09:44:10,198 - WARNING - [CONFLICT] Template: 4 (conf: 0.655), OCR: 14, using template
+2025-08-23 09:44:10,199 - INFO - [TIME] read_elixir: 1.934s
+2025-08-23 09:44:10,465 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:44:10,465 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:44:12,287 - INFO - [TIME] Units detection: 1.763s
+2025-08-23 09:44:13,992 - INFO - [TIME] Fields detection: 1.704s
+2025-08-23 09:44:13,992 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:44:13,993 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:44:13,993 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:44:13,993 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:44:13,994 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:44:13,994 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:44:13,994 - INFO - [SHOP] Available non-composition cards: ['bomber(2)', 'royal_ghost(4)']
+2025-08-23 09:44:13,994 - INFO - [BUY] Medium elixir (4), buying: royal_ghost (cost: 4)
+2025-08-23 09:44:14,335 - INFO - [SUCCESS] Made 1 purchases in 0.342s
+2025-08-23 09:44:14,335 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:44:14,336 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:44:14,336 - INFO - [TIME] deploy_units: 3.871s
+2025-08-23 09:44:15,313 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:15,314 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:15,316 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:15,318 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:15,320 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:15,322 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:15,452 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:17,246 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:17,247 - INFO - [TIME] read_elixir: 1.934s
+2025-08-23 09:44:17,517 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:44:17,517 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:44:19,343 - INFO - [TIME] Units detection: 1.769s
+2025-08-23 09:44:21,018 - INFO - [TIME] Fields detection: 1.675s
+2025-08-23 09:44:21,018 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:44:21,019 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:44:21,020 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:44:21,020 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:44:21,020 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:44:21,021 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:44:21,021 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:44:21,021 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:44:21,021 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:44:21,022 - INFO - [TIME] deploy_units: 3.505s
+2025-08-23 09:44:22,001 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:22,003 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:22,006 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:22,007 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:22,009 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:22,011 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:22,147 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:23,919 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:23,919 - INFO - [TIME] read_elixir: 1.919s
+2025-08-23 09:44:24,188 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:44:24,189 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:44:26,034 - INFO - [TIME] Units detection: 1.787s
+2025-08-23 09:44:27,741 - INFO - [TIME] Fields detection: 1.705s
+2025-08-23 09:44:27,742 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:44:27,742 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:44:27,743 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:44:27,743 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:44:27,743 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:44:27,744 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:44:27,744 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:44:27,744 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:44:27,745 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:44:27,745 - INFO - [TIME] deploy_units: 3.556s
+2025-08-23 09:44:28,736 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:28,738 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:28,741 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:28,742 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:28,744 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:28,746 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:28,889 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:30,714 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:30,715 - INFO - [TIME] read_elixir: 1.979s
+2025-08-23 09:44:31,009 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:44:31,010 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:44:32,919 - INFO - [TIME] Units detection: 1.851s
+2025-08-23 09:44:34,663 - INFO - [TIME] Fields detection: 1.744s
+2025-08-23 09:44:34,663 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:44:34,664 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:44:34,665 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:44:34,665 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:44:34,666 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:44:34,667 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:44:34,667 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:44:34,668 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:44:34,669 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:44:34,669 - INFO - [TIME] deploy_units: 3.659s
+2025-08-23 09:44:35,720 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:35,722 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:35,724 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:35,726 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:35,728 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:35,729 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:35,858 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:37,670 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:37,670 - INFO - [TIME] read_elixir: 1.951s
+2025-08-23 09:44:37,938 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:44:37,938 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:44:39,893 - INFO - [TIME] Units detection: 1.896s
+2025-08-23 09:44:41,598 - INFO - [TIME] Fields detection: 1.705s
+2025-08-23 09:44:41,598 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:44:41,598 - INFO -    [FIELD] Field units: 4
+2025-08-23 09:44:41,599 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:44:41,599 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:44:41,599 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:44:41,600 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:44:41,600 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:44:41,600 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:44:41,601 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:44:41,601 - INFO - [TIME] deploy_units: 3.664s
+2025-08-23 09:44:42,598 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:42,599 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:42,601 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:42,603 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:42,604 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:42,606 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:42,735 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:44,580 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:44,580 - INFO - [TIME] read_elixir: 1.984s
+2025-08-23 09:44:44,909 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:45,916 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:45,918 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:45,920 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:45,922 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:45,924 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:45,925 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:46,063 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:47,892 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:47,893 - INFO - [TIME] read_elixir: 1.977s
+2025-08-23 09:44:48,219 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:49,260 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:49,261 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:49,264 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:49,266 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:49,268 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:49,269 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:49,397 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:51,191 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:51,192 - INFO - [TIME] read_elixir: 1.933s
+2025-08-23 09:44:51,521 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:52,532 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:52,533 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:52,535 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:52,537 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:52,539 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:52,541 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:52,674 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:54,442 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:54,442 - INFO - [TIME] read_elixir: 1.911s
+2025-08-23 09:44:54,774 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:55,782 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:55,783 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:55,784 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:55,786 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:55,788 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:55,789 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:55,928 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:44:57,737 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:44:57,737 - INFO - [TIME] read_elixir: 1.956s
+2025-08-23 09:44:58,066 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:44:59,061 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:44:59,063 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:44:59,065 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:44:59,067 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:44:59,069 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:44:59,070 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:44:59,204 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:45:01,041 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:45:01,041 - INFO - [TIME] read_elixir: 1.980s
+2025-08-23 09:45:01,368 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:45:02,369 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:02,370 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:02,372 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:02,374 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.691)
+2025-08-23 09:45:02,376 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 0.727)
+2025-08-23 09:45:02,378 - INFO - [TEMPLATE] Best result so far: 0 (method: adaptive, conf: 0.758)
+2025-08-23 09:45:02,519 - INFO - [OCR] Best result so far: 16 (simple+basic)
+2025-08-23 09:45:04,304 - WARNING - [CONFLICT] Template: 0 (conf: 0.758), OCR: 16, using template
+2025-08-23 09:45:04,305 - INFO - [TIME] read_elixir: 1.937s
+2025-08-23 09:45:04,641 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:45:05,641 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:05,643 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:05,645 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:07,718 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:07,718 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:07,719 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:07,720 - INFO - [TIME] read_elixir: 2.079s
+2025-08-23 09:45:08,657 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:08,659 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:08,662 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:10,759 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:10,759 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:10,760 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:10,761 - INFO - [TIME] read_elixir: 2.104s
+2025-08-23 09:45:10,971 - INFO - [ACTION] Quit screen detected
+2025-08-23 09:45:11,793 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:11,795 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:11,797 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:13,999 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:13,999 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:14,000 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:14,001 - INFO - [TIME] read_elixir: 2.208s
+2025-08-23 09:45:14,144 - INFO - [ACTION] Play again screen detected
+2025-08-23 09:45:15,664 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:15,668 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:15,672 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:17,753 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:17,753 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:17,755 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:17,755 - INFO - [TIME] read_elixir: 2.093s
+2025-08-23 09:45:18,934 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:18,937 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:18,938 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:21,065 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:21,065 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:21,067 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:21,067 - INFO - [TIME] read_elixir: 2.134s
+2025-08-23 09:45:22,190 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:22,191 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:22,194 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:24,264 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:24,264 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:24,265 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:24,265 - INFO - [TIME] read_elixir: 2.076s
+2025-08-23 09:45:24,572 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:45:24,572 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:45:26,608 - INFO - [TIME] Units detection: 1.986s
+2025-08-23 09:45:28,521 - INFO - [TIME] Fields detection: 1.912s
+2025-08-23 09:45:28,522 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:45:28,523 - INFO -    [FIELD] Field units: 0
+2025-08-23 09:45:28,523 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:45:28,524 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:45:28,524 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:45:28,525 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:45:28,525 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:45:28,526 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:45:28,528 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:45:28,530 - INFO - [TIME] deploy_units: 3.958s
+2025-08-23 09:45:29,631 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:29,633 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:29,635 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:29,638 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:45:29,640 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:45:31,871 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:45:31,872 - INFO - [TIME] read_elixir: 2.242s
+2025-08-23 09:45:32,181 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:45:32,181 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:45:34,210 - INFO - [TIME] Units detection: 1.971s
+2025-08-23 09:45:36,092 - INFO - [TIME] Fields detection: 1.881s
+2025-08-23 09:45:36,093 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:45:36,093 - INFO -    [FIELD] Field units: 0
+2025-08-23 09:45:36,094 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:45:36,094 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:45:36,094 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:45:36,095 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:45:36,095 - INFO - [SHOP] Available non-composition cards: ['pekka(3)', 'princess(4)', 'royal_ghost(4)']
+2025-08-23 09:45:36,096 - INFO - [BUY] Medium elixir (4), buying: princess (cost: 4)
+2025-08-23 09:45:36,443 - INFO - [SUCCESS] Made 1 purchases in 0.347s
+2025-08-23 09:45:36,443 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:45:36,444 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:45:36,445 - INFO - [TIME] deploy_units: 4.264s
+2025-08-23 09:45:37,451 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:37,453 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:37,455 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:37,458 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:45:37,460 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:45:39,496 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:45:39,496 - INFO - [TIME] read_elixir: 2.046s
+2025-08-23 09:45:40,745 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:40,747 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:40,749 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:42,735 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:42,735 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:42,736 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:42,737 - INFO - [TIME] read_elixir: 1.993s
+2025-08-23 09:45:43,083 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:45:44,151 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:44,153 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:44,155 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:44,157 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:45:44,159 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:45:46,291 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:45:46,291 - INFO - [TIME] read_elixir: 2.141s
+2025-08-23 09:45:46,651 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:45:47,739 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:47,741 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:47,744 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:47,745 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:45:47,746 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:45:49,868 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:45:49,868 - INFO - [TIME] read_elixir: 2.131s
+2025-08-23 09:45:50,210 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:45:51,230 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:51,231 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:51,233 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:51,236 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:45:51,237 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:45:53,157 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:45:53,157 - INFO - [TIME] read_elixir: 1.927s
+2025-08-23 09:45:53,523 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:45:54,566 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:54,568 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:54,570 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:45:56,630 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:45:56,630 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:45:56,631 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:45:56,632 - INFO - [TIME] read_elixir: 2.068s
+2025-08-23 09:45:58,000 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:45:58,002 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:45:58,004 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:00,185 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:46:00,185 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:46:00,186 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:46:00,187 - INFO - [TIME] read_elixir: 2.188s
+2025-08-23 09:46:00,490 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:46:00,490 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:46:02,574 - INFO - [TIME] Units detection: 2.028s
+2025-08-23 09:46:04,607 - INFO - [TIME] Fields detection: 2.031s
+2025-08-23 09:46:04,607 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:46:04,608 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:46:04,608 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:46:04,608 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:46:04,608 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:46:04,608 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:46:04,608 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:46:04,609 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:46:04,609 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:46:04,610 - INFO - [TIME] deploy_units: 4.121s
+2025-08-23 09:46:05,628 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:05,630 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:05,632 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:05,635 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:46:05,638 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:46:07,929 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:46:07,930 - INFO - [TIME] read_elixir: 2.304s
+2025-08-23 09:46:08,213 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:46:08,213 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:46:10,191 - INFO - [TIME] Units detection: 1.921s
+2025-08-23 09:46:12,125 - INFO - [TIME] Fields detection: 1.934s
+2025-08-23 09:46:12,125 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:46:12,126 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:46:12,126 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:46:12,127 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:46:12,127 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:46:12,127 - INFO - [SHOP] Available composition cards: ['bandit(4)']
+2025-08-23 09:46:12,127 - INFO - [SHOP] Available non-composition cards: ['pekka(3)']
+2025-08-23 09:46:12,128 - INFO - [BUY] Buying composition card: bandit (cost: 4)
+2025-08-23 09:46:12,501 - INFO - [SUCCESS] Made 1 purchases in 0.372s
+2025-08-23 09:46:12,501 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:46:12,502 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:46:12,502 - INFO - [TIME] deploy_units: 4.289s
+2025-08-23 09:46:13,528 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:13,530 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:13,532 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:13,534 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:46:13,536 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:46:15,747 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:46:15,747 - INFO - [TIME] read_elixir: 2.220s
+2025-08-23 09:46:16,050 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:46:16,050 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:46:17,949 - INFO - [TIME] Units detection: 1.841s
+2025-08-23 09:46:19,700 - INFO - [TIME] Fields detection: 1.751s
+2025-08-23 09:46:19,700 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:46:19,701 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:46:19,701 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:46:19,702 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:46:19,702 - INFO -    [ELIXIR] Current elixir: 0
+2025-08-23 09:46:19,702 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:46:19,703 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:46:19,703 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:46:19,703 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:46:19,704 - INFO - [TIME] deploy_units: 3.653s
+2025-08-23 09:46:20,763 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:20,764 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:20,766 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:20,768 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:46:20,770 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:46:22,736 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:46:22,737 - INFO - [TIME] read_elixir: 1.974s
+2025-08-23 09:46:23,087 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:46:24,099 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:24,100 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:24,103 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:24,105 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:46:24,105 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:46:26,145 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:46:26,146 - INFO - [TIME] read_elixir: 2.048s
+2025-08-23 09:46:26,507 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:46:27,539 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:27,541 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:27,543 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:27,546 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:46:27,548 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:46:29,771 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:46:29,772 - INFO - [TIME] read_elixir: 2.234s
+2025-08-23 09:46:30,115 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:46:31,248 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:31,250 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:31,252 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:31,254 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:46:31,255 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:46:33,452 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:46:33,453 - INFO - [TIME] read_elixir: 2.206s
+2025-08-23 09:46:33,787 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:46:34,816 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:34,817 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:34,819 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:36,907 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:46:36,907 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:46:36,908 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:46:36,909 - INFO - [TIME] read_elixir: 2.094s
+2025-08-23 09:46:38,197 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:38,199 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:38,202 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:38,205 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:46:38,207 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:46:40,239 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:46:40,239 - INFO - [TIME] read_elixir: 2.043s
+2025-08-23 09:46:40,513 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:46:40,514 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:46:42,379 - INFO - [TIME] Units detection: 1.802s
+2025-08-23 09:46:44,067 - INFO - [TIME] Fields detection: 1.687s
+2025-08-23 09:46:44,067 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:46:44,068 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:46:44,068 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:46:44,068 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:46:44,069 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:46:44,069 - INFO - [SHOP] Available composition cards: ['valkyrie(3)']
+2025-08-23 09:46:44,069 - INFO - [SHOP] Available non-composition cards: ['goblin(2)']
+2025-08-23 09:46:44,070 - INFO - [BUY] Buying composition card: valkyrie (cost: 3)
+2025-08-23 09:46:44,401 - INFO - [SUCCESS] Made 1 purchases in 0.331s
+2025-08-23 09:46:44,401 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:46:44,402 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:46:44,403 - INFO - [TIME] deploy_units: 3.890s
+2025-08-23 09:46:45,394 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:45,396 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:45,398 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:45,399 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:46:45,401 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:46:46,073 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:46:47,404 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:46:47,404 - INFO - [TIME] read_elixir: 2.011s
+2025-08-23 09:46:47,674 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:46:47,674 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:46:49,521 - INFO - [TIME] Units detection: 1.790s
+2025-08-23 09:46:51,374 - INFO - [TIME] Fields detection: 1.853s
+2025-08-23 09:46:51,374 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:46:51,375 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:46:51,376 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:46:51,376 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:46:51,377 - INFO -    [ELIXIR] Current elixir: 5
+2025-08-23 09:46:51,377 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:46:51,377 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:46:51,377 - INFO - [SKIP] Skipping sell phase, elixir manageable: 5
+2025-08-23 09:46:51,378 - INFO - [FINAL] Final elixir after deploy: 5
+2025-08-23 09:46:51,378 - INFO - [TIME] deploy_units: 3.705s
+2025-08-23 09:46:52,359 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:52,360 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:52,362 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:52,364 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:46:52,366 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:46:53,084 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:46:54,437 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:46:54,437 - INFO - [TIME] read_elixir: 2.079s
+2025-08-23 09:46:55,696 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:46:55,698 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:46:55,700 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:46:55,701 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:46:55,704 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:46:56,458 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:46:57,798 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:46:57,798 - INFO - [TIME] read_elixir: 2.103s
+2025-08-23 09:46:58,074 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:46:58,075 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:46:59,924 - INFO - [TIME] Units detection: 1.788s
+2025-08-23 09:47:01,635 - INFO - [TIME] Fields detection: 1.711s
+2025-08-23 09:47:01,635 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:47:01,636 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:47:01,636 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:47:01,636 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:47:01,637 - INFO -    [ELIXIR] Current elixir: 5
+2025-08-23 09:47:01,637 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 09:47:01,637 - INFO - [SHOP] Available non-composition cards: ['prince(3)', 'princess(4)']
+2025-08-23 09:47:01,638 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 09:47:01,976 - INFO - [SUCCESS] Made 1 purchases in 0.339s
+2025-08-23 09:47:01,976 - INFO - [SKIP] Skipping sell phase, elixir manageable: 3
+2025-08-23 09:47:01,976 - INFO - [FINAL] Final elixir after deploy: 3
+2025-08-23 09:47:01,977 - INFO - [TIME] deploy_units: 3.903s
+2025-08-23 09:47:02,967 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:02,968 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:02,971 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:02,973 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:47:02,975 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:47:03,615 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:47:04,867 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:47:04,867 - INFO - [TIME] read_elixir: 1.901s
+2025-08-23 09:47:05,210 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:47:06,233 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:06,234 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:06,236 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:06,238 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:47:06,240 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:47:06,911 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:47:08,338 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:47:08,338 - INFO - [TIME] read_elixir: 2.107s
+2025-08-23 09:47:08,757 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:47:09,773 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:09,775 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:09,777 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:09,779 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:47:09,781 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:47:10,428 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:47:11,742 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:47:11,742 - INFO - [TIME] read_elixir: 1.970s
+2025-08-23 09:47:12,075 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:47:13,099 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:13,100 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:13,103 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:13,105 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:47:13,107 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:47:13,789 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:47:15,105 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:47:15,105 - INFO - [TIME] read_elixir: 2.007s
+2025-08-23 09:47:15,506 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:47:16,517 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:16,518 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:16,520 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:16,521 - INFO - [TEMPLATE] Best result so far: 5 (method: simple, conf: 0.848)
+2025-08-23 09:47:16,523 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 1.000)
+2025-08-23 09:47:17,175 - INFO - [OCR] Best result so far: 6 (otsu+single_char)
+2025-08-23 09:47:18,504 - INFO - [SUCCESS] High confidence template: 5 (conf: 1.000)
+2025-08-23 09:47:18,505 - INFO - [TIME] read_elixir: 1.989s
+2025-08-23 09:47:18,845 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:47:19,863 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:19,865 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:19,867 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:21,858 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:47:21,859 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:47:21,859 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:47:21,860 - INFO - [CACHE] Using cached value: 5
+2025-08-23 09:47:21,860 - INFO - [TIME] read_elixir: 1.998s
+2025-08-23 09:47:23,136 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:23,138 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:23,141 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:25,290 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:47:25,290 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:47:25,291 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:47:25,291 - INFO - [CACHE] Using cached value: 5
+2025-08-23 09:47:25,292 - INFO - [TIME] read_elixir: 2.157s
+2025-08-23 09:47:25,566 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:47:25,566 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:47:27,418 - INFO - [TIME] Units detection: 1.795s
+2025-08-23 09:47:29,273 - INFO - [TIME] Fields detection: 1.854s
+2025-08-23 09:47:29,273 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:47:29,274 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:47:29,274 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:47:29,275 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:47:29,275 - INFO -    [ELIXIR] Current elixir: 5
+2025-08-23 09:47:29,275 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 09:47:29,276 - INFO - [SHOP] Available non-composition cards: ['prince(3)', 'princess(4)']
+2025-08-23 09:47:29,276 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 09:47:29,623 - INFO - [SUCCESS] Made 1 purchases in 0.348s
+2025-08-23 09:47:29,623 - INFO - [SKIP] Skipping sell phase, elixir manageable: 3
+2025-08-23 09:47:29,624 - INFO - [FINAL] Final elixir after deploy: 3
+2025-08-23 09:47:29,624 - INFO - [TIME] deploy_units: 4.058s
+2025-08-23 09:47:30,659 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:30,659 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:30,662 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:30,664 - INFO - [TEMPLATE] Best result so far: 11 (method: simple, conf: 0.635)
+2025-08-23 09:47:30,665 - INFO - [TEMPLATE] Best result so far: 11 (method: otsu, conf: 0.685)
+2025-08-23 09:47:32,638 - INFO - [SUCCESS] Template only: 11 (conf: 0.685)
+2025-08-23 09:47:32,639 - INFO - [TIME] read_elixir: 1.982s
+2025-08-23 09:47:32,904 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:47:32,904 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:47:34,816 - INFO - [TIME] Units detection: 1.855s
+2025-08-23 09:47:36,549 - INFO - [TIME] Fields detection: 1.733s
+2025-08-23 09:47:36,550 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:47:36,551 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:47:36,551 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:47:36,552 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:47:36,552 - INFO -    [ELIXIR] Current elixir: 11
+2025-08-23 09:47:36,553 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:47:36,553 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:47:36,553 - INFO - [SELL] Will sell knight at camp[0,2] (high elixir: 11)
+2025-08-23 09:47:36,554 - INFO - [SELL] Will sell princess at camp[3,1] (high elixir: 11)
+2025-08-23 09:47:36,554 - INFO - [SELLING] Selling knight at camp[0,2]
+2025-08-23 09:47:38,293 - INFO - [SUCCESS] Sold knight, elixir now: 12
+2025-08-23 09:47:38,293 - INFO - [SELLING] Selling princess at camp[3,1]
+2025-08-23 09:47:40,064 - INFO - [SUCCESS] Sold princess, elixir now: 15
+2025-08-23 09:47:40,064 - INFO - [TIME] Selling phase: 3.510s
+2025-08-23 09:47:40,065 - INFO - [FINAL] Final elixir after deploy: 15
+2025-08-23 09:47:40,065 - INFO - [TIME] deploy_units: 7.161s
+2025-08-23 09:47:41,075 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:41,077 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:41,079 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:41,081 - INFO - [TEMPLATE] Best result so far: 15 (method: simple, conf: 0.652)
+2025-08-23 09:47:41,083 - INFO - [TEMPLATE] Best result so far: 5 (method: otsu, conf: 0.738)
+2025-08-23 09:47:41,219 - INFO - [OCR] Best result so far: 15 (simple+basic)
+2025-08-23 09:47:43,026 - WARNING - [CONFLICT] Template: 5 (conf: 0.738), OCR: 15, using template
+2025-08-23 09:47:43,026 - INFO - [TIME] read_elixir: 1.952s
+2025-08-23 09:47:43,292 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:47:43,292 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:47:45,185 - INFO - [TIME] Units detection: 1.835s
+2025-08-23 09:47:47,028 - INFO - [TIME] Fields detection: 1.843s
+2025-08-23 09:47:47,028 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:47:47,029 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:47:47,030 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:47:47,031 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:47:47,031 - INFO -    [ELIXIR] Current elixir: 5
+2025-08-23 09:47:47,031 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:47:47,032 - INFO - [SHOP] Available non-composition cards: ['giant_skeleton(3)', 'goblin_machine(4)', 'pekka(3)']
+2025-08-23 09:47:47,033 - INFO - [BUY] Medium elixir (5), buying: goblin_machine (cost: 4)
+2025-08-23 09:47:47,388 - INFO - [SUCCESS] Made 1 purchases in 0.355s
+2025-08-23 09:47:47,388 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:47:47,390 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:47:47,391 - INFO - [TIME] deploy_units: 4.098s
+2025-08-23 09:47:48,416 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:48,418 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:48,420 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:48,422 - INFO - [TEMPLATE] Best result so far: 11 (method: simple, conf: 0.635)
+2025-08-23 09:47:48,423 - INFO - [TEMPLATE] Best result so far: 11 (method: otsu, conf: 0.685)
+2025-08-23 09:47:50,452 - INFO - [SUCCESS] Template only: 11 (conf: 0.685)
+2025-08-23 09:47:50,453 - INFO - [TIME] read_elixir: 2.039s
+2025-08-23 09:47:50,720 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:47:50,721 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:47:52,613 - INFO - [TIME] Units detection: 1.835s
+2025-08-23 09:47:54,526 - INFO - [TIME] Fields detection: 1.914s
+2025-08-23 09:47:54,527 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:47:54,527 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:47:54,528 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:47:54,528 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:47:54,528 - INFO -    [ELIXIR] Current elixir: 11
+2025-08-23 09:47:54,529 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:47:54,529 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:47:54,530 - INFO - [FINAL] Final elixir after deploy: 11
+2025-08-23 09:47:54,530 - INFO - [TIME] deploy_units: 3.809s
+2025-08-23 09:47:55,597 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:55,598 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:55,600 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:55,602 - INFO - [TEMPLATE] Best result so far: 11 (method: simple, conf: 0.635)
+2025-08-23 09:47:55,604 - INFO - [TEMPLATE] Best result so far: 11 (method: otsu, conf: 0.685)
+2025-08-23 09:47:57,721 - INFO - [SUCCESS] Template only: 11 (conf: 0.685)
+2025-08-23 09:47:57,721 - INFO - [TIME] read_elixir: 2.125s
+2025-08-23 09:47:58,067 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:47:59,139 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:47:59,140 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:47:59,142 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:47:59,144 - INFO - [TEMPLATE] Best result so far: 11 (method: simple, conf: 0.635)
+2025-08-23 09:47:59,146 - INFO - [TEMPLATE] Best result so far: 11 (method: otsu, conf: 0.685)
+2025-08-23 09:48:01,238 - INFO - [SUCCESS] Template only: 11 (conf: 0.685)
+2025-08-23 09:48:01,238 - INFO - [TIME] read_elixir: 2.100s
+2025-08-23 09:48:01,597 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:48:02,621 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:48:02,623 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:48:02,625 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:48:02,626 - INFO - [TEMPLATE] Best result so far: 11 (method: simple, conf: 0.635)
+2025-08-23 09:48:02,628 - INFO - [TEMPLATE] Best result so far: 11 (method: otsu, conf: 0.685)
+2025-08-23 09:48:04,667 - INFO - [SUCCESS] Template only: 11 (conf: 0.685)
+2025-08-23 09:48:04,667 - INFO - [TIME] read_elixir: 2.047s
+2025-08-23 09:48:05,009 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:48:05,676 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:48:05,678 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:48:05,680 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:48:07,708 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:48:07,708 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:48:07,709 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:48:07,710 - INFO - [CACHE] Using cached value: 11
+2025-08-23 09:48:07,710 - INFO - [TIME] read_elixir: 2.034s
+2025-08-23 09:48:07,917 - INFO - [ACTION] Quit screen detected
+2025-08-23 09:48:08,811 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:48:08,813 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:48:08,817 - INFO - [SUCCESS] Loaded 10 digit templates
+2025-08-23 09:48:10,867 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:48:10,867 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:48:10,868 - ERROR - [HELP] Run create_digit_templates.py to create proper digit templates
+2025-08-23 09:48:10,868 - INFO - [CACHE] Using cached value: 11
+2025-08-23 09:48:10,869 - INFO - [TIME] read_elixir: 2.059s
+2025-08-23 09:48:11,005 - INFO - [ACTION] Play again screen detected
+2025-08-23 09:48:13,386 - INFO - [BOT] Bot loop started
+2025-08-23 09:50:32,623 - INFO - [BOT] Bot loop started
+2025-08-23 09:50:33,981 - INFO - [BOT] Bot arrancat
+2025-08-23 09:50:34,031 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 09:50:34,710 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:34,712 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:34,732 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:34,732 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:34,736 - INFO - [TEMPLATE] Best result so far: 4 (method: simple, conf: 0.848)
+2025-08-23 09:50:34,738 - INFO - [TEMPLATE] Best result so far: 4 (method: otsu, conf: 1.000)
+2025-08-23 09:50:36,714 - INFO - [SUCCESS] Template only: 4 (conf: 1.000)
+2025-08-23 09:50:36,714 - INFO - [TIME] read_elixir: 2.005s
+2025-08-23 09:50:36,981 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:50:36,981 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:50:38,795 - INFO - [TIME] Units detection: 1.760s
+2025-08-23 09:50:40,464 - INFO - [TIME] Fields detection: 1.668s
+2025-08-23 09:50:40,465 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:50:40,465 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:50:40,465 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:50:40,465 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:50:40,465 - INFO -    [ELIXIR] Current elixir: 4
+2025-08-23 09:50:40,466 - INFO - [SHOP] Available composition cards: ['archer(2)', 'valkyrie(3)']
+2025-08-23 09:50:40,466 - INFO - [SHOP] Available non-composition cards: ['bomber(2)']
+2025-08-23 09:50:40,466 - INFO - [BUY] Buying composition card: valkyrie (cost: 3)
+2025-08-23 09:50:40,794 - INFO - [SUCCESS] Made 1 purchases in 0.327s
+2025-08-23 09:50:40,794 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:50:40,794 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:50:40,795 - INFO - [TIME] deploy_units: 3.814s
+2025-08-23 09:50:41,789 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:41,791 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:41,794 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:41,794 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:41,797 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:50:41,800 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:50:43,761 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:50:43,761 - INFO - [TIME] read_elixir: 1.972s
+2025-08-23 09:50:44,086 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:50:45,084 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:45,085 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:45,088 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:45,088 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:45,092 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:50:45,093 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:50:47,049 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:50:47,049 - INFO - [TIME] read_elixir: 1.966s
+2025-08-23 09:50:47,388 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:50:48,386 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:48,388 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:48,391 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:48,391 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:48,394 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:50:48,396 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:50:50,348 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:50:50,348 - INFO - [TIME] read_elixir: 1.963s
+2025-08-23 09:50:50,692 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:50:51,690 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:51,692 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:51,694 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:51,695 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:53,731 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:50:53,731 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:50:53,732 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 09:50:53,732 - INFO - [CACHE] Using cached value: 1
+2025-08-23 09:50:53,733 - INFO - [TIME] read_elixir: 2.043s
+2025-08-23 09:50:54,937 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:54,938 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:54,941 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:54,941 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:56,929 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:50:56,929 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:50:56,930 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 09:50:56,930 - INFO - [CACHE] Using cached value: 1
+2025-08-23 09:50:56,931 - INFO - [TIME] read_elixir: 1.994s
+2025-08-23 09:50:58,153 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:50:58,154 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:50:58,157 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:50:58,157 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:50:58,160 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 09:50:58,162 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 09:50:58,300 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 09:51:00,121 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 09:51:00,121 - INFO - [TIME] read_elixir: 1.969s
+2025-08-23 09:51:00,390 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:51:00,391 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:51:02,222 - INFO - [TIME] Units detection: 1.777s
+2025-08-23 09:51:03,943 - INFO - [TIME] Fields detection: 1.719s
+2025-08-23 09:51:03,944 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:51:03,945 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:51:03,945 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:51:03,945 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:51:03,946 - INFO -    [ELIXIR] Current elixir: 9
+2025-08-23 09:51:03,946 - INFO - [SHOP] Available composition cards: ['archer_queen(5)']
+2025-08-23 09:51:03,946 - INFO - [SHOP] Available non-composition cards: ['pekka(3)', 'royal_ghost(4)']
+2025-08-23 09:51:03,946 - INFO - [BUY] Buying composition card: archer_queen (cost: 5)
+2025-08-23 09:51:04,285 - INFO - [BUY] Medium elixir (4), buying: royal_ghost (cost: 4)
+2025-08-23 09:51:04,625 - INFO - [SUCCESS] Made 2 purchases in 0.679s
+2025-08-23 09:51:04,625 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:51:04,626 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:51:04,626 - INFO - [TIME] deploy_units: 4.235s
+2025-08-23 09:51:05,629 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:05,631 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:05,634 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:05,634 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:05,636 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:05,639 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:07,609 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:07,609 - INFO - [TIME] read_elixir: 1.981s
+2025-08-23 09:51:07,881 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:51:07,881 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:51:09,723 - INFO - [TIME] Units detection: 1.787s
+2025-08-23 09:51:11,409 - INFO - [TIME] Fields detection: 1.686s
+2025-08-23 09:51:11,409 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:51:11,410 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:51:11,410 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:51:11,411 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:51:11,411 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:51:11,411 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:51:11,411 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:51:11,412 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:51:11,412 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:51:11,412 - INFO - [TIME] deploy_units: 3.531s
+2025-08-23 09:51:12,402 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:12,404 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:12,407 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:12,407 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:12,410 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:12,412 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:14,383 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:14,384 - INFO - [TIME] read_elixir: 1.983s
+2025-08-23 09:51:14,658 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:51:14,658 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:51:16,499 - INFO - [TIME] Units detection: 1.780s
+2025-08-23 09:51:18,176 - INFO - [TIME] Fields detection: 1.676s
+2025-08-23 09:51:18,177 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:51:18,177 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:51:18,178 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:51:18,178 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:51:18,178 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:51:18,178 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:51:18,178 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:51:18,178 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:51:18,179 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:51:18,179 - INFO - [TIME] deploy_units: 3.521s
+2025-08-23 09:51:19,185 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:19,187 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:19,190 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:19,190 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:19,193 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:19,195 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:21,176 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:21,176 - INFO - [TIME] read_elixir: 1.991s
+2025-08-23 09:51:21,505 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:51:22,484 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:22,485 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:22,488 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:22,488 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:22,491 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:22,493 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:24,453 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:24,454 - INFO - [TIME] read_elixir: 1.970s
+2025-08-23 09:51:24,787 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:51:25,808 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:25,809 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:25,813 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:25,813 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:25,815 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:25,818 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:27,790 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:27,790 - INFO - [TIME] read_elixir: 1.983s
+2025-08-23 09:51:28,119 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:51:29,130 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:29,131 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:29,134 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:29,134 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:29,137 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:29,139 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:31,161 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:31,161 - INFO - [TIME] read_elixir: 2.031s
+2025-08-23 09:51:31,498 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:51:32,541 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:32,543 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:32,545 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:32,545 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:32,547 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:32,550 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:34,533 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:34,533 - INFO - [TIME] read_elixir: 1.993s
+2025-08-23 09:51:34,870 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:51:35,845 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:35,847 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:35,849 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:35,849 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:37,888 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:51:37,888 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:51:37,889 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 09:51:37,889 - INFO - [CACHE] Using cached value: 1
+2025-08-23 09:51:37,890 - INFO - [TIME] read_elixir: 2.045s
+2025-08-23 09:51:39,111 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:39,113 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:39,116 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:39,116 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:39,120 - INFO - [TEMPLATE] Best result so far: 9 (method: simple, conf: 0.851)
+2025-08-23 09:51:39,122 - INFO - [TEMPLATE] Best result so far: 9 (method: otsu, conf: 1.000)
+2025-08-23 09:51:39,270 - INFO - [OCR] Best result so far: 0 (simple+basic)
+2025-08-23 09:51:41,103 - INFO - [SUCCESS] High confidence template: 9 (conf: 1.000)
+2025-08-23 09:51:41,104 - INFO - [TIME] read_elixir: 1.994s
+2025-08-23 09:51:41,371 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:51:41,371 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:51:43,227 - INFO - [TIME] Units detection: 1.800s
+2025-08-23 09:51:44,933 - INFO - [TIME] Fields detection: 1.705s
+2025-08-23 09:51:44,933 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:51:44,934 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:51:44,935 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:51:44,935 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:51:44,935 - INFO -    [ELIXIR] Current elixir: 9
+2025-08-23 09:51:44,936 - INFO - [SHOP] Available composition cards: ['archer_queen(5)']
+2025-08-23 09:51:44,936 - INFO - [SHOP] Available non-composition cards: ['princess(4)', 'spear_goblin(2)']
+2025-08-23 09:51:44,936 - INFO - [BUY] Buying composition card: archer_queen (cost: 5)
+2025-08-23 09:51:45,267 - INFO - [BUY] Medium elixir (4), buying: princess (cost: 4)
+2025-08-23 09:51:45,623 - INFO - [SUCCESS] Made 2 purchases in 0.687s
+2025-08-23 09:51:45,623 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:51:45,624 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:51:45,624 - INFO - [TIME] deploy_units: 4.253s
+2025-08-23 09:51:46,629 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:46,630 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:46,633 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:46,633 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:46,636 - INFO - [TEMPLATE] Best result so far: 1 (method: simple, conf: 0.732)
+2025-08-23 09:51:46,639 - INFO - [TEMPLATE] Best result so far: 1 (method: otsu, conf: 1.000)
+2025-08-23 09:51:48,634 - INFO - [SUCCESS] Template only: 1 (conf: 1.000)
+2025-08-23 09:51:48,634 - INFO - [TIME] read_elixir: 2.006s
+2025-08-23 09:51:48,916 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:51:48,917 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:51:50,772 - INFO - [TIME] Units detection: 1.795s
+2025-08-23 09:51:52,477 - INFO - [TIME] Fields detection: 1.705s
+2025-08-23 09:51:52,477 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:51:52,478 - INFO -    [FIELD] Field units: 2
+2025-08-23 09:51:52,479 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:51:52,479 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:51:52,479 - INFO -    [ELIXIR] Current elixir: 1
+2025-08-23 09:51:52,480 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:51:52,480 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:51:52,480 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:51:52,481 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:51:52,481 - INFO - [TIME] deploy_units: 3.564s
+2025-08-23 09:51:53,473 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:51:53,474 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:51:53,477 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:51:53,477 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:51:53,480 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:51:53,483 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:51:55,517 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:51:55,517 - INFO - [TIME] read_elixir: 2.045s
+2025-08-23 09:51:55,787 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:51:55,788 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:51:57,621 - INFO - [TIME] Units detection: 1.777s
+2025-08-23 09:51:59,339 - INFO - [TIME] Fields detection: 1.718s
+2025-08-23 09:51:59,339 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:51:59,340 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:51:59,340 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:51:59,341 - INFO -    [SHOP] Available cards: 1
+2025-08-23 09:51:59,341 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 09:51:59,341 - INFO - [SHOP] Available composition cards: ['barbarian(2)']
+2025-08-23 09:51:59,342 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:51:59,342 - INFO - [BUY] Buying composition card: barbarian (cost: 2)
+2025-08-23 09:51:59,679 - INFO - [SUCCESS] Made 1 purchases in 0.337s
+2025-08-23 09:51:59,679 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:51:59,680 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:51:59,680 - INFO - [TIME] deploy_units: 3.892s
+2025-08-23 09:52:00,678 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:00,680 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:00,683 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:00,683 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:02,687 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:52:02,687 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:52:02,688 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 09:52:02,688 - INFO - [CACHE] Using cached value: 2
+2025-08-23 09:52:02,689 - INFO - [TIME] read_elixir: 2.011s
+2025-08-23 09:52:03,925 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:03,927 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:03,929 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:03,930 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:03,933 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:52:03,935 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:52:05,975 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:52:05,975 - INFO - [TIME] read_elixir: 2.050s
+2025-08-23 09:52:06,306 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:52:07,292 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:07,293 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:07,296 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:07,296 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:07,299 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:52:07,302 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:52:09,293 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:52:09,294 - INFO - [TIME] read_elixir: 2.003s
+2025-08-23 09:52:09,638 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:52:10,645 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:10,647 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:10,649 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:10,650 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:10,652 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:52:10,655 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:52:12,654 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:52:12,655 - INFO - [TIME] read_elixir: 2.011s
+2025-08-23 09:52:12,981 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:52:13,983 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:13,984 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:13,987 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:13,987 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:13,990 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:52:13,992 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:52:16,024 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:52:16,024 - INFO - [TIME] read_elixir: 2.042s
+2025-08-23 09:52:16,355 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:52:17,364 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:17,365 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:17,368 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:17,368 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:17,371 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:52:17,374 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:52:19,352 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:52:19,352 - INFO - [TIME] read_elixir: 1.990s
+2025-08-23 09:52:19,680 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 09:52:20,680 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:20,682 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:20,685 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:20,685 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:22,705 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:52:22,705 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:52:22,706 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 09:52:22,707 - INFO - [TIME] read_elixir: 2.027s
+2025-08-23 09:52:23,918 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:23,919 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:23,922 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:23,922 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:25,943 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 09:52:25,943 - ERROR - [HELP] Check debug_images/ folder to see what the elixir region looks like
+2025-08-23 09:52:25,944 - ERROR - [HELP] Run: python create_digit_templates.py to create proper digit templates
+2025-08-23 09:52:25,944 - INFO - [TIME] read_elixir: 2.026s
+2025-08-23 09:52:27,185 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:27,186 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:27,188 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:27,189 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:27,191 - INFO - [TEMPLATE] Best result so far: 8 (method: simple, conf: 0.867)
+2025-08-23 09:52:27,194 - INFO - [TEMPLATE] Best result so far: 8 (method: otsu, conf: 0.996)
+2025-08-23 09:52:27,868 - INFO - [OCR] Best result so far: 8 (otsu+single_char)
+2025-08-23 09:52:29,173 - INFO - [SUCCESS] Both methods agree: 8
+2025-08-23 09:52:29,173 - INFO - [TIME] read_elixir: 1.989s
+2025-08-23 09:52:29,441 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:52:29,441 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:52:31,254 - INFO - [TIME] Units detection: 1.758s
+2025-08-23 09:52:32,949 - INFO - [TIME] Fields detection: 1.693s
+2025-08-23 09:52:32,949 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:52:32,950 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:52:32,951 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:52:32,951 - INFO -    [SHOP] Available cards: 3
+2025-08-23 09:52:32,951 - INFO -    [ELIXIR] Current elixir: 8
+2025-08-23 09:52:32,952 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:52:32,952 - INFO - [SHOP] Available non-composition cards: ['pekka(3)', 'prince(3)', 'princess(4)']
+2025-08-23 09:52:32,952 - INFO - [BUY] High elixir (8), buying any unit: princess (cost: 4)
+2025-08-23 09:52:33,291 - INFO - [BUY] Medium elixir (4), buying: pekka (cost: 3)
+2025-08-23 09:52:33,618 - INFO - [SUCCESS] Made 2 purchases in 0.667s
+2025-08-23 09:52:33,618 - INFO - [SKIP] Skipping sell phase, elixir manageable: 1
+2025-08-23 09:52:33,619 - INFO - [FINAL] Final elixir after deploy: 1
+2025-08-23 09:52:33,619 - INFO - [TIME] deploy_units: 4.178s
+2025-08-23 09:52:34,628 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:34,630 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:34,634 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:34,634 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:34,637 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:52:34,639 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:52:36,659 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:52:36,660 - INFO - [TIME] read_elixir: 2.032s
+2025-08-23 09:52:36,952 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:52:36,952 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:52:38,783 - INFO - [TIME] Units detection: 1.776s
+2025-08-23 09:52:40,488 - INFO - [TIME] Fields detection: 1.703s
+2025-08-23 09:52:40,488 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:52:40,489 - INFO -    [FIELD] Field units: 3
+2025-08-23 09:52:40,489 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:52:40,489 - INFO -    [SHOP] Available cards: 0
+2025-08-23 09:52:40,490 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 09:52:40,490 - INFO - [SHOP] Available composition cards: []
+2025-08-23 09:52:40,490 - INFO - [SHOP] Available non-composition cards: []
+2025-08-23 09:52:40,491 - INFO - [SKIP] Skipping sell phase, elixir manageable: 2
+2025-08-23 09:52:40,491 - INFO - [FINAL] Final elixir after deploy: 2
+2025-08-23 09:52:40,491 - INFO - [TIME] deploy_units: 3.539s
+2025-08-23 09:52:41,493 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:41,494 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:41,497 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:41,498 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:41,500 - INFO - [TEMPLATE] Best result so far: 2 (method: simple, conf: 0.863)
+2025-08-23 09:52:41,502 - INFO - [TEMPLATE] Best result so far: 2 (method: otsu, conf: 1.000)
+2025-08-23 09:52:43,542 - INFO - [SUCCESS] Template only: 2 (conf: 1.000)
+2025-08-23 09:52:43,542 - INFO - [TIME] read_elixir: 2.050s
+2025-08-23 09:52:43,812 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:52:43,813 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:52:45,642 - INFO - [TIME] Units detection: 1.772s
+2025-08-23 09:52:47,362 - INFO - [TIME] Fields detection: 1.720s
+2025-08-23 09:52:47,362 - INFO - [SUMMARY] Detection summary:
+2025-08-23 09:52:47,363 - INFO -    [FIELD] Field units: 1
+2025-08-23 09:52:47,364 - INFO -    [BENCH] Bench units: 0
+2025-08-23 09:52:47,364 - INFO -    [SHOP] Available cards: 2
+2025-08-23 09:52:47,364 - INFO -    [ELIXIR] Current elixir: 2
+2025-08-23 09:52:47,365 - INFO - [SHOP] Available composition cards: ['archer(2)']
+2025-08-23 09:52:47,365 - INFO - [SHOP] Available non-composition cards: ['knight(2)']
+2025-08-23 09:52:47,365 - INFO - [BUY] Buying composition card: archer (cost: 2)
+2025-08-23 09:52:47,714 - INFO - [SUCCESS] Made 1 purchases in 0.350s
+2025-08-23 09:52:47,714 - INFO - [SKIP] Skipping sell phase, elixir manageable: 0
+2025-08-23 09:52:47,715 - INFO - [FINAL] Final elixir after deploy: 0
+2025-08-23 09:52:47,715 - INFO - [TIME] deploy_units: 3.902s
+2025-08-23 09:52:48,717 - INFO - [DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png
+2025-08-23 09:52:48,719 - INFO - [DEBUG] Saved all preprocessing methods to debug_images/
+2025-08-23 09:52:48,721 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 09:52:48,721 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 09:52:48,724 - INFO - [TEMPLATE] Best result so far: 0 (method: simple, conf: 0.899)
+2025-08-23 09:52:48,726 - INFO - [TEMPLATE] Best result so far: 0 (method: otsu, conf: 1.000)
+2025-08-23 09:52:50,702 - INFO - [SUCCESS] Template only: 0 (conf: 1.000)
+2025-08-23 09:52:50,702 - INFO - [TIME] read_elixir: 1.986s
+2025-08-23 09:52:50,976 - INFO - [PHASE] Deploy phase detected
+2025-08-23 09:52:50,976 - INFO - [DEPLOY] Starting deploy phase detection...
+2025-08-23 09:52:52,836 - INFO - [TIME] Units detection: 1.804s

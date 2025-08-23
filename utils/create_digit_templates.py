@@ -32,7 +32,7 @@ def create_digit_templates():
         return
     
     # Create templates directory
-    templates_dir = "templates/digits"
+    templates_dir = "../templates/digits"
     if not os.path.exists(templates_dir):
         os.makedirs(templates_dir)
     
@@ -45,42 +45,44 @@ def create_digit_templates():
         print("❌ Error llegint elixir.json")
         return
     
-    captured_digits = set()
+    captured_numbers = set()
     
-    # Check existing templates
-    for digit in range(10):
-        template_path = os.path.join(templates_dir, f"{digit}.png")
-        if os.path.exists(template_path):
-            captured_digits.add(digit)
+    # Check existing templates (both single and multi-digit)
+    for file in os.listdir(templates_dir):
+        if file.endswith('.png'):
+            number_str = file[:-4]  # Remove .png extension
+            try:
+                number = int(number_str)
+                captured_numbers.add(number)
+            except ValueError:
+                continue
     
-    print("🎯 Eina per crear plantilles de dígits")
+    print("🎯 Eina per crear plantilles de números d'elixir")
     print("📱 Assegura't que el joc mostri diferents valors d'elixir")
     print("⌨️ Controls:")
     print("   ESPAI - Capturar pantalla")
     print("   ENTER - Confirmar selecció")
     print("   ESC - Sortir")
     
-    if captured_digits:
-        print(f"✅ Dígits ja capturats: {sorted(captured_digits)}")
+    if captured_numbers:
+        print(f"✅ Números ja capturats: {sorted(captured_numbers)}")
     
-    missing_digits = set(range(10)) - captured_digits
-    if missing_digits:
-        print(f"❌ Dígits pendents: {sorted(missing_digits)}")
+    suggested_numbers = set(range(15))  # 0-14 are common elixir values
+    missing_numbers = suggested_numbers - captured_numbers
+    if missing_numbers:
+        print(f"❌ Números suggerits pendents: {sorted(missing_numbers)}")
     else:
-        print("🎉 Tots els dígits ja estan capturats!")
+        print("🎉 Tots els números suggerits ja estan capturats!")
     
     try:
         while True:
             print(f"\n📊 Estat actual:")
-            print(f"   ✅ Capturats: {sorted(captured_digits) if captured_digits else 'Cap'}")
-            print(f"   ❌ Pendents: {sorted(missing_digits) if missing_digits else 'Cap'}")
+            print(f"   ✅ Capturats: {sorted(captured_numbers) if captured_numbers else 'Cap'}")
+            if missing_numbers:
+                print(f"   ❌ Suggerits pendents: {sorted(missing_numbers)}")
             
-            if not missing_digits:
-                print("🎉 Tots els dígits completats!")
-                break
-            
-            print(f"\n🔢 Quin dígit vols capturar? ({', '.join(map(str, sorted(missing_digits)))})")
-            print("   Escriu el número del dígit o 'q' per sortir:")
+            print(f"\n🔢 Quin número d'elixir vols capturar? (0-99 o més)")
+            print("   Escriu el número o 'q' per sortir:")
             
             user_input = input(">>> ").strip().lower()
             
@@ -89,26 +91,26 @@ def create_digit_templates():
                 break
             
             try:
-                digit = int(user_input)
-                if digit not in range(10):
-                    print("❌ El dígit ha de ser entre 0 i 9")
+                number = int(user_input)
+                if number < 0:
+                    print("❌ El número ha de ser positiu")
                     continue
-                if digit in captured_digits:
-                    overwrite = input(f"⚠️ El dígit {digit} ja existeix. Vols sobreescriure'l? (s/n): ").strip().lower()
+                if number in captured_numbers:
+                    overwrite = input(f"⚠️ El número {number} ja existeix. Vols sobreescriure'l? (s/n): ").strip().lower()
                     if overwrite != 's':
                         continue
             except ValueError:
                 print("❌ Entrada no vàlida")
                 continue
             
-            print(f"\n📱 Ara captura una pantalla que mostri el dígit {digit}")
+            print(f"\n📱 Ara captura una pantalla que mostri exactament {number} elixir")
             print("Prem ESPAI per capturar la pantalla...")
             
             # Wait for capture
             cv2.namedWindow("Controls", cv2.WINDOW_NORMAL)
             cv2.resizeWindow("Controls", 300, 100)
             control_img = np.zeros((100, 300, 3), dtype=np.uint8)
-            cv2.putText(control_img, f"Capturant digit {digit}", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
+            cv2.putText(control_img, f"Capturant {number} elixir", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1)
             cv2.putText(control_img, "Prem ESPAI", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 0), 1)
             cv2.imshow("Controls", control_img)
             
@@ -140,7 +142,7 @@ def create_digit_templates():
             
             cv2.destroyWindow("Controls")
             
-            print(f"\n🔢 Selecciona el dígit {digit} a la imatge")
+            print(f"\n🔢 Selecciona tot el número {number} a la imatge")
             
             # Variables for selection
             selecting = False
@@ -163,7 +165,7 @@ def create_digit_templates():
                     if start_point and end_point:
                         end_point = (x, y)
             
-            window_name = f"Selecciona dígit {digit} - ENTER per confirmar, ESC per cancel·lar"
+            window_name = f"Selecciona número {number} - ENTER per confirmar, ESC per cancel·lar"
             cv2.namedWindow(window_name, cv2.WINDOW_NORMAL)
             cv2.setMouseCallback(window_name, mouse_callback)
             
@@ -185,14 +187,13 @@ def create_digit_templates():
                         orig_y2 = max(start_point[1], end_point[1]) // scale_factor
                         
                         if orig_x2 > orig_x1 and orig_y2 > orig_y1:
-                            digit_template = thresh[orig_y1:orig_y2, orig_x1:orig_x2]
+                            number_template = thresh[orig_y1:orig_y2, orig_x1:orig_x2]
                             
-                            # Save template
-                            template_path = os.path.join(templates_dir, f"{digit}.png")
-                            cv2.imwrite(template_path, digit_template)
-                            print(f"✅ Dígit {digit} guardat: {template_path}")
-                            captured_digits.add(digit)
-                            missing_digits.discard(digit)
+                            template_path = os.path.join(templates_dir, f"{number}.png")
+                            cv2.imwrite(template_path, number_template)
+                            print(f"✅ Número {number} guardat: {template_path}")
+                            captured_numbers.add(number)
+                            missing_numbers.discard(number)
                             break
                         else:
                             print("❌ Selecció massa petita")
@@ -200,7 +201,7 @@ def create_digit_templates():
                         print("❌ No hi ha selecció")
                         
                 elif key == 27:  # ESC
-                    print(f"❌ Cancel·lant captura del dígit {digit}")
+                    print(f"❌ Cancel·lant captura del número {number}")
                     break
             
             cv2.destroyWindow(window_name)

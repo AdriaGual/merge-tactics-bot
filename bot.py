@@ -46,18 +46,18 @@ field_imgs = [cv2.imread(os.path.join(FIELDS_DIR, f)) for f in field_files]
 
 # Assigna el cost manualment aquí
 unit_costs = {
-    "barbarian": 2,
-    "archer": 3,
-    "knight": 2,
     "archer_queen": 5,
+    "archer": 2,
     "bandit": 4,
+    "barbarian": 2,
     "bomber": 2,
     "dart_goblin": 3,
     "executioner": 3,
     "giant_skeleton": 3,
-    "goblin": 2,
     "goblin_machine": 4,
+    "goblin": 2,
     "golden_knight": 5,
+    "knight": 2,
     "mega_knight": 4,
     "pekka": 3,
     "prince": 3,
@@ -166,6 +166,69 @@ def get_unit_position(center):
 _elixir_cache = {"value": None, "timestamp": 0}
 ELIXIR_CACHE_DURATION = 0.5  # Cache elixir reading for 0.5 seconds
 
+def load_digit_templates():
+    """Load digit templates for template matching"""
+    templates = {}
+    templates_dir = "templates/digits"
+    
+    # Create templates directory if it doesn't exist
+    if not os.path.exists(templates_dir):
+        os.makedirs(templates_dir)
+        logger.info(f"[SETUP] Created directory: {templates_dir}")
+        logger.info("[INFO] Add digit templates to improve detection")
+        logger.info("[INFO] Run: python create_digit_templates.py")
+        return {}
+    
+    # Load single digit templates (0-9)
+    for digit in range(10):
+        template_path = os.path.join(templates_dir, f"{digit}.png")
+        if os.path.exists(template_path):
+            template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
+            if template is not None:
+                # Try multiple preprocessing methods for templates too
+                _, template_thresh = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                if np.mean(template_thresh) < 127:
+                    template_thresh = cv2.bitwise_not(template_thresh)
+                templates[digit] = template_thresh
+                logger.debug(f"[TEMPLATE] Loaded digit {digit} template: {template.shape}")
+            else:
+                logger.warning(f"[ERROR] Could not load template: {template_path}")
+                templates[digit] = None
+        else:
+            templates[digit] = None
+    
+    # Load multi-digit number templates (10, 11, 12, etc.)
+    for file in os.listdir(templates_dir):
+        if file.endswith('.png'):
+            number_str = file[:-4]  # Remove .png extension
+            try:
+                number = int(number_str)
+                if number >= 10:  # Multi-digit numbers
+                    template_path = os.path.join(templates_dir, file)
+                    template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
+                    if template is not None:
+                        _, template_thresh = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                        if np.mean(template_thresh) < 127:
+                            template_thresh = cv2.bitwise_not(template_thresh)
+                        templates[number] = template_thresh
+                        logger.debug(f"[TEMPLATE] Loaded multi-digit {number} template: {template.shape}")
+                    else:
+                        logger.warning(f"[ERROR] Could not load template: {template_path}")
+            except ValueError:
+                continue  # Skip non-numeric filenames
+    
+    loaded_count = sum(1 for t in templates.values() if t is not None)
+    if loaded_count > 0:
+        logger.info(f"[SUCCESS] Loaded {loaded_count} templates (single + multi-digit)")
+        multi_digit_count = sum(1 for k, t in templates.items() if isinstance(k, int) and k >= 10 and t is not None)
+        if multi_digit_count > 0:
+            logger.info(f"[SUCCESS] Including {multi_digit_count} multi-digit templates")
+    else:
+        logger.warning("[WARNING] No digit templates found. Using OCR as primary method.")
+        logger.info("[HELP] Run: python create_digit_templates.py")
+    
+    return templates
+
 @profile_time("read_elixir")
 def read_elixir(screen):
     current_time = time.time()
@@ -222,16 +285,38 @@ def read_elixir(screen):
     best_template_result = None
     best_confidence = 0
     
-    # Try template matching with each preprocessing method
     if digit_templates and any(t is not None for t in digit_templates.values()):
         logger.debug("[TEMPLATE] Trying template matching with multiple preprocessing methods...")
         
         for method_name, processed_img in preprocessing_methods:
             logger.debug(f"[TEMPLATE] Testing method: {method_name}")
-            detected_digits = []
             
+            # First try multi-digit templates (10, 11, 12, etc.)
+            multi_digit_matches = []
+            for number, template in digit_templates.items():
+                if isinstance(number, int) and number >= 10 and template is not None:
+                    res = cv2.matchTemplate(processed_img, template, cv2.TM_CCOEFF_NORMED)
+                    _, max_val, _, max_loc = cv2.minMaxLoc(res)
+                    
+                    logger.debug(f"    Multi-digit {number}: max confidence = {max_val:.3f}")
+                    
+                    if max_val >= 0.7:  # Higher threshold for multi-digit
+                        multi_digit_matches.append((number, max_val))
+            
+            # If we found a good multi-digit match, use it
+            if multi_digit_matches:
+                best_multi = max(multi_digit_matches, key=lambda x: x[1])
+                number, confidence = best_multi
+                if confidence > best_confidence:
+                    best_template_result = number
+                    best_confidence = confidence
+                    logger.info(f"[TEMPLATE] Multi-digit match: {number} (method: {method_name}, conf: {confidence:.3f})")
+                continue  # Skip individual digit detection for this method
+            
+            # If no multi-digit match, try individual digits
+            detected_digits = []
             for digit, template in digit_templates.items():
-                if template is not None:
+                if isinstance(digit, int) and digit < 10 and template is not None:
                     res = cv2.matchTemplate(processed_img, template, cv2.TM_CCOEFF_NORMED)
                     locations = np.where(res >= 0.6)  # Lowered threshold from 0.75 to 0.6
                     max_val = np.max(res) if res.size > 0 else 0
@@ -271,7 +356,7 @@ def read_elixir(screen):
                                 logger.info(f"[TEMPLATE] Best result so far: {value} (method: {method_name}, conf: {avg_confidence:.3f})")
                         except ValueError:
                             pass
-    
+
     # Try OCR with each preprocessing method
     best_ocr_result = None
     best_ocr_confidence = 0
@@ -327,7 +412,7 @@ def read_elixir(screen):
     else:
         logger.error("[ERROR] Both methods failed completely")
         logger.error("[HELP] Check debug_images/ folder to see what the elixir region looks like")
-        logger.error("[HELP] Run create_digit_templates.py to create proper digit templates")
+        logger.error("[HELP] Run: python create_digit_templates.py to create proper digit templates")
         final_result = _elixir_cache.get("value")  # Use cached value
         if final_result:
             logger.info(f"[CACHE] Using cached value: {final_result}")
@@ -338,47 +423,7 @@ def read_elixir(screen):
     
     return final_result
 
-def load_digit_templates():
-    """Load digit templates for template matching"""
-    templates = {}
-    templates_dir = "templates/digits"
-    
-    # Create templates directory if it doesn't exist
-    if not os.path.exists(templates_dir):
-        os.makedirs(templates_dir)
-        logger.info(f"[SETUP] Created directory: {templates_dir}")
-        logger.info("[INFO] Add digit templates (0.png, 1.png, ..., 9.png) to improve detection")
-        logger.info("[INFO] Run: python create_digit_templates.py")
-        return {}
-    
-    # Load digit templates (0-9)
-    for digit in range(10):
-        template_path = os.path.join(templates_dir, f"{digit}.png")
-        if os.path.exists(template_path):
-            template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
-            if template is not None:
-                # Try multiple preprocessing methods for templates too
-                _, template_thresh = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-                if np.mean(template_thresh) < 127:
-                    template_thresh = cv2.bitwise_not(template_thresh)
-                templates[digit] = template_thresh
-                logger.debug(f"[TEMPLATE] Loaded digit {digit} template: {template.shape}")
-            else:
-                logger.warning(f"[ERROR] Could not load template: {template_path}")
-                templates[digit] = None
-        else:
-            templates[digit] = None
-    
-    loaded_count = sum(1 for t in templates.values() if t is not None)
-    if loaded_count > 0:
-        logger.info(f"[SUCCESS] Loaded {loaded_count} digit templates")
-    else:
-        logger.warning("[WARNING] No digit templates found. Using OCR as primary method.")
-        logger.info("[HELP] Run: python create_digit_templates.py")
-    
-    return templates
-
-# 🔹 Funció intel·ligent de deploy (OPTIMITZADA)
+# 🔹 Funció intel·ligent de deploy (OPTIMITZADA I MÉS AGRESSIVA)
 @profile_time("deploy_units")
 def deploy_units(screen, COMPO, elixir_amount):
     logger.info("[DEPLOY] Starting deploy phase detection...")
@@ -434,82 +479,121 @@ def deploy_units(screen, COMPO, elixir_amount):
     logger.info(f"   [SHOP] Available cards: {len(available_cards)}")
     logger.info(f"   [ELIXIR] Current elixir: {elixir_amount}")
 
-    units_to_sell = []
-    for i, center, unit_name, pos_name in field_units + bench_units:
-        if unit_name not in COMPO:
-            potential_elixir = elixir_amount + max(unit_costs.get(unit_name,0)-1,0)
-            can_buy = any(unit_costs.get(u,0) <= potential_elixir for u in COMPO)
-            if can_buy:
-                units_to_sell.append((center, unit_name, pos_name))
-                logger.info(f"[SELL] Will sell {unit_name} at {pos_name} (not in composition)")
-    
-    sell_start_time = time.time()
-    for center, unit_name, pos_name in units_to_sell:
-        logger.info(f"[SELLING] Selling {unit_name} at {pos_name}")
-        adb_tap(*center)
-        time.sleep(1)
-        
-        current_screen = adb_screenshot()
-        sell_pos = find_template(current_screen, SELL_BUTTON)
-        if sell_pos:
-            adb_tap(*sell_pos)
-            time.sleep(0.3)
-            elixir_amount += unit_costs.get(unit_name,0)-1
-            logger.info(f"[SUCCESS] Sold {unit_name}, elixir now: {elixir_amount}")
-        else:
-            logger.error(f"[ERROR] Sell button not found for {unit_name}")
-    
-    sell_time = time.time() - sell_start_time
-    if units_to_sell:
-        logger.info(f"[TIME] Selling phase: {sell_time:.3f}s")
-
-    logger.info(f"[ELIXIR] Final elixir available: {elixir_amount}")
-    
-    affordable_compo_units = [u for u in COMPO if unit_costs.get(u,0) <= elixir_amount]
     available_compo_cards = [card for card in available_cards if card[0] in COMPO]
+    available_non_compo_cards = [card for card in available_cards if card[0] not in COMPO]
     
-    logger.info(f"[COMPO] Affordable composition units: {affordable_compo_units}")
     logger.info(f"[SHOP] Available composition cards: {[f'{name}({cost})' for name, cost, _ in available_compo_cards]}")
-    logger.info(f"[SHOP] All available cards: {[f'{name}({cost})' for name, cost, _ in available_cards]}")
+    logger.info(f"[SHOP] Available non-composition cards: {[f'{name}({cost})' for name, cost, _ in available_non_compo_cards]}")
     
     buy_start_time = time.time()
-    if affordable_compo_units and available_compo_cards:
-        # Buy most expensive composition card available
-        most_expensive_compo = max(available_compo_cards, key=lambda x: x[1])
-        unit_name, cost, center = most_expensive_compo
+    purchases_made = 0
+    
+    while elixir_amount >= 2 and available_cards and purchases_made < 3:  # Max 3 purchases per cycle
+        purchased = False
         
-        logger.info(f"[BUY] Buying most expensive composition card: {unit_name} (cost: {cost})")
-        adb_tap(*center)
-        elixir_amount -= cost
-        time.sleep(1)
+        # Priority 1: Buy composition cards (most expensive first)
+        if available_compo_cards:
+            affordable_compo = [card for card in available_compo_cards if card[1] <= elixir_amount]
+            if affordable_compo:
+                most_expensive_compo = max(affordable_compo, key=lambda x: x[1])
+                unit_name, cost, center = most_expensive_compo
+                
+                logger.info(f"[BUY] Buying composition card: {unit_name} (cost: {cost})")
+                adb_tap(*center)
+                elixir_amount -= cost
+                purchases_made += 1
+                purchased = True
+                
+                # Remove from available lists
+                available_compo_cards.remove(most_expensive_compo)
+                available_cards.remove(most_expensive_compo)
+                time.sleep(0.2)  # Reduced delay from 1s to 0.2s
         
-    elif not available_compo_cards and available_cards:
-        # No composition cards available, buy most expensive available card
-        most_expensive = max(available_cards, key=lambda x: x[1])
-        unit_name, cost, center = most_expensive
+        # Priority 2: If elixir is high (>6), buy any available unit
+        if not purchased and elixir_amount > 6 and available_cards:
+            affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
+            if affordable_cards:
+                # Buy most expensive available
+                most_expensive = max(affordable_cards, key=lambda x: x[1])
+                unit_name, cost, center = most_expensive
+                
+                logger.info(f"[BUY] High elixir ({elixir_amount}), buying any unit: {unit_name} (cost: {cost})")
+                adb_tap(*center)
+                elixir_amount -= cost
+                purchases_made += 1
+                purchased = True
+                
+                # Remove from available lists
+                available_cards.remove(most_expensive)
+                if most_expensive in available_non_compo_cards:
+                    available_non_compo_cards.remove(most_expensive)
+                time.sleep(0.2)  # Reduced delay
         
-        logger.info(f"[BUY] No composition cards available, buying most expensive: {unit_name} (cost: {cost})")
-        adb_tap(*center)
-        elixir_amount -= cost
-        time.sleep(1)
+        # Priority 3: If elixir is medium (4-6), buy composition or cheap units
+        if not purchased and 4 <= elixir_amount <= 6 and available_cards:
+            # Prefer composition, but buy cheap units if no composition available
+            affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
+            if affordable_cards:
+                # Sort by: composition first, then by cost (expensive first)
+                affordable_cards.sort(key=lambda x: (x[0] not in COMPO, -x[1]))
+                best_card = affordable_cards[0]
+                unit_name, cost, center = best_card
+                
+                logger.info(f"[BUY] Medium elixir ({elixir_amount}), buying: {unit_name} (cost: {cost})")
+                adb_tap(*center)
+                elixir_amount -= cost
+                purchases_made += 1
+                purchased = True
+                
+                # Remove from available lists
+                available_cards.remove(best_card)
+                if best_card in available_compo_cards:
+                    available_compo_cards.remove(best_card)
+                elif best_card in available_non_compo_cards:
+                    available_non_compo_cards.remove(best_card)
+                time.sleep(0.2)  # Reduced delay
         
-    elif affordable_compo_units:
-        # Try to find composition units using template matching (fallback)
-        u_to_buy = max(affordable_compo_units, key=lambda u: unit_costs[u])
-        template_path = os.path.join(UNITS_DIR, u_to_buy+".png")
-        pos = find_template(screen, template_path)
-        if pos:
-            logger.info(f"[BUY] Buying composition unit via template: {u_to_buy}")
-            adb_tap(*pos)
-            elixir_amount -= unit_costs[u_to_buy]
-            time.sleep(1)
-        else:
-            logger.warning(f"[ERROR] Template not found for {u_to_buy}")
-    else:
-        logger.info("[INFO] No cards available for purchase")
+        if not purchased:
+            break  # No more affordable cards
     
     buy_time = time.time() - buy_start_time
-    logger.info(f"[TIME] Buying phase: {buy_time:.3f}s")
+    if purchases_made > 0:
+        logger.info(f"[SUCCESS] Made {purchases_made} purchases in {buy_time:.3f}s")
+    
+    if elixir_amount > 8:  # Only sell if elixir is still very high
+        units_to_sell = []
+        for i, center, unit_name, pos_name in field_units + bench_units:
+            if unit_name not in COMPO:
+                potential_elixir = elixir_amount + max(unit_costs.get(unit_name,0)-1,0)
+                # Only sell if we can afford something good with the extra elixir
+                can_buy_expensive = any(unit_costs.get(u,0) <= potential_elixir for u in COMPO if unit_costs.get(u,0) >= 3)
+                if can_buy_expensive and len(units_to_sell) < 2:  # Max 2 sells per cycle
+                    units_to_sell.append((center, unit_name, pos_name))
+                    logger.info(f"[SELL] Will sell {unit_name} at {pos_name} (high elixir: {elixir_amount})")
+        
+        sell_start_time = time.time()
+        for center, unit_name, pos_name in units_to_sell:
+            logger.info(f"[SELLING] Selling {unit_name} at {pos_name}")
+            adb_tap(*center)
+            time.sleep(0.5)  # Reduced delay from 1s to 0.5s
+            
+            current_screen = adb_screenshot()
+            sell_pos = find_template(current_screen, SELL_BUTTON)
+            if sell_pos:
+                adb_tap(*sell_pos)
+                time.sleep(0.2)  # Reduced delay from 0.3s to 0.2s
+                elixir_amount += unit_costs.get(unit_name,0)-1
+                logger.info(f"[SUCCESS] Sold {unit_name}, elixir now: {elixir_amount}")
+            else:
+                logger.error(f"[ERROR] Sell button not found for {unit_name}")
+        
+        sell_time = time.time() - sell_start_time
+        if units_to_sell:
+            logger.info(f"[TIME] Selling phase: {sell_time:.3f}s")
+    else:
+        logger.info(f"[SKIP] Skipping sell phase, elixir manageable: {elixir_amount}")
+
+    logger.info(f"[FINAL] Final elixir after deploy: {elixir_amount}")
     
     return elixir_amount
 
