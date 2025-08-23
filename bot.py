@@ -492,7 +492,35 @@ def deploy_units(screen, COMPO, elixir_amount):
     purchases_made = 0
     max_purchases = min(6, elixir_amount // 2)  # Dynamic max purchases based on elixir
     
-    while elixir_amount >= 2 and available_cards and purchases_made < max_purchases:
+    while available_cards:
+        time.sleep(0.5)
+        screen = adb_screenshot()
+
+ 
+        field_units = []
+        bench_units = []
+        available_cards = []
+        
+        for i, center in all_detections:
+            pos_name = get_unit_position_cached(center)  # Use cached position lookup
+            template_type, unit_name = relevant_names[i]
+            
+            if template_type == 'shop':
+                cost = unit_costs.get(unit_name, 0)
+                if cost <= elixir_amount:
+                    available_cards.append((unit_name, cost, center))
+            elif template_type == 'field' and pos_name.startswith("camp"):
+                field_units.append((i, center, unit_name, pos_name))
+            elif template_type == 'bench' and pos_name.startswith("banquillo"):
+                bench_units.append((i, center, unit_name, pos_name))
+        
+        logger.info(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
+
+        available_compo_cards = [card for card in available_cards if card[0] in COMPO]
+        non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
+        non_compo_bench_units = [unit for unit in bench_units if unit[2] not in COMPO]
+
+
         purchased = False
         
         # Priority 1: Buy composition cards (most important)
@@ -502,43 +530,66 @@ def deploy_units(screen, COMPO, elixir_amount):
                 most_expensive_compo = max(affordable_compo, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive_compo
 
+                bench_units_before = len(bench_units)
                                 
                 logger.info(f"[BUY] {unit_name} (cost: {cost})")
                 adb_tap(*center)
                 
                 purchases_made += 1
                 purchased = True
+                elixir_amount -= cost
                 
                 available_compo_cards.remove(most_expensive_compo)
                 available_cards.remove(most_expensive_compo)
-                time.sleep(0.5)
+                time.sleep(0.5)  # Increased wait time to allow unit placement
                 
-                if non_compo_field_units:
-                    cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
-                    _, field_center, field_unit_name, field_pos = cheapest_field
-                    logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
-                    adb_tap(*field_center)
-                    time.sleep(0.3)
-                    screen = adb_screenshot()
+                screen = adb_screenshot()
+                current_detections = find_units_on_screen(screen, relevant_templates, threshold=0.85, min_dist=25)
+                
+                current_bench_units = []
+                for i, center in current_detections:
+                    pos_name = get_unit_position_cached(center)
+                    template_type, detected_unit_name = relevant_names[i]
+                    if template_type == 'bench' and pos_name.startswith("banquillo"):
+                        current_bench_units.append((i, center, detected_unit_name, pos_name))
+                
+                if len(current_bench_units) > bench_units_before:
+                    logger.info(f"[DETECT] {unit_name} went to bench, triggering replace mechanic")
                     
-                    sell_pos = find_template(screen, SELL_BUTTON)
-                    if sell_pos:
-                        adb_tap(*sell_pos)
-                        field_units.remove(cheapest_field)
-                        non_compo_field_units.remove(cheapest_field)
-                elif non_compo_bench_units:
-                    cheapest_field = min(non_compo_bench_units, key=lambda x: unit_costs.get(x[2], 0))
-                    _, field_center, field_unit_name, field_pos = cheapest_field
-                    logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
-                    adb_tap(*field_center)
-                    time.sleep(0.3)
-                    screen = adb_screenshot()
-                    
-                    sell_pos = find_template(screen, SELL_BUTTON)
-                    if sell_pos:
-                        adb_tap(*sell_pos)
-                        bench_units.remove(cheapest_field)
-                        non_compo_bench_units.remove(cheapest_field)
+                    if non_compo_field_units:
+                        cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
+                        _, field_center, field_unit_name, field_pos = cheapest_field
+                        logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
+                        adb_tap(*field_center)
+                        time.sleep(0.3)
+                        screen = adb_screenshot()
+                        
+                        sell_pos = find_template(screen, SELL_BUTTON)
+                        if sell_pos:
+                            adb_tap(*sell_pos)
+                            field_units.remove(cheapest_field)
+                            non_compo_field_units.remove(cheapest_field)
+                            time.sleep(0.2)
+                            screen = adb_screenshot()
+                    elif non_compo_bench_units:
+                        cheapest_bench = min(non_compo_bench_units, key=lambda x: unit_costs.get(x[2], 0))
+                        _, bench_center, bench_unit_name, bench_pos = cheapest_bench
+                        logger.info(f"[REPLACE] {bench_unit_name} -> {unit_name}")
+                        adb_tap(*bench_center)
+                        time.sleep(0.3)
+                        screen = adb_screenshot()
+                        
+                        sell_pos = find_template(screen, SELL_BUTTON)
+                        if sell_pos:
+                            adb_tap(*sell_pos)
+                            bench_units.remove(cheapest_bench)
+                            non_compo_bench_units.remove(cheapest_bench)
+                            time.sleep(0.2)
+                            screen = adb_screenshot()
+                else:
+                    logger.info(f"[DETECT] {unit_name} went to field, no replacement needed")
+                
+                bench_units = current_bench_units
         
         # Priority 2: High elixir - buy anything valuable
         if not purchased:
@@ -557,12 +608,112 @@ def deploy_units(screen, COMPO, elixir_amount):
                 time.sleep(0.5)  # Reduced delay
         if not purchased:
             break
+        else:
+            optimize_unit_positions(screen, COMPO)
     
     buy_time = time.time() - buy_start_time
     if purchases_made > 0:
         logger.info(f"[SUCCESS] {purchases_made} purchases in {buy_time:.3f}s")
     
     return elixir_amount
+
+# 🔹 Funció per optimitzar posicions (vendre camp si composició al banquillo)
+@profile_time("optimize_unit_positions")
+def optimize_unit_positions(screen, COMPO):
+    """
+    Vendre unitats del camp si tenim unitats de composició al banquillo
+    """
+    logger.info("[OPTIMIZE] Checking for composition units on bench vs non-composition on field...")
+    
+    # Detectar unitats actuals
+    relevant_templates = []
+    relevant_names = []
+    
+    # Add field and bench templates
+    relevant_templates.extend(field_imgs)
+    relevant_templates.extend(bench_imgs)
+    relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
+    relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
+    
+    all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.85, min_dist=25)
+    
+    field_units = []
+    bench_units = []
+    
+    for i, center in all_detections:
+        pos_name = get_unit_position_cached(center)
+        template_type, unit_name = relevant_names[i]
+        
+        if template_type == 'field' and pos_name.startswith("camp"):
+            field_units.append((i, center, unit_name, pos_name))
+        elif template_type == 'bench' and pos_name.startswith("banquillo"):
+            bench_units.append((i, center, unit_name, pos_name))
+    
+    # Identificar unitats de composició al banquillo
+    compo_bench_units = [unit for unit in bench_units if unit[2] in COMPO]
+    
+    # Identificar unitats NO de composició al camp
+    non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
+    non_compo_bench_units = [unit for unit in bench_units if unit[2] not in COMPO]
+    
+    if compo_bench_units and non_compo_field_units:
+        logger.info(f"[OPTIMIZE] Found {len(compo_bench_units)} composition units on bench and {len(non_compo_field_units)} non-composition units on field")
+        
+        # Vendre la unitat més barata del camp que no sigui de composició
+        cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
+        _, field_center, field_unit_name, field_pos = cheapest_field
+        
+        # Obtenir informació de la unitat de composició al banquillo
+        compo_unit = compo_bench_units[0]  # Agafem la primera
+        compo_unit_name = compo_unit[2]
+        
+        logger.info(f"[OPTIMIZE] Selling {field_unit_name} (cost: {unit_costs.get(field_unit_name, 0)}) to make space for {compo_unit_name}")
+        
+        # Clicar la unitat del camp per seleccionar-la
+        adb_tap(*field_center)
+        time.sleep(0.4)  # Esperar que aparegui el botó de venda
+        
+        # Buscar i clicar el botó de venda
+        screen = adb_screenshot()
+        sell_pos = find_template(screen, SELL_BUTTON)
+        if sell_pos:
+            adb_tap(*sell_pos)
+            logger.info(f"[SUCCESS] Sold {field_unit_name} successfully")
+            time.sleep(0.5)  # Esperar que es processi la venda
+            return True
+        else:
+            logger.warning("[WARNING] Sell button not found after selecting unit")
+            return False
+    elif non_compo_bench_units:
+        logger.info(f"[OPTIMIZE] Found {len(non_compo_bench_units)} non-composition units on bench")
+        for non_compo_bench_unit in non_compo_bench_units:
+            _, field_center, field_unit_name, field_pos = non_compo_bench_unit
+        
+            # Obtenir informació de la unitat de composició al banquillo
+            non_compo_unit = non_compo_bench_units[0]  # Agafem la primera
+            non_compo_unit_name = non_compo_unit[2]
+            
+            logger.info(f"[OPTIMIZE] Selling {field_unit_name} (cost: {unit_costs.get(field_unit_name, 0)}) to make space for {non_compo_unit_name}")
+            
+            # Clicar la unitat del camp per seleccionar-la
+            adb_tap(*field_center)
+            time.sleep(0.4)  # Esperar que aparegui el botó de venda
+            
+            # Buscar i clicar el botó de venda
+            screen = adb_screenshot()
+            sell_pos = find_template(screen, SELL_BUTTON)
+            if sell_pos:
+                adb_tap(*sell_pos)
+                logger.info(f"[SUCCESS] Sold {field_unit_name} successfully")
+                time.sleep(0.5)  # Esperar que es processi la venda
+    else:
+        if compo_bench_units:
+            logger.debug(f"[OPTIMIZE] {len(compo_bench_units)} composition units on bench, but no non-composition units on field to replace")
+        elif non_compo_field_units:
+            logger.debug(f"[OPTIMIZE] {len(non_compo_field_units)} non-composition units on field, but no composition units on bench")
+        else:
+            logger.debug("[OPTIMIZE] No optimization needed - good unit positioning")
+        return False
 
 # 🔹 Thread principal del bot
 @profile_time("bot_loop_iteration")
@@ -571,6 +722,7 @@ def bot_loop():
     COMPO = []
     elixir_amount = 0
     last_screen_time = 0
+    last_optimize_time = 0  # Added timer for optimization checks
     iteration_count = 0
     
     logger.info("[BOT] Bot loop started")
@@ -640,7 +792,6 @@ def bot_loop():
                     if elixir_value is not None:
                         elixir_amount = elixir_value
                     last_screen_time = current_time
-
                 elixir_amount = deploy_units(screen, COMPO, elixir_amount)
                 time.sleep(0.3)
                 continue
