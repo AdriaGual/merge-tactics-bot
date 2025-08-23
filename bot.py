@@ -169,7 +169,7 @@ def get_unit_position(center):
 
 # 🔹 Llegir elixir amb template matching
 _elixir_cache = {"value": None, "timestamp": 0}
-ELIXIR_CACHE_DURATION = 0.5  # Cache elixir reading for 0.5 seconds
+ELIXIR_CACHE_DURATION = 1.5  # Increased cache duration from 0.5 to 1.5 seconds
 
 def load_digit_templates():
     """Load digit templates for template matching"""
@@ -250,51 +250,37 @@ def read_elixir(screen):
     x0, y0, x1, y1 = elixir_rect
     roi = screen[y0:y1, x0:x1]
     
-    if DEBUG_SAVE_IMAGES:
+    if DEBUG_SAVE_IMAGES and DEBUG_MODE:
         debug_dir = "debug_images"
         if not os.path.exists(debug_dir):
             os.makedirs(debug_dir)
         cv2.imwrite(f"{debug_dir}/elixir_roi_original.png", roi)
         logger.info(f"[DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png")
     
-    # Try multiple preprocessing methods
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
     logger.debug(f"[DEBUG] Elixir ROI size: {roi.shape}, mean brightness: {np.mean(gray):.1f}")
     
-    # Method 1: Simple threshold
-    _, thresh1 = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
+    # Method 1: OTSU threshold (most reliable)
+    _, thresh_otsu = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
     
-    # Method 2: OTSU threshold
-    _, thresh2 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-    
-    # Method 3: Adaptive threshold
-    thresh3 = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 11, 2)
-    
-    # Method 4: Inverted OTSU (for dark text on light background)
-    _, thresh4 = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-    
-    # Method 5: Enhanced contrast + threshold
-    enhanced = cv2.equalizeHist(gray)
-    _, thresh5 = cv2.threshold(enhanced, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    # Method 2: Inverted OTSU (for dark text on light background)
+    _, thresh_inv = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
     
     preprocessing_methods = [
-        ("simple", thresh1),
-        ("otsu", thresh2), 
-        ("adaptive", thresh3),
-        ("inverted_otsu", thresh4),
-        ("enhanced", thresh5)
+        ("otsu", thresh_otsu), 
+        ("inverted_otsu", thresh_inv)
     ]
     
-    if DEBUG_SAVE_IMAGES:
+    if DEBUG_SAVE_IMAGES and DEBUG_MODE:
         for name, processed in preprocessing_methods:
             cv2.imwrite(f"{debug_dir}/elixir_{name}.png", processed)
-        logger.info("[DEBUG] Saved all preprocessing methods to debug_images/")
+        logger.info("[DEBUG] Saved preprocessing methods to debug_images/")
     
     best_template_result = None
     best_confidence = 0
     
     if digit_templates and any(t is not None for t in digit_templates.values()):
-        logger.debug("[TEMPLATE] Trying template matching with multiple preprocessing methods...")
+        logger.debug("[TEMPLATE] Trying optimized template matching...")
         
         for method_name, processed_img in preprocessing_methods:
             logger.debug(f"[TEMPLATE] Testing method: {method_name}")
@@ -311,11 +297,16 @@ def read_elixir(screen):
                     if max_val >= 0.7:  # Higher threshold for multi-digit
                         multi_digit_matches.append((number, max_val))
             
-            # If we found a good multi-digit match, use it
+            # If we found a good multi-digit match, use it immediately
             if multi_digit_matches:
                 best_multi = max(multi_digit_matches, key=lambda x: x[1])
                 number, confidence = best_multi
-                if confidence > best_confidence:
+                if confidence > 0.8:  # High confidence threshold - skip other methods
+                    _elixir_cache["value"] = number
+                    _elixir_cache["timestamp"] = current_time
+                    logger.info(f"[TEMPLATE] High confidence multi-digit: {number} (conf: {confidence:.3f})")
+                    return number
+                elif confidence > best_confidence:
                     best_template_result = number
                     best_confidence = confidence
                     logger.info(f"[TEMPLATE] Multi-digit match: {number} (method: {method_name}, conf: {confidence:.3f})")
@@ -326,7 +317,7 @@ def read_elixir(screen):
             for digit, template in digit_templates.items():
                 if isinstance(digit, int) and digit < 10 and template is not None:
                     res = cv2.matchTemplate(processed_img, template, cv2.TM_CCOEFF_NORMED)
-                    locations = np.where(res >= 0.6)  # Lowered threshold from 0.75 to 0.6
+                    locations = np.where(res >= 0.6)
                     max_val = np.max(res) if res.size > 0 else 0
                     
                     logger.debug(f"    Digit {digit}: max confidence = {max_val:.3f}")
@@ -355,49 +346,46 @@ def read_elixir(screen):
                     
                     logger.debug(f"[TEMPLATE] Method {method_name}: '{elixir_str}' (avg conf: {avg_confidence:.3f})")
                     
-                    if elixir_str and len(elixir_str) <= 3 and avg_confidence > best_confidence:
+                    if elixir_str and len(elixir_str) <= 3:
                         try:
                             value = int(elixir_str)
                             if 0 <= value <= 999:
-                                best_template_result = value
-                                best_confidence = avg_confidence
-                                logger.info(f"[TEMPLATE] Best result so far: {value} (method: {method_name}, conf: {avg_confidence:.3f})")
+                                if avg_confidence > 0.8:  # High confidence - return immediately
+                                    _elixir_cache["value"] = value
+                                    _elixir_cache["timestamp"] = current_time
+                                    logger.info(f"[TEMPLATE] High confidence result: {value} (conf: {avg_confidence:.3f})")
+                                    return value
+                                elif avg_confidence > best_confidence:
+                                    best_template_result = value
+                                    best_confidence = avg_confidence
+                                    logger.info(f"[TEMPLATE] Best result so far: {value} (method: {method_name}, conf: {avg_confidence:.3f})")
                         except ValueError:
                             pass
 
-    # Try OCR with each preprocessing method
     best_ocr_result = None
-    best_ocr_confidence = 0
-    
-    logger.debug("[OCR] Trying OCR with multiple preprocessing methods...")
-    ocr_configs = [
-        ('basic', r'--oem 3 --psm 8 -c tessedit_char_whitelist=0123456789'),
-        ('single_char', r'--oem 3 --psm 10 -c tessedit_char_whitelist=0123456789'),
-        ('digits_only', r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789'),
-    ]
-    
-    for method_name, processed_img in preprocessing_methods:
-        for config_name, config in ocr_configs:
+    if best_template_result is None or best_confidence < 0.7:
+        logger.debug("[OCR] Template matching failed/low confidence, trying OCR...")
+        
+        config = r'--oem 3 --psm 8 -c tessedit_char_whitelist=0123456789'
+        
+        for method_name, processed_img in preprocessing_methods:
             try:
                 text = pytesseract.image_to_string(processed_img, config=config)
                 digits_only = ''.join(filter(str.isdigit, text.strip()))
                 
-                logger.debug(f"[OCR] {method_name}+{config_name}: '{text.strip()}' -> '{digits_only}'")
+                logger.debug(f"[OCR] {method_name}: '{text.strip()}' -> '{digits_only}'")
                 
                 if digits_only and len(digits_only) <= 3:
                     try:
                         value = int(digits_only)
                         if 0 <= value <= 999:
-                            # Simple confidence based on text clarity
-                            confidence = len(digits_only) / 3.0  # Prefer longer numbers
-                            if confidence > best_ocr_confidence:
-                                best_ocr_result = value
-                                best_ocr_confidence = confidence
-                                logger.info(f"[OCR] Best result so far: {value} ({method_name}+{config_name})")
+                            best_ocr_result = value
+                            logger.info(f"[OCR] Result: {value} ({method_name})")
+                            break  # Stop at first valid OCR result
                     except ValueError:
                         pass
             except Exception as e:
-                logger.debug(f"[OCR] Error with {method_name}+{config_name}: {e}")
+                logger.debug(f"[OCR] Error with {method_name}: {e}")
     
     # Determine final result
     final_result = None
@@ -405,9 +393,9 @@ def read_elixir(screen):
         if best_template_result == best_ocr_result:
             final_result = best_template_result
             logger.info(f"[SUCCESS] Both methods agree: {final_result}")
-        elif best_confidence > THRESHOLD:  # High confidence template matching
+        elif best_confidence > 0.7:  # Lowered threshold for template preference
             final_result = best_template_result
-            logger.info(f"[SUCCESS] High confidence template: {final_result} (conf: {best_confidence:.3f})")
+            logger.info(f"[SUCCESS] Template preferred: {final_result} (conf: {best_confidence:.3f})")
         else:
             final_result = best_template_result  # Still prefer template matching
             logger.warning(f"[CONFLICT] Template: {best_template_result} (conf: {best_confidence:.3f}), OCR: {best_ocr_result}, using template")
@@ -419,8 +407,6 @@ def read_elixir(screen):
         logger.info(f"[SUCCESS] OCR only: {final_result}")
     else:
         logger.error("[ERROR] Both methods failed completely")
-        logger.error("[HELP] Check debug_images/ folder to see what the elixir region looks like")
-        logger.error("[HELP] Run: python create_digit_templates.py to create proper digit templates")
         final_result = _elixir_cache.get("value")  # Use cached value
         if final_result:
             logger.info(f"[CACHE] Using cached value: {final_result}")
@@ -431,12 +417,25 @@ def read_elixir(screen):
     
     return final_result
 
+_template_cache = {}
+_position_cache = {}
+
+def get_unit_position_cached(center):
+    """Cached version of get_unit_position"""
+    cache_key = f"{center[0]}_{center[1]}"
+    if cache_key in _position_cache:
+        return _position_cache[cache_key]
+    
+    result = get_unit_position(center)
+    _position_cache[cache_key] = result
+    return result
+
 # 🔹 Funció intel·ligent de deploy (OPTIMITZADA I MÉS AGRESSIVA)
 @profile_time("deploy_units")
 def deploy_units(screen, COMPO, elixir_amount):
-    logger.info("[DEPLOY] Starting optimized deploy phase...")
+    logger.info("[DEPLOY] Starting ultra-optimized deploy phase...")
     
-    if DEBUG_SAVE_IMAGES:
+    if DEBUG_SAVE_IMAGES and DEBUG_MODE:
         debug_dir = "debug_images"
         if not os.path.exists(debug_dir):
             os.makedirs(debug_dir)
@@ -444,28 +443,37 @@ def deploy_units(screen, COMPO, elixir_amount):
     
     start_time = time.time()
     
-    all_templates = unit_imgs + field_imgs + bench_imgs
-    all_template_names = (
-        [('shop', os.path.splitext(f)[0]) for f in unit_files] +
-        [('field', os.path.splitext(f)[0]) for f in field_files] +
-        [('bench', os.path.splitext(f)[0]) for f in bench_files]
-    )
+    relevant_templates = []
+    relevant_names = []
     
-    # Single template matching pass for all units
-    all_detections = find_units_on_screen(screen, all_templates, threshold=THRESHOLD, min_dist=30)
+    # Only add shop templates for units in composition or cheap units
+    for i, unit_file in enumerate(unit_files):
+        unit_name = os.path.splitext(unit_file)[0]
+        unit_cost = unit_costs.get(unit_name, 0)
+        if unit_name in COMPO or unit_cost <= elixir_amount:
+            relevant_templates.append(unit_imgs[i])
+            relevant_names.append(('shop', unit_name))
+    
+    # Add field and bench templates (always needed)
+    relevant_templates.extend(field_imgs)
+    relevant_templates.extend(bench_imgs)
+    relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
+    relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
+    
+    all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.85, min_dist=25)
     
     units_detection_time = time.time() - start_time
-    logger.info(f"[TIME] Combined detection: {units_detection_time:.3f}s")
+    logger.info(f"[TIME] Optimized detection: {units_detection_time:.3f}s ({len(relevant_templates)} templates)")
     
     field_units = []
     bench_units = []
     available_cards = []
     
     for i, center in all_detections:
-        pos_name = get_unit_position(center)
-        template_type, unit_name = all_template_names[i]
+        pos_name = get_unit_position_cached(center)  # Use cached position lookup
+        template_type, unit_name = relevant_names[i]
         
-        if template_type == 'shop' and pos_name == "desconegut":
+        if template_type == 'shop':
             cost = unit_costs.get(unit_name, 0)
             if cost <= elixir_amount:
                 available_cards.append((unit_name, cost, center))
@@ -473,26 +481,21 @@ def deploy_units(screen, COMPO, elixir_amount):
             field_units.append((i, center, unit_name, pos_name))
         elif template_type == 'bench' and pos_name.startswith("banquillo"):
             bench_units.append((i, center, unit_name, pos_name))
-        elif template_type == 'shop':
-            # Shop unit detected on field/bench - add to appropriate list
-            if pos_name.startswith("camp"):
-                field_units.append((i, center, unit_name, pos_name))
-            elif pos_name.startswith("banquillo"):
-                bench_units.append((i, center, unit_name, pos_name))
     
     logger.info(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
 
     available_compo_cards = [card for card in available_cards if card[0] in COMPO]
-    available_non_compo_cards = [card for card in available_cards if card[0] not in COMPO]
     non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
-    
+    non_compo_bench_units = [unit for unit in bench_units if unit[2] not in COMPO]
+
     buy_start_time = time.time()
     purchases_made = 0
+    max_purchases = min(6, elixir_amount // 2)  # Dynamic max purchases based on elixir
     
-    while elixir_amount >= 2 and available_cards and purchases_made < 4:  # Increased max purchases
+    while elixir_amount >= 2 and available_cards and purchases_made < max_purchases:
         purchased = False
         
-        # Priority 1: Buy composition cards
+        # Priority 1: Buy composition cards (most important)
         if available_compo_cards:
             affordable_compo = [card for card in available_compo_cards if card[1] <= elixir_amount]
             if affordable_compo:
@@ -501,35 +504,43 @@ def deploy_units(screen, COMPO, elixir_amount):
                 
                 if non_compo_field_units:
                     cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
-                    field_unit_cost = unit_costs.get(cheapest_field[2], 0)
-                    
                     _, field_center, field_unit_name, field_pos = cheapest_field
                     logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
                     adb_tap(*field_center)
-                    time.sleep(0.3)  # Reduced delay
+                    time.sleep(0.3)
                     screen = adb_screenshot()
                     
                     sell_pos = find_template(screen, SELL_BUTTON)
                     if sell_pos:
                         adb_tap(*sell_pos)
-                        time.sleep(0.2)  # Reduced delay
-                        elixir_refund = max(field_unit_cost - 1, 0)
-                        elixir_amount += elixir_refund
                         field_units.remove(cheapest_field)
                         non_compo_field_units.remove(cheapest_field)
+                elif non_compo_bench_units:
+                    cheapest_field = min(non_compo_bench_units, key=lambda x: unit_costs.get(x[2], 0))
+                    _, field_center, field_unit_name, field_pos = cheapest_field
+                    logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
+                    adb_tap(*field_center)
+                    time.sleep(0.3)
+                    screen = adb_screenshot()
+                    
+                    sell_pos = find_template(screen, SELL_BUTTON)
+                    if sell_pos:
+                        adb_tap(*sell_pos)
+                        bench_units.remove(cheapest_field)
+                        non_compo_bench_units.remove(cheapest_field)
                 
                 logger.info(f"[BUY] {unit_name} (cost: {cost})")
                 adb_tap(*center)
-                elixir_amount -= cost
+                
                 purchases_made += 1
                 purchased = True
                 
                 available_compo_cards.remove(most_expensive_compo)
                 available_cards.remove(most_expensive_compo)
-                time.sleep(0.1)  # Minimal delay
+                time.sleep(0.5)  # Minimal delay from 0.1 to 0.05
         
-        # Priority 2: High elixir - buy anything
-        if not purchased and elixir_amount > 6:
+        # Priority 2: High elixir - buy anything valuable
+        if not purchased:
             affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
             if affordable_cards:
                 most_expensive = max(affordable_cards, key=lambda x: x[1])
@@ -542,26 +553,7 @@ def deploy_units(screen, COMPO, elixir_amount):
                 purchased = True
                 
                 available_cards.remove(most_expensive)
-                time.sleep(0.1)  # Minimal delay
-        
-        # Priority 3: Medium elixir - smart buying
-        if not purchased and 4 <= elixir_amount <= 6:
-            affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
-            if affordable_cards:
-                # Prefer composition cards, then expensive cards
-                affordable_cards.sort(key=lambda x: (x[0] not in COMPO, -x[1]))
-                best_card = affordable_cards[0]
-                unit_name, cost, center = best_card
-                
-                logger.info(f"[BUY] Medium elixir: {unit_name} (cost: {cost})")
-                adb_tap(*center)
-                elixir_amount -= cost
-                purchases_made += 1
-                purchased = True
-                
-                available_cards.remove(best_card)
-                time.sleep(0.1)  # Minimal delay
-        
+                time.sleep(0.5)  # Reduced delay
         if not purchased:
             break
     
@@ -569,26 +561,24 @@ def deploy_units(screen, COMPO, elixir_amount):
     if purchases_made > 0:
         logger.info(f"[SUCCESS] {purchases_made} purchases in {buy_time:.3f}s")
     
-    if elixir_amount > 8:
-        units_to_sell = []
-        for i, center, unit_name, pos_name in (field_units + bench_units)[:3]:  # Max 3 units to check
-            if unit_name not in COMPO:
-                units_to_sell.append((center, unit_name, pos_name))
-                if len(units_to_sell) >= 2:  # Max 2 sells
-                    break
-        
-        for center, unit_name, pos_name in units_to_sell:
-            logger.info(f"[SELL] {unit_name}")
-            adb_tap(*center)
-            time.sleep(0.3)
-            
-            # Try to find sell button quickly
-            sell_pos = find_template(screen, SELL_BUTTON)
-            if sell_pos:
-                adb_tap(*sell_pos)
-                elixir_amount += max(unit_costs.get(unit_name, 0) - 1, 0)
-                time.sleep(0.1)  # Minimal delay
+    units_to_sell = []
+    for i, center, unit_name, pos_name in (field_units + bench_units)[:2]:  # Reduced from 3 to 2 units max
+        if unit_name not in COMPO:
+            units_to_sell.append((center, unit_name, pos_name))
+            if len(units_to_sell) >= 1:  # Max 1 sell instead of 2
+                break
     
+    for center, unit_name, pos_name in units_to_sell:
+        logger.info(f"[SELL] {unit_name}")
+        adb_tap(*center)
+        time.sleep(0.3)
+    
+        screen = adb_screenshot()
+    
+        sell_pos = find_template(screen, SELL_BUTTON)
+        if sell_pos:
+            adb_tap(*sell_pos)
+
     logger.info(f"[FINAL] Elixir: {elixir_amount}")
     return elixir_amount
 
