@@ -9663,3 +9663,416 @@
 2025-08-23 13:00:25,706 - INFO - [REPLACE] goblin -> barbarian
 2025-08-23 13:00:27,920 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
 2025-08-23 13:00:31,378 - INFO - [OPTIMIZE] Found 1 non-composition units on bench
+2025-08-23 13:02:53,446 - INFO - [SUCCESS] Loaded 14 templates (single + multi-digit)
+2025-08-23 13:02:53,447 - INFO - [SUCCESS] Including 4 multi-digit templates
+2025-08-23 13:02:53,471 - INFO - [BOT] Bot loop started
+2025-08-23 13:02:54,372 - INFO - [BOT] Bot arrancat
+2025-08-23 13:02:54,374 - INFO - [COMP] Loaded composition: ['archer', 'archer_queen', 'bandit', 'barbarian', 'mega_knight', 'valkyrie']
+2025-08-23 13:02:55,031 - INFO - [ACTION] Quit screen detected
+2025-08-23 13:02:56,050 - INFO - [ACTION] Play again screen detected
+2025-08-23 13:03:02,566 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:03:02,850 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 13:03:02,850 - INFO - [TIME] read_elixir: 0.284s
+2025-08-23 13:03:02,850 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:03:06,848 - INFO - [TIME] Optimized detection: 3.997s (46 templates)
+2025-08-23 13:03:06,848 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:0
+2025-08-23 13:03:06,849 - INFO - [TIME] deploy_units: 3.999s
+2025-08-23 13:03:08,197 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:03:08,200 - INFO - [TEMPLATE] High confidence result: 4 (conf: 1.000)
+2025-08-23 13:03:08,200 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:03:08,200 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:03:13,279 - INFO - [TIME] Optimized detection: 5.077s (58 templates)
+2025-08-23 13:03:13,279 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:4
+2025-08-23 13:03:14,482 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:4
+2025-08-23 13:03:14,482 - INFO - [BUY] mega_knight (cost: 4)
+2025-08-23 13:03:20,906 - INFO - [DETECT] mega_knight went to field, no replacement needed
+2025-08-23 13:03:20,906 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:03:24,409 - INFO - [TIME] optimize_unit_positions: 3.503s
+2025-08-23 13:03:25,618 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:0
+2025-08-23 13:03:25,618 - INFO - [SUCCESS] 1 purchases in 12.338s
+2025-08-23 13:03:25,619 - INFO - [TIME] deploy_units: 17.419s
+2025-08-23 13:03:27,045 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:28,488 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:29,932 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:31,371 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:32,788 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:34,214 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:35,648 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:37,057 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:38,478 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:39,944 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:03:45,175 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:03:45,178 - INFO - [TEMPLATE] High confidence result: 4 (conf: 1.000)
+2025-08-23 13:03:45,178 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:03:45,178 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:03:50,212 - INFO - [TIME] Optimized detection: 5.034s (58 templates)
+2025-08-23 13:03:50,212 - INFO - [SUMMARY] Field:1 Bench:0 Shop:2 Elixir:4
+2025-08-23 13:03:51,404 - INFO - [SUMMARY] Field:1 Bench:0 Shop:2 Elixir:4
+2025-08-23 13:03:51,404 - INFO - [BUY] archer (cost: 3)
+2025-08-23 13:03:57,915 - INFO - [DETECT] archer went to field, no replacement needed
+2025-08-23 13:03:57,915 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:04:01,387 - INFO - [TIME] optimize_unit_positions: 3.472s
+2025-08-23 13:04:02,583 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:1
+2025-08-23 13:04:02,583 - INFO - [SUCCESS] 1 purchases in 12.370s
+2025-08-23 13:04:02,584 - INFO - [TIME] deploy_units: 17.406s
+2025-08-23 13:04:03,937 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:04:03,941 - INFO - [TEMPLATE] High confidence result: 2 (conf: 1.000)
+2025-08-23 13:04:03,941 - INFO - [TIME] read_elixir: 0.004s
+2025-08-23 13:04:03,941 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:04:08,326 - INFO - [TIME] Optimized detection: 4.384s (50 templates)
+2025-08-23 13:04:08,326 - INFO - [SUMMARY] Field:2 Bench:0 Shop:1 Elixir:2
+2025-08-23 13:04:09,552 - INFO - [SUMMARY] Field:2 Bench:0 Shop:1 Elixir:2
+2025-08-23 13:04:09,553 - INFO - [BUY] High elixir: spear_goblin (cost: 2)
+2025-08-23 13:04:10,201 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:04:13,661 - INFO - [TIME] optimize_unit_positions: 3.461s
+2025-08-23 13:04:13,661 - INFO - [SUCCESS] 1 purchases in 5.336s
+2025-08-23 13:04:13,662 - INFO - [TIME] deploy_units: 9.721s
+2025-08-23 13:04:15,075 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:04:16,516 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:04:17,984 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:04:19,435 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:04:20,844 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:04:26,156 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:04:26,441 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 13:04:26,441 - INFO - [CACHE] Using cached value: 2
+2025-08-23 13:04:26,441 - INFO - [TIME] read_elixir: 0.285s
+2025-08-23 13:04:26,441 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:04:30,816 - INFO - [TIME] Optimized detection: 4.374s (50 templates)
+2025-08-23 13:04:30,816 - INFO - [SUMMARY] Field:2 Bench:1 Shop:1 Elixir:2
+2025-08-23 13:04:31,986 - INFO - [SUMMARY] Field:2 Bench:1 Shop:1 Elixir:2
+2025-08-23 13:04:31,987 - INFO - [BUY] High elixir: bomber (cost: 2)
+2025-08-23 13:04:32,620 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:04:36,092 - INFO - [OPTIMIZE] Found 1 non-composition units on bench
+2025-08-23 13:04:36,092 - INFO - [OPTIMIZE] Selling spear_goblin (cost: 2) to make space for spear_goblin
+2025-08-23 13:04:37,492 - INFO - [SUCCESS] Sold spear_goblin successfully
+2025-08-23 13:04:37,992 - INFO - [TIME] optimize_unit_positions: 5.372s
+2025-08-23 13:04:37,992 - INFO - [SUCCESS] 1 purchases in 7.175s
+2025-08-23 13:04:37,993 - INFO - [TIME] deploy_units: 11.551s
+2025-08-23 13:04:39,321 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:04:39,324 - INFO - [TEMPLATE] High confidence result: 7 (conf: 0.999)
+2025-08-23 13:04:39,324 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:04:39,324 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:04:44,623 - INFO - [TIME] Optimized detection: 5.299s (60 templates)
+2025-08-23 13:04:44,623 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:7
+2025-08-23 13:04:45,801 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:7
+2025-08-23 13:04:45,802 - INFO - [BUY] bandit (cost: 4)
+2025-08-23 13:04:52,357 - INFO - [DETECT] bandit went to field, no replacement needed
+2025-08-23 13:04:52,357 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:04:55,806 - INFO - [TIME] optimize_unit_positions: 3.449s
+2025-08-23 13:04:57,004 - INFO - [SUMMARY] Field:2 Bench:0 Shop:1 Elixir:3
+2025-08-23 13:04:57,005 - INFO - [BUY] High elixir: pekka (cost: 3)
+2025-08-23 13:04:57,631 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:05:01,148 - INFO - [TIME] optimize_unit_positions: 3.516s
+2025-08-23 13:05:01,148 - INFO - [SUCCESS] 2 purchases in 16.524s
+2025-08-23 13:05:01,149 - INFO - [TIME] deploy_units: 21.825s
+2025-08-23 13:05:02,569 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:03,995 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:05,442 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:06,876 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:12,172 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:05:12,175 - INFO - [TEMPLATE] High confidence result: 5 (conf: 1.000)
+2025-08-23 13:05:12,175 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:05:12,176 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:05:17,371 - INFO - [TIME] Optimized detection: 5.194s (60 templates)
+2025-08-23 13:05:17,371 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:5
+2025-08-23 13:05:18,575 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:5
+2025-08-23 13:05:18,575 - INFO - [BUY] High elixir: goblin_machine (cost: 4)
+2025-08-23 13:05:19,211 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:05:22,611 - INFO - [OPTIMIZE] Found 1 non-composition units on bench
+2025-08-23 13:05:22,611 - INFO - [OPTIMIZE] Selling knight (cost: 2) to make space for knight
+2025-08-23 13:05:24,036 - INFO - [SUCCESS] Sold knight successfully
+2025-08-23 13:05:24,538 - INFO - [TIME] optimize_unit_positions: 5.327s
+2025-08-23 13:05:25,736 - INFO - [SUMMARY] Field:3 Bench:1 Shop:0 Elixir:1
+2025-08-23 13:05:25,736 - INFO - [SUCCESS] 1 purchases in 8.365s
+2025-08-23 13:05:25,737 - INFO - [TIME] deploy_units: 13.560s
+2025-08-23 13:05:27,095 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:05:27,098 - INFO - [TEMPLATE] High confidence result: 6 (conf: 1.000)
+2025-08-23 13:05:27,099 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:05:27,099 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:05:32,387 - INFO - [TIME] Optimized detection: 5.288s (60 templates)
+2025-08-23 13:05:32,387 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:6
+2025-08-23 13:05:33,580 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:6
+2025-08-23 13:05:33,580 - INFO - [BUY] bandit (cost: 4)
+2025-08-23 13:05:40,194 - INFO - [DETECT] bandit went to field, no replacement needed
+2025-08-23 13:05:40,194 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:05:43,636 - INFO - [TIME] optimize_unit_positions: 3.442s
+2025-08-23 13:05:44,857 - INFO - [SUMMARY] Field:3 Bench:0 Shop:0 Elixir:2
+2025-08-23 13:05:44,857 - INFO - [SUCCESS] 1 purchases in 12.470s
+2025-08-23 13:05:44,858 - INFO - [TIME] deploy_units: 17.759s
+2025-08-23 13:05:46,269 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:47,716 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:49,148 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:50,590 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:52,018 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:53,452 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:54,883 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:05:55,819 - INFO - [ACTION] Quit screen detected
+2025-08-23 13:05:56,826 - INFO - [ACTION] Play again screen detected
+2025-08-23 13:06:05,918 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:06:06,187 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 13:06:06,188 - INFO - [CACHE] Using cached value: 6
+2025-08-23 13:06:06,188 - INFO - [TIME] read_elixir: 0.270s
+2025-08-23 13:06:06,188 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:06:11,479 - INFO - [TIME] Optimized detection: 5.291s (60 templates)
+2025-08-23 13:06:11,479 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:6
+2025-08-23 13:06:11,480 - INFO - [TIME] deploy_units: 5.292s
+2025-08-23 13:06:12,819 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:06:12,821 - INFO - [TEMPLATE] High confidence result: 9 (conf: 1.000)
+2025-08-23 13:06:12,821 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:06:12,821 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:06:18,031 - INFO - [TIME] Optimized detection: 5.210s (60 templates)
+2025-08-23 13:06:18,031 - INFO - [SUMMARY] Field:0 Bench:0 Shop:3 Elixir:9
+2025-08-23 13:06:19,221 - INFO - [SUMMARY] Field:0 Bench:0 Shop:3 Elixir:9
+2025-08-23 13:06:19,222 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 13:06:25,828 - INFO - [DETECT] valkyrie went to field, no replacement needed
+2025-08-23 13:06:25,828 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:06:29,378 - INFO - [TIME] optimize_unit_positions: 3.550s
+2025-08-23 13:06:30,575 - INFO - [SUMMARY] Field:0 Bench:0 Shop:3 Elixir:6
+2025-08-23 13:06:30,575 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 13:06:37,212 - INFO - [DETECT] valkyrie went to field, no replacement needed
+2025-08-23 13:06:37,212 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:06:40,618 - INFO - [TIME] optimize_unit_positions: 3.406s
+2025-08-23 13:06:41,798 - INFO - [SUMMARY] Field:0 Bench:0 Shop:3 Elixir:3
+2025-08-23 13:06:41,798 - INFO - [BUY] valkyrie (cost: 3)
+2025-08-23 13:06:48,184 - INFO - [DETECT] valkyrie went to field, no replacement needed
+2025-08-23 13:06:48,185 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:06:51,563 - INFO - [TIME] optimize_unit_positions: 3.379s
+2025-08-23 13:06:52,750 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:0
+2025-08-23 13:06:52,750 - INFO - [SUCCESS] 3 purchases in 34.719s
+2025-08-23 13:06:52,751 - INFO - [TIME] deploy_units: 39.930s
+2025-08-23 13:06:54,075 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:06:54,077 - INFO - [TEMPLATE] High confidence result: 9 (conf: 1.000)
+2025-08-23 13:06:54,078 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:06:54,078 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:06:59,296 - INFO - [TIME] Optimized detection: 5.217s (60 templates)
+2025-08-23 13:06:59,296 - INFO - [SUMMARY] Field:1 Bench:1 Shop:3 Elixir:9
+2025-08-23 13:07:00,522 - INFO - [SUMMARY] Field:1 Bench:1 Shop:3 Elixir:9
+2025-08-23 13:07:00,522 - INFO - [BUY] bandit (cost: 4)
+2025-08-23 13:07:07,374 - INFO - [DETECT] bandit went to field, no replacement needed
+2025-08-23 13:07:07,374 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:07:10,791 - INFO - [OPTIMIZE] Found 1 non-composition units on bench
+2025-08-23 13:07:10,791 - INFO - [OPTIMIZE] Selling golden_knight (cost: 5) to make space for golden_knight
+2025-08-23 13:07:12,223 - INFO - [SUCCESS] Sold golden_knight successfully
+2025-08-23 13:07:12,724 - INFO - [TIME] optimize_unit_positions: 5.351s
+2025-08-23 13:07:13,919 - INFO - [SUMMARY] Field:1 Bench:1 Shop:3 Elixir:5
+2025-08-23 13:07:13,919 - INFO - [BUY] bandit (cost: 4)
+2025-08-23 13:07:20,458 - INFO - [DETECT] bandit went to field, no replacement needed
+2025-08-23 13:07:20,458 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:07:23,845 - INFO - [TIME] optimize_unit_positions: 3.387s
+2025-08-23 13:07:25,060 - INFO - [SUMMARY] Field:1 Bench:1 Shop:0 Elixir:1
+2025-08-23 13:07:25,060 - INFO - [SUCCESS] 2 purchases in 25.764s
+2025-08-23 13:07:25,060 - INFO - [TIME] deploy_units: 30.982s
+2025-08-23 13:07:30,229 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:07:30,232 - INFO - [TEMPLATE] High confidence result: 9 (conf: 1.000)
+2025-08-23 13:07:30,232 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:07:30,232 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:07:35,400 - INFO - [TIME] Optimized detection: 5.168s (60 templates)
+2025-08-23 13:07:35,401 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:9
+2025-08-23 13:07:36,578 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:9
+2025-08-23 13:07:36,579 - INFO - [BUY] archer (cost: 3)
+2025-08-23 13:07:43,037 - INFO - [DETECT] archer went to field, no replacement needed
+2025-08-23 13:07:43,037 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:07:46,425 - INFO - [TIME] optimize_unit_positions: 3.388s
+2025-08-23 13:07:47,624 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:6
+2025-08-23 13:07:47,624 - INFO - [BUY] archer (cost: 3)
+2025-08-23 13:07:54,158 - INFO - [DETECT] archer went to field, no replacement needed
+2025-08-23 13:07:54,158 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:07:57,579 - INFO - [TIME] optimize_unit_positions: 3.421s
+2025-08-23 13:07:58,783 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:3
+2025-08-23 13:07:58,784 - INFO - [BUY] archer (cost: 3)
+2025-08-23 13:08:05,369 - INFO - [DETECT] archer went to field, no replacement needed
+2025-08-23 13:08:05,369 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:08:08,750 - INFO - [TIME] optimize_unit_positions: 3.381s
+2025-08-23 13:08:09,945 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:0
+2025-08-23 13:08:09,945 - INFO - [SUCCESS] 3 purchases in 34.544s
+2025-08-23 13:08:09,945 - INFO - [TIME] deploy_units: 39.713s
+2025-08-23 13:08:13,914 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:08:13,916 - INFO - [TEMPLATE] High confidence multi-digit: 13 (conf: 0.969)
+2025-08-23 13:08:13,916 - INFO - [TIME] read_elixir: 0.001s
+2025-08-23 13:08:13,916 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:08:19,308 - INFO - [TIME] Optimized detection: 5.392s (60 templates)
+2025-08-23 13:08:19,309 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:13
+2025-08-23 13:08:20,503 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:13
+2025-08-23 13:08:20,503 - INFO - [BUY] High elixir: dart_goblin (cost: 3)
+2025-08-23 13:08:21,151 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:08:24,578 - INFO - [OPTIMIZE] Found 1 non-composition units on bench
+2025-08-23 13:08:24,578 - INFO - [OPTIMIZE] Selling goblin (cost: 2) to make space for goblin
+2025-08-23 13:08:26,010 - INFO - [SUCCESS] Sold goblin successfully
+2025-08-23 13:08:26,510 - INFO - [TIME] optimize_unit_positions: 5.360s
+2025-08-23 13:08:27,711 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:10
+2025-08-23 13:08:27,711 - INFO - [BUY] High elixir: dart_goblin (cost: 3)
+2025-08-23 13:08:28,352 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:08:31,766 - INFO - [TIME] optimize_unit_positions: 3.415s
+2025-08-23 13:08:32,949 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:7
+2025-08-23 13:08:32,949 - INFO - [BUY] High elixir: dart_goblin (cost: 3)
+2025-08-23 13:08:33,590 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:08:37,011 - INFO - [TIME] optimize_unit_positions: 3.421s
+2025-08-23 13:08:38,220 - INFO - [SUMMARY] Field:3 Bench:1 Shop:3 Elixir:4
+2025-08-23 13:08:38,220 - INFO - [BUY] High elixir: dart_goblin (cost: 3)
+2025-08-23 13:08:38,857 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:08:42,391 - INFO - [TIME] optimize_unit_positions: 3.534s
+2025-08-23 13:08:43,591 - INFO - [SUMMARY] Field:3 Bench:1 Shop:0 Elixir:1
+2025-08-23 13:08:43,591 - INFO - [SUCCESS] 4 purchases in 24.283s
+2025-08-23 13:08:43,592 - INFO - [TIME] deploy_units: 29.677s
+2025-08-23 13:08:45,087 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:46,616 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:48,103 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:49,539 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:50,969 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:52,410 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:53,854 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:55,304 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:08:56,246 - INFO - [ACTION] Quit screen detected
+2025-08-23 13:08:57,277 - INFO - [ACTION] Play again screen detected
+2025-08-23 13:09:04,911 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:09:05,194 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 13:09:05,194 - INFO - [CACHE] Using cached value: 13
+2025-08-23 13:09:05,194 - INFO - [TIME] read_elixir: 0.283s
+2025-08-23 13:09:05,194 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:09:10,440 - INFO - [TIME] Optimized detection: 5.246s (60 templates)
+2025-08-23 13:09:10,440 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:13
+2025-08-23 13:09:10,441 - INFO - [TIME] deploy_units: 5.247s
+2025-08-23 13:09:11,793 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:09:11,796 - INFO - [TEMPLATE] High confidence result: 4 (conf: 1.000)
+2025-08-23 13:09:11,796 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:09:11,796 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:09:16,877 - INFO - [TIME] Optimized detection: 5.081s (58 templates)
+2025-08-23 13:09:16,878 - INFO - [SUMMARY] Field:1 Bench:0 Shop:2 Elixir:4
+2025-08-23 13:09:18,093 - INFO - [SUMMARY] Field:1 Bench:0 Shop:2 Elixir:4
+2025-08-23 13:09:18,093 - INFO - [BUY] High elixir: goblin_machine (cost: 4)
+2025-08-23 13:09:18,724 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:09:22,233 - INFO - [TIME] optimize_unit_positions: 3.509s
+2025-08-23 13:09:23,450 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:0
+2025-08-23 13:09:23,450 - INFO - [SUCCESS] 1 purchases in 6.572s
+2025-08-23 13:09:23,450 - INFO - [TIME] deploy_units: 11.654s
+2025-08-23 13:09:24,908 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:26,352 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:27,843 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:29,311 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:30,755 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:32,201 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:33,648 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:35,093 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:09:40,365 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:09:40,658 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 13:09:40,658 - INFO - [CACHE] Using cached value: 4
+2025-08-23 13:09:40,659 - INFO - [TIME] read_elixir: 0.294s
+2025-08-23 13:09:40,659 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:09:45,854 - INFO - [TIME] Optimized detection: 5.194s (58 templates)
+2025-08-23 13:09:45,854 - INFO - [SUMMARY] Field:2 Bench:0 Shop:0 Elixir:4
+2025-08-23 13:09:45,855 - INFO - [TIME] deploy_units: 5.195s
+2025-08-23 13:09:47,205 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:09:47,208 - INFO - [TEMPLATE] High confidence result: 8 (conf: 0.996)
+2025-08-23 13:09:47,208 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:09:47,208 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:09:52,472 - INFO - [TIME] Optimized detection: 5.264s (60 templates)
+2025-08-23 13:09:52,472 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:8
+2025-08-23 13:09:53,677 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:8
+2025-08-23 13:09:53,678 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 13:10:00,448 - INFO - [DETECT] barbarian went to field, no replacement needed
+2025-08-23 13:10:00,449 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:10:03,969 - INFO - [TIME] optimize_unit_positions: 3.520s
+2025-08-23 13:10:05,172 - INFO - [SUMMARY] Field:2 Bench:0 Shop:3 Elixir:6
+2025-08-23 13:10:05,172 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 13:10:12,003 - INFO - [DETECT] barbarian went to field, no replacement needed
+2025-08-23 13:10:12,003 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:10:15,513 - INFO - [TIME] optimize_unit_positions: 3.510s
+2025-08-23 13:10:16,731 - INFO - [SUMMARY] Field:2 Bench:0 Shop:2 Elixir:4
+2025-08-23 13:10:16,732 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 13:10:23,689 - INFO - [DETECT] barbarian went to field, no replacement needed
+2025-08-23 13:10:23,689 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:10:27,305 - INFO - [TIME] optimize_unit_positions: 3.616s
+2025-08-23 13:10:28,515 - INFO - [SUMMARY] Field:2 Bench:0 Shop:1 Elixir:2
+2025-08-23 13:10:28,515 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 13:10:35,376 - INFO - [DETECT] barbarian went to field, no replacement needed
+2025-08-23 13:10:35,376 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:10:39,025 - INFO - [TIME] optimize_unit_positions: 3.649s
+2025-08-23 13:10:39,025 - INFO - [SUCCESS] 4 purchases in 46.553s
+2025-08-23 13:10:39,025 - INFO - [TIME] deploy_units: 51.817s
+2025-08-23 13:10:40,134 - INFO - [ACTION] Reward detected, clicking to collect
+2025-08-23 13:10:41,669 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:10:41,673 - INFO - [TEMPLATE] High confidence result: 9 (conf: 1.000)
+2025-08-23 13:10:41,674 - INFO - [TIME] read_elixir: 0.005s
+2025-08-23 13:10:41,674 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:10:47,220 - INFO - [TIME] Optimized detection: 5.546s (60 templates)
+2025-08-23 13:10:47,220 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:9
+2025-08-23 13:10:48,437 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:9
+2025-08-23 13:10:48,438 - INFO - [BUY] archer_queen (cost: 5)
+2025-08-23 13:10:55,319 - INFO - [DETECT] archer_queen went to field, no replacement needed
+2025-08-23 13:10:55,319 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:10:59,009 - INFO - [TIME] optimize_unit_positions: 3.690s
+2025-08-23 13:11:00,232 - INFO - [SUMMARY] Field:3 Bench:0 Shop:1 Elixir:4
+2025-08-23 13:11:00,232 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 13:11:07,069 - INFO - [DETECT] barbarian went to field, no replacement needed
+2025-08-23 13:11:07,070 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:11:10,772 - INFO - [TIME] optimize_unit_positions: 3.702s
+2025-08-23 13:11:10,772 - INFO - [SUCCESS] 2 purchases in 23.552s
+2025-08-23 13:11:10,773 - INFO - [TIME] deploy_units: 29.099s
+2025-08-23 13:11:11,792 - INFO - [ACTION] Quit screen detected
+2025-08-23 13:11:12,871 - INFO - [ACTION] Play again screen detected
+2025-08-23 13:11:21,616 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:11:21,900 - ERROR - [ERROR] Both methods failed completely
+2025-08-23 13:11:21,901 - INFO - [CACHE] Using cached value: 9
+2025-08-23 13:11:21,901 - INFO - [TIME] read_elixir: 0.284s
+2025-08-23 13:11:21,901 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:11:27,411 - INFO - [TIME] Optimized detection: 5.510s (60 templates)
+2025-08-23 13:11:27,411 - INFO - [SUMMARY] Field:0 Bench:0 Shop:0 Elixir:9
+2025-08-23 13:11:27,412 - INFO - [TIME] deploy_units: 5.511s
+2025-08-23 13:11:28,809 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:11:28,812 - INFO - [TEMPLATE] High confidence result: 4 (conf: 1.000)
+2025-08-23 13:11:28,812 - INFO - [TIME] read_elixir: 0.002s
+2025-08-23 13:11:28,813 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:11:34,150 - INFO - [TIME] Optimized detection: 5.338s (58 templates)
+2025-08-23 13:11:34,150 - INFO - [SUMMARY] Field:1 Bench:0 Shop:1 Elixir:4
+2025-08-23 13:11:35,370 - INFO - [SUMMARY] Field:1 Bench:0 Shop:1 Elixir:4
+2025-08-23 13:11:35,370 - INFO - [BUY] High elixir: pekka (cost: 3)
+2025-08-23 13:11:36,006 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:11:39,642 - INFO - [TIME] optimize_unit_positions: 3.635s
+2025-08-23 13:11:39,642 - INFO - [SUCCESS] 1 purchases in 5.491s
+2025-08-23 13:11:39,643 - INFO - [TIME] deploy_units: 10.829s
+2025-08-23 13:11:41,201 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:42,683 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:44,161 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:45,665 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:47,148 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:48,653 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:50,150 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:51,635 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:53,117 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:54,605 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:11:56,104 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:01,713 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:12:01,716 - INFO - [TEMPLATE] High confidence result: 5 (conf: 1.000)
+2025-08-23 13:12:01,716 - INFO - [TIME] read_elixir: 0.003s
+2025-08-23 13:12:01,716 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:12:07,374 - INFO - [TIME] Optimized detection: 5.658s (60 templates)
+2025-08-23 13:12:07,374 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:5
+2025-08-23 13:12:08,590 - INFO - [SUMMARY] Field:1 Bench:0 Shop:3 Elixir:5
+2025-08-23 13:12:08,591 - INFO - [BUY] archer (cost: 3)
+2025-08-23 13:12:15,514 - INFO - [DETECT] archer went to field, no replacement needed
+2025-08-23 13:12:15,514 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:12:19,240 - INFO - [TIME] optimize_unit_positions: 3.727s
+2025-08-23 13:12:20,484 - INFO - [SUMMARY] Field:1 Bench:0 Shop:0 Elixir:2
+2025-08-23 13:12:20,484 - INFO - [SUCCESS] 1 purchases in 13.109s
+2025-08-23 13:12:20,484 - INFO - [TIME] deploy_units: 18.768s
+2025-08-23 13:12:23,358 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:24,797 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:26,263 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:27,727 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:29,209 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:30,648 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:32,156 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:33,605 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:35,039 - INFO - [PHASE] Battle phase detected, waiting...
+2025-08-23 13:12:41,785 - INFO - [PHASE] Deploy phase detected
+2025-08-23 13:12:41,787 - INFO - [TEMPLATE] Best result so far: 11 (method: otsu, conf: 0.686)
+2025-08-23 13:12:42,082 - INFO - [SUCCESS] Template only: 11 (conf: 0.686)
+2025-08-23 13:12:42,083 - INFO - [TIME] read_elixir: 0.297s
+2025-08-23 13:12:42,083 - INFO - [DEPLOY] Starting ultra-optimized deploy phase...
+2025-08-23 13:12:47,425 - INFO - [TIME] Optimized detection: 5.341s (60 templates)
+2025-08-23 13:12:47,425 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:11
+2025-08-23 13:12:48,627 - INFO - [SUMMARY] Field:3 Bench:0 Shop:3 Elixir:11
+2025-08-23 13:12:48,627 - INFO - [BUY] barbarian (cost: 2)
+2025-08-23 13:12:55,364 - INFO - [DETECT] barbarian went to field, no replacement needed
+2025-08-23 13:12:55,364 - INFO - [OPTIMIZE] Checking for composition units on bench vs non-composition on field...
+2025-08-23 13:12:59,049 - INFO - [TIME] optimize_unit_positions: 3.686s

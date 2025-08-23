@@ -10,9 +10,9 @@ import logging
 from functools import wraps
 
 # 🔧 Configuració
-UNITS_DIR = "templates/units"       # cartes que es poden comprar
-FIELDS_DIR = "templates/field"      # unitats al camp
-BENCH_DIR = "templates/bench"       # unitats al banquillo
+UNITS_DIR = "templates/units"       
+FIELDS_DIR = "templates/field"      
+BENCH_DIR = "templates/bench"       
 GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
 ELIXIR_FILE = "elixir.json"
@@ -37,6 +37,7 @@ PLAY_AGAIN_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "play_again.png")
 QUIT = os.path.join(TEMPLATES_DIR_MAIN, "quit.png")
 SELL_BUTTON = os.path.join(TEMPLATES_DIR_MAIN, "sell.png")
 REWARD = os.path.join(TEMPLATES_DIR_MAIN, "reward.png")
+EMPTY_BENCH = os.path.join(TEMPLATES_DIR_MAIN, "empty_bench.png")
 
 # 🔹 Carregar unitats i costos
 unit_files = [f for f in os.listdir(UNITS_DIR) if f.endswith(".png")]
@@ -51,26 +52,11 @@ bench_imgs = [cv2.imread(os.path.join(BENCH_DIR, f)) for f in bench_files]
 
 # Assigna el cost manualment aquí
 unit_costs = {
-    "barbarian": 2,
-    "archer": 3,
-    "knight": 2,
-    "archer_queen": 5,
-    "bandit": 4,
-    "bomber": 2,
-    "dart_goblin": 3,
-    "executioner": 3,
-    "giant_skeleton": 3,
-    "goblin": 2,
-    "goblin_machine": 4,
-    "golden_knight": 5,
-    "mega_knight": 4,
-    "pekka": 3,
-    "prince": 3,
-    "princess": 4,
-    "royal_ghost": 4,
-    "skeleton_king": 5,
-    "spear_goblin": 2,
-    "valkyrie": 3,   
+    "barbarian": 2, "archer": 3, "knight": 2, "archer_queen": 5, "bandit": 4,
+    "bomber": 2, "dart_goblin": 3, "executioner": 3, "giant_skeleton": 3,
+    "goblin": 2, "goblin_machine": 4, "golden_knight": 5, "mega_knight": 4,
+    "pekka": 3, "prince": 3, "princess": 4, "royal_ghost": 4, "skeleton_king": 5,
+    "spear_goblin": 2, "valkyrie": 3,   
 }
 
 # Carregar coordenades del camp i banquillo
@@ -85,31 +71,35 @@ with open(ELIXIR_FILE, "r") as f:
     elixir_data = json.load(f)
 elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('bot_debug.log'),
-        logging.StreamHandler()
-    ]
-)
+logging.basicConfig(level=logging.WARNING, format='%(levelname)s: %(message)s')
 logger = logging.getLogger(__name__)
 
-def profile_time(func_name):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            start_time = time.time()
-            result = func(*args, **kwargs)
-            end_time = time.time()
-            duration = end_time - start_time
-            logger.info(f"[TIME] {func_name}: {duration:.3f}s")
-            return result
-        return wrapper
-    return decorator
-
-DEBUG_MODE = True
+DEBUG_MODE = False  # Disabled debug mode for performance
 DEBUG_SAVE_IMAGES = False
+
+# 🔹 Carregar plantilles de dígits
+def load_digit_templates():
+    """Load digit templates for template matching"""
+    templates = {}
+    templates_dir = "templates/digits"
+    
+    if not os.path.exists(templates_dir):
+        return {}
+    
+    for digit in range(16):  # Only 0-15 for common elixir values
+        template_path = os.path.join(templates_dir, f"{digit}.png")
+        if os.path.exists(template_path):
+            template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
+            if template is not None:
+                _, template_thresh = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                if np.mean(template_thresh) < 127:
+                    template_thresh = cv2.bitwise_not(template_thresh)
+                templates[digit] = template_thresh
+    
+    return templates
+
+digit_templates = load_digit_templates()
+
 
 # 🔹 Funcions ADB
 def adb_screenshot():
@@ -136,11 +126,11 @@ def save_composition():
     data = {"name": "Custom Deck", "units": chosen_units}
     with open(COMPOSITION_FILE, "w") as f:
         json.dump(data, f, indent=4)
-    logger.info(f"[COMP] Composicio confirmada: {chosen_units}")
+    print(f"[COMP] Composicio confirmada: {chosen_units}")
     return chosen_units
 
-# 🔹 Detectar unitats a pantalla
-def find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=50):
+# 🔹 Detectar unitats a pantalla - OPTIMIZED
+def find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=40):  # Reduced min_dist for faster processing
     detected = []
     for i, template in enumerate(templates):
         res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
@@ -154,89 +144,31 @@ def find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=50):
         detected.extend([(i, c) for c in final_centers])
     return detected
 
-# 🔹 Saber posició d’una unitat
+# 🔹 Saber posició d'una unitat - CACHED
+_position_cache = {}
 def get_unit_position(center):
+    cache_key = f"{center[0]}_{center[1]}"
+    if cache_key in _position_cache:
+        return _position_cache[cache_key]
+    
     x, y = center
     for cell in grid_cells:
         x0, y0, x1, y1 = cell["rect"]
         if x0 <= x <= x1 and y0 <= y <= y1:
+            _position_cache[cache_key] = cell["name"]
             return cell["name"]
     for cell in bench_cells:
         x0, y0, x1, y1 = cell["rect"]
         if x0 <= x <= x1 and y0 <= y <= y1:
+            _position_cache[cache_key] = cell["name"]
             return cell["name"]
+    _position_cache[cache_key] = "desconegut"
     return "desconegut"
 
-# 🔹 Llegir elixir amb template matching
+# 🔹 IMPROVED elixir reading - more robust but still optimized
 _elixir_cache = {"value": None, "timestamp": 0}
-ELIXIR_CACHE_DURATION = 1.5  # Increased cache duration from 0.5 to 1.5 seconds
+ELIXIR_CACHE_DURATION = 1.0  # Reduced cache duration for better accuracy
 
-def load_digit_templates():
-    """Load digit templates for template matching"""
-    templates = {}
-    templates_dir = "templates/digits"
-    
-    # Create templates directory if it doesn't exist
-    if not os.path.exists(templates_dir):
-        os.makedirs(templates_dir)
-        logger.info(f"[SETUP] Created directory: {templates_dir}")
-        logger.info("[INFO] Add digit templates to improve detection")
-        logger.info("[INFO] Run: python create_digit_templates.py")
-        return {}
-    
-    # Load single digit templates (0-9)
-    for digit in range(10):
-        template_path = os.path.join(templates_dir, f"{digit}.png")
-        if os.path.exists(template_path):
-            template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
-            if template is not None:
-                # Try multiple preprocessing methods for templates too
-                _, template_thresh = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-                if np.mean(template_thresh) < 127:
-                    template_thresh = cv2.bitwise_not(template_thresh)
-                templates[digit] = template_thresh
-                logger.debug(f"[TEMPLATE] Loaded digit {digit} template: {template.shape}")
-            else:
-                logger.warning(f"[ERROR] Could not load template: {template_path}")
-                templates[digit] = None
-        else:
-            templates[digit] = None
-    
-    # Load multi-digit number templates (10, 11, 12, etc.)
-    for file in os.listdir(templates_dir):
-        if file.endswith('.png'):
-            number_str = file[:-4]  # Remove .png extension
-            try:
-                number = int(number_str)
-                if number >= 10:  # Multi-digit numbers
-                    template_path = os.path.join(templates_dir, file)
-                    template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
-                    if template is not None:
-                        _, template_thresh = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
-                        if np.mean(template_thresh) < 127:
-                            template_thresh = cv2.bitwise_not(template_thresh)
-                        templates[number] = template_thresh
-                        logger.debug(f"[TEMPLATE] Loaded multi-digit {number} template: {template.shape}")
-                    else:
-                        logger.warning(f"[ERROR] Could not load template: {template_path}")
-            except ValueError:
-                continue  # Skip non-numeric filenames
-    
-    loaded_count = sum(1 for t in templates.values() if t is not None)
-    if loaded_count > 0:
-        logger.info(f"[SUCCESS] Loaded {loaded_count} templates (single + multi-digit)")
-        multi_digit_count = sum(1 for k, t in templates.items() if isinstance(k, int) and k >= 10 and t is not None)
-        if multi_digit_count > 0:
-            logger.info(f"[SUCCESS] Including {multi_digit_count} multi-digit templates")
-    else:
-        logger.warning("[WARNING] No digit templates found. Using OCR as primary method.")
-        logger.info("[HELP] Run: python create_digit_templates.py")
-    
-    return templates
-
-digit_templates = load_digit_templates()
-
-@profile_time("read_elixir")
 def read_elixir(screen):
     global digit_templates
     
@@ -244,233 +176,134 @@ def read_elixir(screen):
     
     if (_elixir_cache["value"] is not None and 
         current_time - _elixir_cache["timestamp"] < ELIXIR_CACHE_DURATION):
-        logger.debug(f"[CACHE] Using cached elixir: {_elixir_cache['value']}")
         return _elixir_cache["value"]
     
     x0, y0, x1, y1 = elixir_rect
     roi = screen[y0:y1, x0:x1]
-    
-    if DEBUG_SAVE_IMAGES and DEBUG_MODE:
-        debug_dir = "debug_images"
-        if not os.path.exists(debug_dir):
-            os.makedirs(debug_dir)
-        cv2.imwrite(f"{debug_dir}/elixir_roi_original.png", roi)
-        logger.info(f"[DEBUG] Saved original elixir ROI to debug_images/elixir_roi_original.png")
-    
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    logger.debug(f"[DEBUG] Elixir ROI size: {roi.shape}, mean brightness: {np.mean(gray):.1f}")
     
-    # Method 1: OTSU threshold (most reliable)
     _, thresh_otsu = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    _, thresh_adaptive = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
     
-    # Method 2: Inverted OTSU (for dark text on light background)
-    _, thresh_inv = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+    # Try with inverted image too
+    thresh_otsu_inv = cv2.bitwise_not(thresh_otsu)
     
-    preprocessing_methods = [
-        ("otsu", thresh_otsu), 
-        ("inverted_otsu", thresh_inv)
-    ]
+    processed_images = [thresh_otsu, thresh_adaptive, thresh_otsu_inv]
     
-    if DEBUG_SAVE_IMAGES and DEBUG_MODE:
-        for name, processed in preprocessing_methods:
-            cv2.imwrite(f"{debug_dir}/elixir_{name}.png", processed)
-        logger.info("[DEBUG] Saved preprocessing methods to debug_images/")
-    
-    best_template_result = None
-    best_confidence = 0
-    
-    if digit_templates and any(t is not None for t in digit_templates.values()):
-        logger.debug("[TEMPLATE] Trying optimized template matching...")
+    if digit_templates:
+        for processed_img in processed_images:
+            for number in range(10, 16):
+                if number in digit_templates:
+                    res = cv2.matchTemplate(processed_img, digit_templates[number], cv2.TM_CCOEFF_NORMED)
+                    _, max_val, _, _ = cv2.minMaxLoc(res)
+                    if max_val >= 0.8:  # Restored higher threshold for accuracy
+                        _elixir_cache["value"] = number
+                        _elixir_cache["timestamp"] = current_time
+                        return number
         
-        for method_name, processed_img in preprocessing_methods:
-            logger.debug(f"[TEMPLATE] Testing method: {method_name}")
-            
-            # First try multi-digit templates (10, 11, 12, etc.)
-            multi_digit_matches = []
-            for number, template in digit_templates.items():
-                if isinstance(number, int) and number >= 10 and template is not None:
-                    res = cv2.matchTemplate(processed_img, template, cv2.TM_CCOEFF_NORMED)
-                    _, max_val, _, max_loc = cv2.minMaxLoc(res)
-                    
-                    logger.debug(f"    Multi-digit {number}: max confidence = {max_val:.3f}")
-                    
-                    if max_val >= 0.7:  # Higher threshold for multi-digit
-                        multi_digit_matches.append((number, max_val))
-            
-            # If we found a good multi-digit match, use it immediately
-            if multi_digit_matches:
-                best_multi = max(multi_digit_matches, key=lambda x: x[1])
-                number, confidence = best_multi
-                if confidence > 0.8:  # High confidence threshold - skip other methods
-                    _elixir_cache["value"] = number
-                    _elixir_cache["timestamp"] = current_time
-                    logger.info(f"[TEMPLATE] High confidence multi-digit: {number} (conf: {confidence:.3f})")
-                    return number
-                elif confidence > best_confidence:
-                    best_template_result = number
-                    best_confidence = confidence
-                    logger.info(f"[TEMPLATE] Multi-digit match: {number} (method: {method_name}, conf: {confidence:.3f})")
-                continue  # Skip individual digit detection for this method
-            
-            # If no multi-digit match, try individual digits
+        for processed_img in processed_images:
             detected_digits = []
-            for digit, template in digit_templates.items():
-                if isinstance(digit, int) and digit < 10 and template is not None:
-                    res = cv2.matchTemplate(processed_img, template, cv2.TM_CCOEFF_NORMED)
-                    locations = np.where(res >= 0.6)
-                    max_val = np.max(res) if res.size > 0 else 0
-                    
-                    logger.debug(f"    Digit {digit}: max confidence = {max_val:.3f}")
-                    
-                    h, w = template.shape[:2]
+            for digit in range(10):
+                if digit in digit_templates:
+                    res = cv2.matchTemplate(processed_img, digit_templates[digit], cv2.TM_CCOEFF_NORMED)
+                    locations = np.where(res >= 0.75)  # Increased threshold for better accuracy
+                    h, w = digit_templates[digit].shape[:2]
                     for pt in zip(*locations[::-1]):
                         confidence = res[pt[1], pt[0]]
                         detected_digits.append((pt[0], pt[1], digit, confidence, w))
             
             if detected_digits:
-                # Filter overlapping detections
-                detected_digits.sort(key=lambda x: x[3], reverse=True)
-                filtered_digits = []
-                
-                for current in detected_digits:
-                    x, y, digit, conf, width = current
-                    overlap = any(abs(x - ax) < width * 0.6 and abs(y - ay) < 8 
-                                for ax, ay, _, _, _ in filtered_digits)
+                # Remove overlapping detections
+                detected_digits.sort(key=lambda x: x[3], reverse=True)  # Sort by confidence
+                final_digits = []
+                for digit_info in detected_digits:
+                    x, y, digit, conf, w = digit_info
+                    # Check if this digit overlaps with any already selected
+                    overlap = False
+                    for fx, fy, _, _, fw in final_digits:
+                        if abs(x - fx) < max(w, fw) * 0.5:  # 50% overlap threshold
+                            overlap = True
+                            break
                     if not overlap:
-                        filtered_digits.append(current)
+                        final_digits.append(digit_info)
                 
-                if filtered_digits:
-                    filtered_digits.sort(key=lambda x: x[0])
-                    elixir_str = ''.join([str(digit) for _, _, digit, _, _ in filtered_digits])
-                    avg_confidence = sum(d[3] for d in filtered_digits) / len(filtered_digits)
-                    
-                    logger.debug(f"[TEMPLATE] Method {method_name}: '{elixir_str}' (avg conf: {avg_confidence:.3f})")
-                    
-                    if elixir_str and len(elixir_str) <= 3:
+                if final_digits:
+                    final_digits.sort(key=lambda x: x[0])  # Sort by x position
+                    elixir_str = ''.join([str(digit) for _, _, digit, _, _ in final_digits[:2]])  # Max 2 digits
+                    if elixir_str and len(elixir_str) <= 2:
                         try:
                             value = int(elixir_str)
-                            if 0 <= value <= 999:
-                                if avg_confidence > 0.8:  # High confidence - return immediately
-                                    _elixir_cache["value"] = value
-                                    _elixir_cache["timestamp"] = current_time
-                                    logger.info(f"[TEMPLATE] High confidence result: {value} (conf: {avg_confidence:.3f})")
-                                    return value
-                                elif avg_confidence > best_confidence:
-                                    best_template_result = value
-                                    best_confidence = avg_confidence
-                                    logger.info(f"[TEMPLATE] Best result so far: {value} (method: {method_name}, conf: {avg_confidence:.3f})")
+                            if 0 <= value <= 15:  # Reasonable elixir range
+                                _elixir_cache["value"] = value
+                                _elixir_cache["timestamp"] = current_time
+                                return value
                         except ValueError:
-                            pass
-
-    best_ocr_result = None
-    if best_template_result is None or best_confidence < 0.7:
-        logger.debug("[OCR] Template matching failed/low confidence, trying OCR...")
-        
-        config = r'--oem 3 --psm 8 -c tessedit_char_whitelist=0123456789'
-        
-        for method_name, processed_img in preprocessing_methods:
-            try:
-                text = pytesseract.image_to_string(processed_img, config=config)
-                digits_only = ''.join(filter(str.isdigit, text.strip()))
-                
-                logger.debug(f"[OCR] {method_name}: '{text.strip()}' -> '{digits_only}'")
-                
-                if digits_only and len(digits_only) <= 3:
-                    try:
-                        value = int(digits_only)
-                        if 0 <= value <= 999:
-                            best_ocr_result = value
-                            logger.info(f"[OCR] Result: {value} ({method_name})")
-                            break  # Stop at first valid OCR result
-                    except ValueError:
-                        pass
-            except Exception as e:
-                logger.debug(f"[OCR] Error with {method_name}: {e}")
+                            continue
     
-    # Determine final result
-    final_result = None
-    if best_template_result is not None and best_ocr_result is not None:
-        if best_template_result == best_ocr_result:
-            final_result = best_template_result
-            logger.info(f"[SUCCESS] Both methods agree: {final_result}")
-        elif best_confidence > 0.7:  # Lowered threshold for template preference
-            final_result = best_template_result
-            logger.info(f"[SUCCESS] Template preferred: {final_result} (conf: {best_confidence:.3f})")
-        else:
-            final_result = best_template_result  # Still prefer template matching
-            logger.warning(f"[CONFLICT] Template: {best_template_result} (conf: {best_confidence:.3f}), OCR: {best_ocr_result}, using template")
-    elif best_template_result is not None:
-        final_result = best_template_result
-        logger.info(f"[SUCCESS] Template only: {final_result} (conf: {best_confidence:.3f})")
-    elif best_ocr_result is not None:
-        final_result = best_ocr_result
-        logger.info(f"[SUCCESS] OCR only: {final_result}")
-    else:
-        logger.error("[ERROR] Both methods failed completely")
-        final_result = _elixir_cache.get("value")  # Use cached value
-        if final_result:
-            logger.info(f"[CACHE] Using cached value: {final_result}")
+    for processed_img in processed_images:
+        try:
+            config = r'--oem 3 --psm 8 -c tessedit_char_whitelist=0123456789'
+            text = pytesseract.image_to_string(processed_img, config=config)
+            digits_only = ''.join(filter(str.isdigit, text.strip()))
+            if digits_only and len(digits_only) <= 2:
+                value = int(digits_only)
+                if 0 <= value <= 15:
+                    _elixir_cache["value"] = value
+                    _elixir_cache["timestamp"] = current_time
+                    return value
+        except:
+            continue
     
-    if final_result is not None:
-        _elixir_cache["value"] = final_result
-        _elixir_cache["timestamp"] = current_time
+    try:
+        config = r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789'
+        text = pytesseract.image_to_string(gray, config=config)
+        digits_only = ''.join(filter(str.isdigit, text.strip()))
+        if digits_only and len(digits_only) <= 2:
+            value = int(digits_only)
+            if 0 <= value <= 15:
+                _elixir_cache["value"] = value
+                _elixir_cache["timestamp"] = current_time
+                return value
+    except:
+        pass
     
-    return final_result
+    # Return cached value if available, otherwise return 0 as fallback
+    return _elixir_cache.get("value", 0)
 
-_template_cache = {}
-_position_cache = {}
-
-def get_unit_position_cached(center):
-    """Cached version of get_unit_position"""
-    cache_key = f"{center[0]}_{center[1]}"
-    if cache_key in _position_cache:
-        return _position_cache[cache_key]
-    
-    result = get_unit_position(center)
-    _position_cache[cache_key] = result
-    return result
-
-# 🔹 Funció intel·ligent de deploy (OPTIMITZADA I MÉS AGRESSIVA)
-@profile_time("deploy_units")
+# 🔹 ULTRA-OPTIMIZED deploy function
 def deploy_units(screen, COMPO, elixir_amount):
-    logger.info("[DEPLOY] Starting ultra-optimized deploy phase...")
-    
-    if DEBUG_SAVE_IMAGES and DEBUG_MODE:
-        debug_dir = "debug_images"
-        if not os.path.exists(debug_dir):
-            os.makedirs(debug_dir)
-        cv2.imwrite(f"{debug_dir}/deploy_screen.png", screen)
-    
-    start_time = time.time()
+    print("[DEPLOY] Starting optimized deploy...")
+
+    if is_bench_empty(screen):
+        cleanup_bench_units(screen, COMPO)
+    else:
+        logger.info("[DEPLOY] Bench is already empty, skipping cleanup.")    
     
     relevant_templates = []
     relevant_names = []
     
-    # Only add shop templates for units in composition or cheap units
+    # Only shop templates for composition units + cheap units
     for i, unit_file in enumerate(unit_files):
         unit_name = os.path.splitext(unit_file)[0]
         unit_cost = unit_costs.get(unit_name, 0)
-        if unit_name in COMPO or unit_cost <= elixir_amount:
+        if unit_name in COMPO or unit_cost <= min(3, elixir_amount):  # More selective
             relevant_templates.append(unit_imgs[i])
             relevant_names.append(('shop', unit_name))
     
-    # Add field and bench templates (always needed)
+    # Always add field/bench for optimization
     relevant_templates.extend(field_imgs)
     relevant_templates.extend(bench_imgs)
     relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
     relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
     
-    all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.85, min_dist=25)
-    
-    units_detection_time = time.time() - start_time
-    logger.info(f"[TIME] Optimized detection: {units_detection_time:.3f}s ({len(relevant_templates)} templates)")
+    all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
     
     field_units = []
     bench_units = []
     available_cards = []
     
     for i, center in all_detections:
-        pos_name = get_unit_position_cached(center)  # Use cached position lookup
+        pos_name = get_unit_position(center)
         template_type, unit_name = relevant_names[i]
         
         if template_type == 'shop':
@@ -482,330 +315,286 @@ def deploy_units(screen, COMPO, elixir_amount):
         elif template_type == 'bench' and pos_name.startswith("banquillo"):
             bench_units.append((i, center, unit_name, pos_name))
     
-    logger.info(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
+    print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
 
-    available_compo_cards = [card for card in available_cards if card[0] in COMPO]
-    non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
-    non_compo_bench_units = [unit for unit in bench_units if unit[2] not in COMPO]
-
-    buy_start_time = time.time()
     purchases_made = 0
-    max_purchases = min(6, elixir_amount // 2)  # Dynamic max purchases based on elixir
+    max_purchases = min(4, elixir_amount // 2)  # Reduced max purchases
     
-    while available_cards:
-        time.sleep(0.5)
-        screen = adb_screenshot()
-
- 
-        field_units = []
-        bench_units = []
-        available_cards = []
-        
-        for i, center in all_detections:
-            pos_name = get_unit_position_cached(center)  # Use cached position lookup
-            template_type, unit_name = relevant_names[i]
-            
-            if template_type == 'shop':
-                cost = unit_costs.get(unit_name, 0)
-                if cost <= elixir_amount:
-                    available_cards.append((unit_name, cost, center))
-            elif template_type == 'field' and pos_name.startswith("camp"):
-                field_units.append((i, center, unit_name, pos_name))
-            elif template_type == 'bench' and pos_name.startswith("banquillo"):
-                bench_units.append((i, center, unit_name, pos_name))
-        
-        logger.info(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
-
-        available_compo_cards = [card for card in available_cards if card[0] in COMPO]
-        non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
-        non_compo_bench_units = [unit for unit in bench_units if unit[2] not in COMPO]
-
-
+    # Priority: composition cards first
+    available_compo_cards = [card for card in available_cards if card[0] in COMPO]
+    
+    for _ in range(max_purchases):
         purchased = False
         
-        # Priority 1: Buy composition cards (most important)
+        # Buy composition cards
         if available_compo_cards:
             affordable_compo = [card for card in available_compo_cards if card[1] <= elixir_amount]
             if affordable_compo:
                 most_expensive_compo = max(affordable_compo, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive_compo
-
-                bench_units_before = len(bench_units)
-                                
-                logger.info(f"[BUY] {unit_name} (cost: {cost})")
+                
+                print(f"[BUY] {unit_name} (cost: {cost})")
                 adb_tap(*center)
-                
                 purchases_made += 1
-                purchased = True
                 elixir_amount -= cost
-                
                 available_compo_cards.remove(most_expensive_compo)
-                available_cards.remove(most_expensive_compo)
-                time.sleep(0.5)  # Increased wait time to allow unit placement
-                
+                purchased = True
+                time.sleep(0.3)
                 screen = adb_screenshot()
-                current_detections = find_units_on_screen(screen, relevant_templates, threshold=0.85, min_dist=25)
+                # Always add field/bench for optimization
+                relevant_templates.extend(field_imgs)
+                relevant_templates.extend(bench_imgs)
+                relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
+                relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
                 
-                current_bench_units = []
-                for i, center in current_detections:
-                    pos_name = get_unit_position_cached(center)
-                    template_type, detected_unit_name = relevant_names[i]
-                    if template_type == 'bench' and pos_name.startswith("banquillo"):
-                        current_bench_units.append((i, center, detected_unit_name, pos_name))
+                all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.8, min_dist=30)
                 
-                if len(current_bench_units) > bench_units_before:
-                    logger.info(f"[DETECT] {unit_name} went to bench, triggering replace mechanic")
+                field_units = []
+                bench_units = []
+                available_cards = []
+                
+                for i, center in all_detections:
+                    pos_name = get_unit_position(center)
+                    template_type, unit_name = relevant_names[i]
                     
-                    if non_compo_field_units:
-                        cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
-                        _, field_center, field_unit_name, field_pos = cheapest_field
-                        logger.info(f"[REPLACE] {field_unit_name} -> {unit_name}")
-                        adb_tap(*field_center)
-                        time.sleep(0.3)
-                        screen = adb_screenshot()
-                        
-                        sell_pos = find_template(screen, SELL_BUTTON)
-                        if sell_pos:
-                            adb_tap(*sell_pos)
-                            field_units.remove(cheapest_field)
-                            non_compo_field_units.remove(cheapest_field)
-                            time.sleep(0.2)
-                            screen = adb_screenshot()
-                    elif non_compo_bench_units:
-                        cheapest_bench = min(non_compo_bench_units, key=lambda x: unit_costs.get(x[2], 0))
-                        _, bench_center, bench_unit_name, bench_pos = cheapest_bench
-                        logger.info(f"[REPLACE] {bench_unit_name} -> {unit_name}")
-                        adb_tap(*bench_center)
-                        time.sleep(0.3)
-                        screen = adb_screenshot()
-                        
-                        sell_pos = find_template(screen, SELL_BUTTON)
-                        if sell_pos:
-                            adb_tap(*sell_pos)
-                            bench_units.remove(cheapest_bench)
-                            non_compo_bench_units.remove(cheapest_bench)
-                            time.sleep(0.2)
-                            screen = adb_screenshot()
-                else:
-                    logger.info(f"[DETECT] {unit_name} went to field, no replacement needed")
+                    if template_type == 'shop':
+                        cost = unit_costs.get(unit_name, 0)
+                        if cost <= elixir_amount:
+                            available_cards.append((unit_name, cost, center))
+                    elif template_type == 'field' and pos_name.startswith("camp"):
+                        field_units.append((i, center, unit_name, pos_name))
+                    elif template_type == 'bench' and pos_name.startswith("banquillo"):
+                        bench_units.append((i, center, unit_name, pos_name))
                 
-                bench_units = current_bench_units
+                print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
         
-        # Priority 2: High elixir - buy anything valuable
-        if not purchased:
+        # Buy any valuable card if high elixir
+        elif elixir_amount >= 6:  # Only if we have plenty of elixir
             affordable_cards = [card for card in available_cards if card[1] <= elixir_amount]
             if affordable_cards:
                 most_expensive = max(affordable_cards, key=lambda x: x[1])
                 unit_name, cost, center = most_expensive
                 
-                logger.info(f"[BUY] High elixir: {unit_name} (cost: {cost})")
+                print(f"[BUY] High elixir: {unit_name} (cost: {cost})")
                 adb_tap(*center)
-                elixir_amount -= cost
                 purchases_made += 1
+                elixir_amount -= cost
                 purchased = True
-                
                 available_cards.remove(most_expensive)
-                time.sleep(0.5)  # Reduced delay
+                time.sleep(0.3)  # Reduced delay
+        
         if not purchased:
             break
-        else:
-            optimize_unit_positions(screen, COMPO)
     
-    buy_time = time.time() - buy_start_time
     if purchases_made > 0:
-        logger.info(f"[SUCCESS] {purchases_made} purchases in {buy_time:.3f}s")
+        time.sleep(0.5)  # Let units settle
+        optimize_unit_positions(screen, COMPO)
     
+    print(f"[SUCCESS] {purchases_made} purchases completed")
     return elixir_amount
 
-# 🔹 Funció per optimitzar posicions (vendre camp si composició al banquillo)
-@profile_time("optimize_unit_positions")
+# 🔹 SIMPLIFIED optimization function
 def optimize_unit_positions(screen, COMPO):
-    """
-    Vendre unitats del camp si tenim unitats de composició al banquillo
-    """
-    logger.info("[OPTIMIZE] Checking for composition units on bench vs non-composition on field...")
+    """Quick optimization - sell non-composition units if composition units on bench"""
     
-    # Detectar unitats actuals
-    relevant_templates = []
-    relevant_names = []
+    templates = field_imgs + bench_imgs
+    names = [('field', os.path.splitext(f)[0]) for f in field_files] + [('bench', os.path.splitext(f)[0]) for f in bench_files]
     
-    # Add field and bench templates
-    relevant_templates.extend(field_imgs)
-    relevant_templates.extend(bench_imgs)
-    relevant_names.extend([('field', os.path.splitext(f)[0]) for f in field_files])
-    relevant_names.extend([('bench', os.path.splitext(f)[0]) for f in bench_files])
-    
-    all_detections = find_units_on_screen(screen, relevant_templates, threshold=0.85, min_dist=25)
+    detections = find_units_on_screen(screen, templates, threshold=0.8, min_dist=30)
     
     field_units = []
     bench_units = []
     
-    for i, center in all_detections:
-        pos_name = get_unit_position_cached(center)
-        template_type, unit_name = relevant_names[i]
+    for i, center in detections:
+        pos_name = get_unit_position(center)
+        template_type, unit_name = names[i]
         
         if template_type == 'field' and pos_name.startswith("camp"):
-            field_units.append((i, center, unit_name, pos_name))
+            field_units.append((unit_name, center))
         elif template_type == 'bench' and pos_name.startswith("banquillo"):
-            bench_units.append((i, center, unit_name, pos_name))
+            bench_units.append((unit_name, center))
     
-    # Identificar unitats de composició al banquillo
-    compo_bench_units = [unit for unit in bench_units if unit[2] in COMPO]
+    # Find composition units on bench and non-composition on field
+    compo_bench = [unit for unit in bench_units if unit[0] in COMPO]
+    non_compo_field = [unit for unit in field_units if unit[0] not in COMPO]
     
-    # Identificar unitats NO de composició al camp
-    non_compo_field_units = [unit for unit in field_units if unit[2] not in COMPO]
-    non_compo_bench_units = [unit for unit in bench_units if unit[2] not in COMPO]
-    
-    if compo_bench_units and non_compo_field_units:
-        logger.info(f"[OPTIMIZE] Found {len(compo_bench_units)} composition units on bench and {len(non_compo_field_units)} non-composition units on field")
+    if compo_bench and non_compo_field:
+        # Sell cheapest non-composition field unit
+        cheapest_field = min(non_compo_field, key=lambda x: unit_costs.get(x[0], 0))
+        unit_name, center = cheapest_field
         
-        # Vendre la unitat més barata del camp que no sigui de composició
-        cheapest_field = min(non_compo_field_units, key=lambda x: unit_costs.get(x[2], 0))
-        _, field_center, field_unit_name, field_pos = cheapest_field
+        print(f"[OPTIMIZE] Selling {unit_name}")
+        adb_tap(*center)
+        time.sleep(0.5)  # Minimal delay
         
-        # Obtenir informació de la unitat de composició al banquillo
-        compo_unit = compo_bench_units[0]  # Agafem la primera
-        compo_unit_name = compo_unit[2]
-        
-        logger.info(f"[OPTIMIZE] Selling {field_unit_name} (cost: {unit_costs.get(field_unit_name, 0)}) to make space for {compo_unit_name}")
-        
-        # Clicar la unitat del camp per seleccionar-la
-        adb_tap(*field_center)
-        time.sleep(0.4)  # Esperar que aparegui el botó de venda
-        
-        # Buscar i clicar el botó de venda
         screen = adb_screenshot()
         sell_pos = find_template(screen, SELL_BUTTON)
         if sell_pos:
             adb_tap(*sell_pos)
-            logger.info(f"[SUCCESS] Sold {field_unit_name} successfully")
-            time.sleep(0.5)  # Esperar que es processi la venda
-            return True
-        else:
-            logger.warning("[WARNING] Sell button not found after selecting unit")
-            return False
-    elif non_compo_bench_units:
-        logger.info(f"[OPTIMIZE] Found {len(non_compo_bench_units)} non-composition units on bench")
-        for non_compo_bench_unit in non_compo_bench_units:
-            _, field_center, field_unit_name, field_pos = non_compo_bench_unit
-        
-            # Obtenir informació de la unitat de composició al banquillo
-            non_compo_unit = non_compo_bench_units[0]  # Agafem la primera
-            non_compo_unit_name = non_compo_unit[2]
-            
-            logger.info(f"[OPTIMIZE] Selling {field_unit_name} (cost: {unit_costs.get(field_unit_name, 0)}) to make space for {non_compo_unit_name}")
-            
-            # Clicar la unitat del camp per seleccionar-la
-            adb_tap(*field_center)
-            time.sleep(0.4)  # Esperar que aparegui el botó de venda
-            
-            # Buscar i clicar el botó de venda
+            time.sleep(0.5)
             screen = adb_screenshot()
-            sell_pos = find_template(screen, SELL_BUTTON)
-            if sell_pos:
-                adb_tap(*sell_pos)
-                logger.info(f"[SUCCESS] Sold {field_unit_name} successfully")
-                time.sleep(0.5)  # Esperar que es processi la venda
-    else:
-        if compo_bench_units:
-            logger.debug(f"[OPTIMIZE] {len(compo_bench_units)} composition units on bench, but no non-composition units on field to replace")
-        elif non_compo_field_units:
-            logger.debug(f"[OPTIMIZE] {len(non_compo_field_units)} non-composition units on field, but no composition units on bench")
-        else:
-            logger.debug("[OPTIMIZE] No optimization needed - good unit positioning")
-        return False
+            return True
+    
+    return False
 
-# 🔹 Thread principal del bot
-@profile_time("bot_loop_iteration")
+# 🔹 NOVA FUNCIO: Netejar unitats del banquillo que no són de la composició
+def cleanup_bench_units(screen, COMPO):
+    """Elimina unitats del banquillo que no són de la composició actual"""
+    print("[CLEANUP] Checking bench for non-composition units...")
+    
+    # Detectar només unitats del banquillo
+    bench_detections = find_units_on_screen(screen, bench_imgs, threshold=0.8, min_dist=30)
+    
+    bench_units = []
+    for i, center in bench_detections:
+        pos_name = get_unit_position(center)
+        if pos_name.startswith("banquillo"):
+            unit_name = os.path.splitext(bench_files[i])[0]
+            bench_units.append((unit_name, center))
+    
+    # Trobar unitats que no són de la composició
+    non_compo_bench = [unit for unit in bench_units if unit[0] not in COMPO]
+    
+    if not non_compo_bench:
+        print("[CLEANUP] No non-composition units found on bench")
+        return False
+    
+    print(f"[CLEANUP] Found {len(non_compo_bench)} non-composition units on bench: {[u[0] for u in non_compo_bench]}")
+    
+    # Vendre les unitats que no són de la composició
+    units_sold = 0
+    for unit_name, center in non_compo_bench:
+        print(f"[CLEANUP] Selling {unit_name} from bench")
+        adb_tap(*center)
+        time.sleep(0.3)  # Esperar que aparegui el botó de venda
+        
+        # Buscar i clicar el botó de venda
+        current_screen = adb_screenshot()
+        sell_pos = find_template(current_screen, SELL_BUTTON)
+        if sell_pos:
+            adb_tap(*sell_pos)
+            units_sold += 1
+            time.sleep(0.3)  # Esperar que es completi la venda
+        else:
+            print(f"[CLEANUP] Could not find sell button for {unit_name}")
+    
+    if units_sold > 0:
+        print(f"[CLEANUP] Successfully sold {units_sold} non-composition units")
+        time.sleep(0.5)  # Esperar que es completi tot
+    
+    return units_sold > 0
+
+def is_bench_empty(screen):
+    """Detecta si el banquillo està completament buit"""
+    if not os.path.exists(EMPTY_BENCH):
+        return False  # Si no tenim template, assumim que no està buit
+    
+    # Agafar la regió del banquillo complet
+    bench_region_x0 = min(cell["rect"][0] for cell in bench_cells)
+    bench_region_y0 = min(cell["rect"][1] for cell in bench_cells)
+    bench_region_x1 = max(cell["rect"][2] for cell in bench_cells)
+    bench_region_y1 = max(cell["rect"][3] for cell in bench_cells)
+    
+    bench_roi = screen[bench_region_y0:bench_region_y1, bench_region_x0:bench_region_x1]
+    
+    # Comparar amb el template del banquillo buit
+    empty_template = cv2.imread(EMPTY_BENCH)
+    if empty_template is None:
+        return False
+    
+    # Redimensionar template si cal
+    if bench_roi.shape[:2] != empty_template.shape[:2]:
+        empty_template = cv2.resize(empty_template, (bench_roi.shape[1], bench_roi.shape[0]))
+    
+    # Template matching
+    res = cv2.matchTemplate(bench_roi, empty_template, cv2.TM_CCOEFF_NORMED)
+    _, max_val, _, _ = cv2.minMaxLoc(res)
+    
+    # Si la similitud és alta, el banquillo està buit
+    return max_val >= 0.85
+
+# 🔹 OPTIMIZED bot loop
 def bot_loop():
     global bot_running
     COMPO = []
     elixir_amount = 0
-    last_screen_time = 0
-    last_optimize_time = 0  # Added timer for optimization checks
+    last_elixir_read = 0
     iteration_count = 0
     
-    logger.info("[BOT] Bot loop started")
+    print("[BOT] Optimized bot loop started")
     
     while True:
         if bot_running:
             iteration_count += 1
-            logger.debug(f"[LOOP] Bot iteration #{iteration_count}")
             
             if not COMPO:
                 if os.path.exists(COMPOSITION_FILE):
                     with open(COMPOSITION_FILE, "r") as f:
                         data = json.load(f)
                         COMPO = [os.path.splitext(u)[0] for u in data.get("units",[])]
-                        logger.info(f"[COMP] Loaded composition: {COMPO}")
+                        print(f"[COMP] Loaded: {COMPO}")
                 else:
-                    logger.error("[ERROR] No composition file found")
+                    print("[ERROR] No composition file")
                     bot_running = False
                     continue
             
             try:
-                screen_start = time.time()
+                time.sleep(0.5)
                 screen = adb_screenshot()
-                screen_time = time.time() - screen_start
-                logger.debug(f"[SCREEN] Screenshot: {screen_time:.3f}s")
                 current_time = time.time()
             except Exception as e:
-                logger.error(f"[ERROR] Screenshot error: {e}")
-                time.sleep(0.1)
+                print(f"[ERROR] Screenshot: {e}")
+                time.sleep(0.2)  # Reduced error delay
                 continue
 
-            template_start = time.time()
-            
             reward_pos = find_template(screen, REWARD)
             if reward_pos:
-                logger.info("[ACTION] Reward detected, clicking to collect")
+                print("[ACTION] Reward")
                 adb_tap(*reward_pos)
-                time.sleep(0.3)
+                time.sleep(0.2)  # Reduced delay
                 continue
             
             init_pos = find_template(screen, INIT_BATTLE)
             if init_pos:
-                logger.info("[ACTION] Initial screen detected, clicking Battle")
+                print("[ACTION] Battle")
                 adb_tap(*init_pos)
-                time.sleep(0.1)
+                time.sleep(0.1)  # Reduced delay
                 continue
 
             play_again = find_template(screen, PLAY_AGAIN_BATTLE)
             if play_again:
-                logger.info("[ACTION] Play again screen detected")
+                print("[ACTION] Play again")
                 adb_tap(*play_again)
-                time.sleep(0.1)
+                time.sleep(0.1)  # Reduced delay
                 continue
 
-            quit = find_template(screen, QUIT)
-            if quit:
-                logger.info("[ACTION] Quit screen detected")
-                adb_tap(*quit)
-                time.sleep(0.1)
+            quit_pos = find_template(screen, QUIT)
+            if quit_pos:
+                print("[ACTION] Quit")
+                adb_tap(*quit_pos)
+                time.sleep(0.1)  # Reduced delay
                 continue
 
             deploy = find_template(screen, PHASE_DEPLOY)
             if deploy:
-                logger.info("[PHASE] Deploy phase detected")
-                if current_time - last_screen_time > 1.0:
+                print("[PHASE] Deploy")
+                if current_time - last_elixir_read > 1.5:
                     elixir_value = read_elixir(screen)
                     if elixir_value is not None:
                         elixir_amount = elixir_value
-                    last_screen_time = current_time
+                    last_elixir_read = current_time
+                
                 elixir_amount = deploy_units(screen, COMPO, elixir_amount)
-                time.sleep(0.3)
+                time.sleep(0.2)  # Reduced delay
                 continue
 
             battle_phase = find_template(screen, PHASE_BATTLE)
             if battle_phase:
-                logger.info("[PHASE] Battle phase detected, waiting...")
-                time.sleep(0.3)
+                print("[PHASE] Battle - waiting")
+                time.sleep(0.5)  # Longer wait during battle
                 continue
 
-            template_time = time.time() - template_start
-            logger.debug(f"[TIME] Template matching: {template_time:.3f}s")
-            logger.debug("[STATUS] Screen not recognized")
-            time.sleep(0.2)
+            time.sleep(0.1)
         else:
             time.sleep(0.1)
 
@@ -859,10 +648,10 @@ def click_event(event, x, y, flags, param):
         if x0 <= x <= x1 and y0 <= y <= y1:
             if name == "start":
                 bot_running = True
-                logger.info("[BOT] Bot arrancat")
+                print("[BOT] Bot started - OPTIMIZED")
             elif name == "stop":
                 bot_running = False
-                logger.info("[BOT] Bot aturat")
+                print("[BOT] Bot stopped")
             elif name == "confirm":
                 save_composition()
 
@@ -879,3 +668,4 @@ while True:
         break
 
 cv2.destroyAllWindows()
+
