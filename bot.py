@@ -105,7 +105,7 @@ def profile_time(func_name):
     return decorator
 
 DEBUG_MODE = True
-DEBUG_SAVE_IMAGES = True
+DEBUG_SAVE_IMAGES = False
 
 # 🔹 Funcions ADB
 def adb_screenshot():
@@ -230,8 +230,12 @@ def load_digit_templates():
     
     return templates
 
+digit_templates = load_digit_templates()
+
 @profile_time("read_elixir")
 def read_elixir(screen):
+    global digit_templates
+
     current_time = time.time()
     
     if (_elixir_cache["value"] is not None and 
@@ -282,7 +286,6 @@ def read_elixir(screen):
             cv2.imwrite(f"{debug_dir}/elixir_{name}.png", processed)
         logger.info("[DEBUG] Saved all preprocessing methods to debug_images/")
     
-    digit_templates = load_digit_templates()
     best_template_result = None
     best_confidence = 0
     
@@ -477,7 +480,7 @@ def deploy_units(screen, COMPO, elixir_amount):
     logger.info(f"[SUMMARY] Detection summary:")
     logger.info(f"   [FIELD] Field units: {len(field_units)}")
     for field_unit in field_units:
-        logger.info(f"  [FIELD] - {field_unit[2]} at {field_unit[3]}") 
+        logger.info(f"   [FIELD] - {field_unit[2]} at {field_unit[3]}") 
     logger.info(f"   [BENCH] Bench units: {len(bench_units)}")
     logger.info(f"   [SHOP] Available cards: {len(available_cards)}")
     logger.info(f"   [ELIXIR] Current elixir: {elixir_amount}")
@@ -709,13 +712,13 @@ def bot_loop():
             if deploy:
                 logger.info("[PHASE] Deploy phase detected")
                 elixir_amount = deploy_units(screen, COMPO, elixir_amount)
-                time.sleep(0.3)
+                time.sleep(0.1)
                 continue
 
             battle_phase = find_template(screen, PHASE_BATTLE)
             if battle_phase:
                 logger.info("[PHASE] Battle phase detected, waiting...")
-                time.sleep(0.3)
+                time.sleep(0.1)
                 continue
 
             template_time = time.time() - template_start
