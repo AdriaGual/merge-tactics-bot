@@ -134,55 +134,137 @@ def get_unit_position(center):
             return cell["name"]
     return "desconegut"
 
-# 🔹 Llegir elixir
+# 🔹 Llegir elixir amb template matching
 def read_elixir(screen):
     x0, y0, x1, y1 = elixir_rect
     
-    # Dibuixar el rectangle a la imatge original per comprovar la regió
-    debug_screen = screen.copy()
-    cv2.rectangle(debug_screen, (x0, y0), (x1, y1), (0, 255, 0), 2)
-    cv2.imshow("Debug - Elixir Region", debug_screen)
-    
     # Retallar la ROI
     roi = screen[y0:y1, x0:x1]
-    cv2.imshow("ROI", roi)
     
-    # Preprocessament
+    # Convert to grayscale
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
+    
+    # Apply morphological operations to clean up the image
+    kernel = np.ones((2,2), np.uint8)
+    gray = cv2.morphologyEx(gray, cv2.MORPH_CLOSE, kernel)
+    
+    # Use Otsu's thresholding for better binarization
+    _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    
+    # Invert if background is darker than text
+    if np.mean(thresh) < 127:
+        thresh = cv2.bitwise_not(thresh)
+    
+    detected_digits = []
+    digit_templates = load_digit_templates()
+    
+    if digit_templates:
+        # Find all digit matches with higher threshold for better accuracy
+        for digit, template in digit_templates.items():
+            if template is not None:
+                res = cv2.matchTemplate(thresh, template, cv2.TM_CCOEFF_NORMED)
+                locations = np.where(res >= 0.8)  # Higher threshold for better accuracy
+                
+                h, w = template.shape[:2]
+                for pt in zip(*locations[::-1]):
+                    # Store position, digit, and confidence
+                    confidence = res[pt[1], pt[0]]
+                    detected_digits.append((pt[0], pt[1], digit, confidence, w))
+        
+        if detected_digits:
+            # Remove overlapping detections (keep highest confidence)
+            filtered_digits = []
+            detected_digits.sort(key=lambda x: x[3], reverse=True)  # Sort by confidence
+            
+            for current in detected_digits:
+                x, y, digit, conf, width = current
+                # Check if this detection overlaps with any already accepted detection
+                overlap = False
+                for accepted in filtered_digits:
+                    ax, ay, _, _, awidth = accepted
+                    # Check for significant overlap
+                    if (abs(x - ax) < max(width, awidth) * 0.7 and abs(y - ay) < 10):
+                        overlap = True
+                        break
+                
+                if not overlap:
+                    filtered_digits.append(current)
+            
+            # Sort remaining digits by x-coordinate (left to right)
+            filtered_digits.sort(key=lambda x: x[0])
+            
+            # Build the number string
+            elixir_str = ''.join([str(digit) for _, _, digit, _, _ in filtered_digits])
+            
+            # Validate the result (elixir should be reasonable)
+            if elixir_str and len(elixir_str) <= 3:  # Max 3 digits (up to 999)
+                try:
+                    value = int(elixir_str)
+                    if 0 <= value <= 999:  # Reasonable elixir range
+                        print(f"⚡ Elixir detectat (template): {value}")
+                        return value
+                except ValueError:
+                    pass
+    
+    # Apply additional noise reduction for OCR
+    kernel_large = np.ones((3,3), np.uint8)
+    thresh_clean = cv2.morphologyEx(thresh, cv2.MORPH_OPEN, kernel_large)
+    thresh_clean = cv2.morphologyEx(thresh_clean, cv2.MORPH_CLOSE, kernel_large)
+    
+    # Enhanced OCR configuration for multi-digit numbers
+    custom_config = r'--oem 3 --psm 7 -c tessedit_char_whitelist=0123456789'
+    text = pytesseract.image_to_string(thresh_clean, config=custom_config)
+    
+    # Clean and extract digits
+    digits_only = ''.join(filter(str.isdigit, text.strip()))
+    
+    if digits_only and len(digits_only) <= 3:
+        try:
+            value = int(digits_only)
+            if 0 <= value <= 999:  # Reasonable elixir range
+                print(f"⚡ Elixir (OCR fallback): {value}")
+                return value
+        except ValueError:
+            pass
+    
+    print("❌ No s'ha pogut llegir l'elixir")
+    return None
 
-    # Augmentar contrast i eliminar soroll
-    gray = cv2.equalizeHist(gray)
-
-    # Filtre suau per evitar línies massa trencades
-    gray = cv2.GaussianBlur(gray, (3, 3), 0)
-
-    # Threshold més robust (prova adaptatiu o Otsu)
-    thresh = cv2.adaptiveThreshold(
-        gray, 255,
-        cv2.ADAPTIVE_THRESH_MEAN_C,
-        cv2.THRESH_BINARY_INV,
-        11, 2
-    )
-
-    # També pots provar Otsu
-    # _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
-
-    cv2.imshow("Thresh", thresh)
-    cv2.waitKey(1)
-
-    # Passar el "thresh" a tesseract en comptes de la ROI original
-    text = pytesseract.image_to_string(
-        thresh,
-        config='--psm 7 -c tessedit_char_whitelist=0123456789'
-    )
-
-    try:
-        value = int("".join(filter(str.isdigit, text)))
-        print("elixir:", value)
-        return value
-    except:
-        return None
-
+def load_digit_templates():
+    """Load digit templates for template matching"""
+    templates = {}
+    templates_dir = "templates/digits"
+    
+    # Create templates directory if it doesn't exist
+    if not os.path.exists(templates_dir):
+        os.makedirs(templates_dir)
+        print(f"📁 Directori creat: {templates_dir}")
+        print("💡 Afegeix plantilles de dígits (0.png, 1.png, ..., 9.png) per millorar la detecció")
+        return {}
+    
+    # Load digit templates (0-9)
+    for digit in range(10):
+        template_path = os.path.join(templates_dir, f"{digit}.png")
+        if os.path.exists(template_path):
+            template = cv2.imread(template_path, cv2.IMREAD_GRAYSCALE)
+            if template is not None:
+                # Apply same preprocessing as ROI
+                _, template = cv2.threshold(template, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+                if np.mean(template) < 127:
+                    template = cv2.bitwise_not(template)
+                templates[digit] = template
+            else:
+                print(f"⚠️ No s'ha pogut carregar la plantilla: {template_path}")
+        else:
+            templates[digit] = None
+    
+    loaded_count = sum(1 for t in templates.values() if t is not None)
+    if loaded_count > 0:
+        print(f"✅ Carregades {loaded_count} plantilles de dígits")
+    else:
+        print("⚠️ No s'han trobat plantilles de dígits. Usant OCR com a mètode principal.")
+    
+    return templates
 
 # 🔹 Funció intel·ligent de deploy
 def deploy_units(screen, COMPO, elixir_amount):
