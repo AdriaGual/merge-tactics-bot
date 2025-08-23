@@ -10,7 +10,6 @@ from functools import wraps
 from config.paths import INIT_BATTLE, PHASE_DEPLOY, PHASE_BATTLE
 from config.paths import PLAY_AGAIN_BATTLE, QUIT, SELL_BUTTON, BACK
 from config.paths import REWARD, EMPTY_BENCH
-from config.paths import UNITS_DIR, FIELDS_DIR, BENCH_DIR
 from config.paths import GRID_FILE, COMPOSITION_FILE, ELIXIR_FILE, BENCH_FILE
 from config.paths import ADB_PATH, THRESHOLD
 from config.ui import BUTTONS
@@ -174,8 +173,6 @@ def read_elixir(screen):
         return best_match
 
     return _elixir_cache.get("value", 0)
-
-
 
 # 🔹 ULTRA-OPTIMIZED deploy function
 def deploy_units(screen, COMPO, elixir_amount):
@@ -461,34 +458,94 @@ def bot_loop():
         else:
             time.sleep(0.1)
 
-# 🔹 GUI OpenCV
-IMG_SIZE = (100,100)
-MARGIN = 10
+# 🔹 GUI OpenCV REFACTORED
+IMG_SIZE = (60, 60)
+MARGIN = 20
 COLS = 5
+LOG_HEIGHT = 200  # Espai per logs
+INFO_PANEL_WIDTH = 300  # Espai lateral per info
+BUTTONS_OFFSET = 400
 
-def draw_units():
+logs = []
+
+def add_log(msg):
+    """Afegeix un log i limita la longitud"""
+    global logs
+    logs.append(msg)
+    if len(logs) > 20:
+        logs = logs[-20:]
+
+def draw_ui(COMPO_display=None, elixir_value=None):
     rows = (len(unit_imgs)-1)//COLS + 1
-    canvas_h = rows*(IMG_SIZE[1]+MARGIN)+MARGIN + 70
-    canvas_w = max(COLS*(IMG_SIZE[0]+MARGIN)+MARGIN, 370)
+    canvas_h = rows*(IMG_SIZE[1]+MARGIN) + MARGIN + LOG_HEIGHT
+    canvas_w = max(COLS*(IMG_SIZE[0]+MARGIN)+MARGIN, 400) + INFO_PANEL_WIDTH
     canvas = np.ones((canvas_h, canvas_w,3), dtype=np.uint8)*255
+    
+    # 🔹 Miniatures
     for idx, img in enumerate(unit_imgs):
         row = idx//COLS
         col = idx%COLS
         x = col*(IMG_SIZE[0]+MARGIN)+MARGIN
-        y = row*(IMG_SIZE[1]+MARGIN)+MARGIN+70
+        y = row*(IMG_SIZE[1]+MARGIN)+MARGIN
         thumb = cv2.resize(img, IMG_SIZE)
         canvas[y:y+IMG_SIZE[1], x:x+IMG_SIZE[0]] = thumb
         if selected[idx]:
             cv2.rectangle(canvas, (x,y), (x+IMG_SIZE[0], y+IMG_SIZE[1]), (0,255,0),3)
-        # Mostrar cost
         unit_name = os.path.splitext(unit_files[idx])[0]
         cost = unit_costs.get(unit_name, "?")
-        cv2.putText(canvas, str(cost), (x+5, y+20), cv2.QT_FONT_NORMAL, 0.6, (0,0,0),2)
-    # Botons
-    for name, (x0,y0,x1,y1) in BUTTONS.items():
-        color = (0,200,0) if (bot_running and name=="start") else (0,0,255) if (not bot_running and name=="stop") else (150,150,150)
+        cv2.putText(canvas, str(cost), (x+5, y+20), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,255,0),2)
+    
+    # 🔹 Botons
+    draw_buttons = {name: (x0, y0+BUTTONS_OFFSET, x1, y1+BUTTONS_OFFSET) for name,(x0,y0,x1,y1) in BUTTONS.items()}
+
+    for name, (x0,y0,x1,y1) in draw_buttons.items():
+        if name == "start":
+            color = (0,200,0) if bot_running else (150,150,150)
+        elif name == "stop":
+            color = (0,0,255) if not bot_running else (150,150,150)
+        else:
+            color = (100,100,200)
         cv2.rectangle(canvas, (x0,y0), (x1,y1), color, -1)
-        cv2.putText(canvas, name.capitalize(), (x0+5, y0+30), cv2.QT_FONT_NORMAL, 0.8, (255,255,255),2)
+        cv2.putText(canvas, name.capitalize(), (x0+5, y0+25), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255),2)
+    
+    # 🔹 Panell lateral info
+    info_x0 = COLS*(IMG_SIZE[0]+MARGIN)+2*MARGIN
+    info_x1 = canvas_w - MARGIN
+    cv2.rectangle(canvas, (info_x0, MARGIN), (info_x1, canvas_h-MARGIN), (245,245,245), -1)
+    
+    y_offset = MARGIN + 20
+    # Composició carregada
+    COMPO_display = []
+    if os.path.exists(COMPOSITION_FILE):
+        try:
+            with open(COMPOSITION_FILE, "r") as f:
+                data = json.load(f)
+                COMPO_display = data.get("units", [])
+        except (json.JSONDecodeError, FileNotFoundError):
+            COMPO_display = []
+    
+    cv2.putText(canvas, "Composicio actual:", (info_x0+5, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,0), 2)
+    y_offset += 25
+    if COMPO_display:
+        for unit in COMPO_display:
+            unit_display = os.path.splitext(unit)[0] if isinstance(unit, str) else str(unit)
+            cv2.putText(canvas, f"- {unit_display}", (info_x0+10, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (50,50,50),1)
+            y_offset += 18
+    else:
+        cv2.putText(canvas, "  Cap composicio", (info_x0+10, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100,100,100),1)
+        y_offset += 18
+    y_offset += 10
+    # Elixir actual
+    if elixir_value is not None:
+        cv2.putText(canvas, f"Elixir: {elixir_value}", (info_x0+5, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,100,255),2)
+        y_offset += 25
+    # Logs
+    cv2.putText(canvas, "Logs:", (info_x0+5, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0,0,0),2)
+    y_offset += 20
+    for log_line in logs[-10:]:
+        cv2.putText(canvas, log_line, (info_x0+5, y_offset), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (80,80,80),1)
+        y_offset += 18
+
     return canvas
 
 def click_event(event, x, y, flags, param):
@@ -500,23 +557,28 @@ def click_event(event, x, y, flags, param):
         row = idx//COLS
         col = idx%COLS
         x0 = col*(IMG_SIZE[0]+MARGIN)+MARGIN
-        y0 = row*(IMG_SIZE[1]+MARGIN)+MARGIN+70
+        y0 = row*(IMG_SIZE[1]+MARGIN)+MARGIN
         x1 = x0+IMG_SIZE[0]
         y1 = y0+IMG_SIZE[1]
         if x0 <= x <= x1 and y0 <= y <= y1:
             selected[idx] = not selected[idx]
+            add_log(f"{os.path.splitext(unit_files[idx])[0]} {'selected' if selected[idx] else 'deselected'}")
             return
-    # Botons
+    # Botons - apply the same offset used in draw_ui()
     for name, (x0,y0,x1,y1) in BUTTONS.items():
-        if x0 <= x <= x1 and y0 <= y <= y1:
+        # Apply the same BUTTONS_OFFSET used when drawing the buttons
+        offset_y0 = y0 + BUTTONS_OFFSET
+        offset_y1 = y1 + BUTTONS_OFFSET
+        if x0 <= x <= x1 and offset_y0 <= y <= offset_y1:
             if name == "start":
                 bot_running = True
-                print("[BOT] Bot started - OPTIMIZED")
+                add_log("Bot started")
             elif name == "stop":
                 bot_running = False
-                print("[BOT] Bot stopped")
+                add_log("Bot stopped")
             elif name == "confirm":
-                save_composition()
+                compo = save_composition()
+                add_log(f"Composition saved: {compo}")
 
 # 🔹 Inici
 cv2.namedWindow("Unit Selector")
@@ -524,11 +586,10 @@ cv2.setMouseCallback("Unit Selector", click_event)
 threading.Thread(target=bot_loop, daemon=True).start()
 
 while True:
-    canvas = draw_units()
+    canvas = draw_ui()
     cv2.imshow("Unit Selector", canvas)
     key = cv2.waitKey(20) & 0xFF
     if key == 27:  # ESC surt
         break
 
 cv2.destroyAllWindows()
-

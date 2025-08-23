@@ -1,11 +1,11 @@
 {
     "name": "Custom Deck",
     "units": [
+        "archer",
+        "archer_queen",
         "bandit",
-        "executioner",
-        "golden_knight",
-        "knight",
+        "barbarian",
         "mega_knight",
-        "pekka"
+        "valkyrie"
     ]
 }
