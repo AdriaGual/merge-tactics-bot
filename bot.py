@@ -434,17 +434,16 @@ def bot_loop():
             deploy = find_template(screen, PHASE_DEPLOY)
             if deploy:
                 print("[PHASE] Deploy")
-                if current_time - last_elixir_read > 1.5:
-                    elixir_value = read_elixir(screen)
-                    if elixir_value is not None:
-                        elixir_amount = elixir_value
-                        last_elixir_read = current_time
-                    else:
-                        logger.info("[WARN] Elixir read elixir failed, keeping last value")
-                        logger.info("Trying to buy random unit")
-                        adb_tap(200,1500)
-                        adb_tap(400,1500)
-                        adb_tap(550,1500)
+                elixir_value = read_elixir(screen)
+                if elixir_value is not None:
+                    elixir_amount = elixir_value
+                    last_elixir_read = current_time
+                else:
+                    logger.info("[WARN] Elixir read elixir failed, keeping last value")
+                    logger.info("Trying to buy random unit")
+                    adb_tap(200,1500)
+                    adb_tap(400,1500)
+                    adb_tap(550,1500)
                 if elixir_amount > 0:
                     elixir_amount = deploy_units(screen, COMPO, elixir_amount)
                 else:
