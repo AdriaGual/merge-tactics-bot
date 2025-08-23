@@ -9,21 +9,12 @@ import pytesseract
 
 # 🔧 Configuració
 UNITS_DIR = "templates/units"       # cartes que es poden comprar
-FIELDS_DIR = "templates/field"     # unitats al camp
+FIELDS_DIR = "templates/field"      # unitats al camp
 GRID_FILE = "grid_positions.json"
 COMPOSITION_FILE = "composition.json"
 ELIXIR_FILE = "elixir.json"
 ADB_PATH = "adb"
 THRESHOLD = 0.8
-
-# Carregar cartes i unitats camp
-unit_files = [f for f in os.listdir(UNITS_DIR) if f.endswith(".png")]
-unit_imgs = [cv2.imread(os.path.join(UNITS_DIR, f)) for f in unit_files]
-
-field_files = [f for f in os.listdir(FIELDS_DIR) if f.endswith(".png")]
-field_imgs = [cv2.imread(os.path.join(FIELDS_DIR, f)) for f in field_files]
-
-selected = [False]*len(unit_imgs)
 
 # Botons Start/Stop/Confirm
 BUTTONS = {
@@ -40,9 +31,54 @@ INIT_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle.png")
 PHASE_DEPLOY = os.path.join(TEMPLATES_DIR_MAIN, "deploy_phase.png")
 PHASE_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "battle_phase.png")
 PLAY_AGAIN_BATTLE = os.path.join(TEMPLATES_DIR_MAIN, "play_again.png")
+QUIT = os.path.join(TEMPLATES_DIR_MAIN, "quit.png")
 SELL_BUTTON = os.path.join(TEMPLATES_DIR_MAIN, "sell.png")
 
-# 🔹 Funcions auxiliars
+# 🔹 Carregar unitats i costos
+unit_files = [f for f in os.listdir(UNITS_DIR) if f.endswith(".png")]
+unit_imgs = [cv2.imread(os.path.join(UNITS_DIR, f)) for f in unit_files]
+selected = [False]*len(unit_imgs)
+
+field_files = [f for f in os.listdir(FIELDS_DIR) if f.endswith(".png")]
+field_imgs = [cv2.imread(os.path.join(FIELDS_DIR, f)) for f in field_files]
+
+# Assigna el cost manualment aquí
+unit_costs = {
+    "barbarian": 2,
+    "archer": 3,
+    "knight": 2,
+    "archer_queen": 5,
+    "bandit": 4,
+    "bomber": 2,
+    "dart_goblin": 3,
+    "executioner": 3,
+    "giant_skeleton": 3,
+    "goblin": 2,
+    "goblin_machine": 4,
+    "golden_knight": 5,
+    "mega_knight": 4,
+    "pekka": 3,
+    "prince": 3,
+    "princess": 4,
+    "royal_ghost": 4,
+    "skeleton_king": 5,
+    "spear_goblin": 2,
+    "valkyrie": 3,   
+}
+
+# Carregar coordenades del camp i banquillo
+with open(GRID_FILE, "r") as f:
+    grid_data = json.load(f)
+
+grid_cells = [item for item in grid_data if item["name"].startswith("camp")]
+bench_cells = [item for item in grid_data if item["name"].startswith("banquillo")]
+
+# Carregar coordenades elixir
+with open(ELIXIR_FILE, "r") as f:
+    elixir_data = json.load(f)
+elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
+
+# 🔹 Funcions ADB
 def adb_screenshot():
     result = subprocess.run([ADB_PATH, "exec-out", "screencap", "-p"], stdout=subprocess.PIPE)
     img = cv2.imdecode(np.frombuffer(result.stdout, np.uint8), cv2.IMREAD_COLOR)
@@ -70,19 +106,7 @@ def save_composition():
     print(f"📦 Composició confirmada: {chosen_units}")
     return chosen_units
 
-# 🔹 Carregar coordenades del camp i banquillo
-with open(GRID_FILE, "r") as f:
-    grid_data = json.load(f)
-
-grid_cells = [item for item in grid_data if item["name"].startswith("camp")]
-bench_cells = [item for item in grid_data if item["name"].startswith("banquillo")]
-
-# 🔹 Carregar coordenades elixir
-with open(ELIXIR_FILE, "r") as f:
-    elixir_data = json.load(f)
-elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
-print(elixir_rect)
-# 🔹 Detecció unitats a pantalla
+# 🔹 Detectar unitats a pantalla
 def find_units_on_screen(screen, templates, threshold=THRESHOLD, min_dist=50):
     detected = []
     for i, template in enumerate(templates):
@@ -113,23 +137,102 @@ def get_unit_position(center):
 # 🔹 Llegir elixir
 def read_elixir(screen):
     x0, y0, x1, y1 = elixir_rect
+    
+    # Dibuixar el rectangle a la imatge original per comprovar la regió
+    debug_screen = screen.copy()
+    cv2.rectangle(debug_screen, (x0, y0), (x1, y1), (0, 255, 0), 2)
+    cv2.imshow("Debug - Elixir Region", debug_screen)
+    
+    # Retallar la ROI
     roi = screen[y0:y1, x0:x1]
+    cv2.imshow("ROI", roi)
+    
+    # Preprocessament
     gray = cv2.cvtColor(roi, cv2.COLOR_BGR2GRAY)
-    _, thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV)
-    text = pytesseract.image_to_string(thresh, config='--psm 7 digits')
+
+    # Augmentar contrast i eliminar soroll
+    gray = cv2.equalizeHist(gray)
+
+    # Filtre suau per evitar línies massa trencades
+    gray = cv2.GaussianBlur(gray, (3, 3), 0)
+
+    # Threshold més robust (prova adaptatiu o Otsu)
+    thresh = cv2.adaptiveThreshold(
+        gray, 255,
+        cv2.ADAPTIVE_THRESH_MEAN_C,
+        cv2.THRESH_BINARY_INV,
+        11, 2
+    )
+
+    # També pots provar Otsu
+    # _, thresh = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+
+    cv2.imshow("Thresh", thresh)
+    cv2.waitKey(1)
+
+    # Passar el "thresh" a tesseract en comptes de la ROI original
+    text = pytesseract.image_to_string(
+        thresh,
+        config='--psm 7 -c tessedit_char_whitelist=0123456789'
+    )
+
     try:
         value = int("".join(filter(str.isdigit, text)))
+        print("elixir:", value)
         return value
     except:
         return None
+
+
+# 🔹 Funció intel·ligent de deploy
+def deploy_units(screen, COMPO, elixir_amount):
+    detected_fields = find_units_on_screen(screen, field_imgs)
+    detected_bench = find_units_on_screen(screen, unit_imgs)
+
+    # 💸 Vendre unitats innecessàries
+    for i, center in detected_fields + detected_bench:
+        name_file = field_files[i] if i < len(field_imgs) else unit_files[i]
+        unit_name = os.path.splitext(name_file)[0]
+        pos_name = get_unit_position(center)
+        
+        if unit_name not in COMPO and pos_name != "desconegut":
+            potential_elixir = elixir_amount + max(unit_costs.get(unit_name,0)-1,0)
+            can_buy = any(unit_costs.get(u,0) <= potential_elixir for u in COMPO)
+            if can_buy:
+                print(f"💸 Venen {unit_name} a {pos_name}")
+                adb_tap(*center)
+                time.sleep(2)
+                screen = adb_screenshot()
+                sell_pos = find_template(screen, SELL_BUTTON)
+                if sell_pos:
+                    adb_tap(*sell_pos)
+                    time.sleep(0.5)
+                    elixir_amount += unit_costs.get(unit_name,0)-1
+                else:
+                    print("❌ No s'ha trobat botó Sell")
+
+    # 💰 Comprar unitats
+    print(elixir_amount)
+    affordable_units = [u for u in COMPO if unit_costs.get(u,0) <= elixir_amount]
+    print(affordable_units)
+    if affordable_units:
+        u_to_buy = max(affordable_units, key=lambda u: unit_costs[u])
+        template_path = os.path.join(UNITS_DIR, u_to_buy+".png")
+        pos = find_template(screen, template_path)
+        if pos:
+            print(f"💰 Comprant {u_to_buy}")
+            adb_tap(*pos)
+            elixir_amount -= unit_costs[u_to_buy]
+            time.sleep(2)
+    return elixir_amount
 
 # 🔹 Thread principal del bot
 def bot_loop():
     global bot_running
     COMPO = []
+    elixir_amount = 0
     while True:
         if bot_running:
-            # Carregar composició
             if not COMPO:
                 if os.path.exists(COMPOSITION_FILE):
                     with open(COMPOSITION_FILE, "r") as f:
@@ -148,8 +251,9 @@ def bot_loop():
                 continue
 
             # Llegir elixir
-            elixir_amount = read_elixir(screen)
-            if elixir_amount is not None:
+            elixir_value = read_elixir(screen)
+            if elixir_value is not None:
+                elixir_amount = elixir_value
                 print(f"⚡ Elixir actual: {elixir_amount}")
 
             # Pantalla inicial
@@ -168,48 +272,20 @@ def bot_loop():
                 time.sleep(0.25)
                 continue
 
+            # Tornar a jugar
+            quit = find_template(screen, QUIT)
+            if quit:
+                print("Sortir")
+                adb_tap(*quit)
+                time.sleep(0.25)
+                continue
+
+
             # Deploy phase
             deploy = find_template(screen, PHASE_DEPLOY)
             if deploy:
                 print("🟢 Deploy phase")
-
-                detected_fields = find_units_on_screen(screen, field_imgs)
-                detected_bench = find_units_on_screen(screen, unit_imgs)
-
-                vis_screen = cv2.resize(screen, (screen.shape[1]//2, screen.shape[0]//2))
-                scale_x = screen.shape[1]/vis_screen.shape[1]
-                scale_y = screen.shape[0]/vis_screen.shape[0]
-
-                # Vendre unitats que no estiguin a la composició
-                for i, center in detected_fields + detected_bench:
-                    if (i < len(field_imgs)):
-                        name_file = field_files[i]
-                    else:
-                        name_file = unit_files[i]
-                    pos_name = get_unit_position(center)
-                    cx, cy = int(center[0]/scale_x), int(center[1]/scale_y)
-
-                    if os.path.splitext(name_file)[0] not in COMPO and pos_name != "desconegut":
-                        print(f"💸 Venen {name_file} a {pos_name}")
-                        adb_tap(*center)
-                        time.sleep(2)
-                        screen = adb_screenshot()
-                        sell_pos = find_template(screen, SELL_BUTTON)
-                        if sell_pos:
-                            adb_tap(*sell_pos)
-                            time.sleep(0.5)
-                        else:
-                            print("❌ No s'ha trobat botó Sell")
-
-
-                # Comprar unitats que falten
-                for u in COMPO:
-                    template_path = os.path.join(UNITS_DIR, u+".png")
-                    pos = find_template(screen, template_path)
-                    if pos:
-                        print(f"💰 Comprant {u}")
-                        adb_tap(*pos)
-                        time.sleep(2)
+                elixir_amount = deploy_units(screen, COMPO, elixir_amount)
                 time.sleep(0.5)
                 continue
 
@@ -235,7 +311,6 @@ def draw_units():
     canvas_h = rows*(IMG_SIZE[1]+MARGIN)+MARGIN + 70
     canvas_w = max(COLS*(IMG_SIZE[0]+MARGIN)+MARGIN, 370)
     canvas = np.ones((canvas_h, canvas_w,3), dtype=np.uint8)*255
-    # Miniatures
     for idx, img in enumerate(unit_imgs):
         row = idx//COLS
         col = idx%COLS
@@ -245,6 +320,10 @@ def draw_units():
         canvas[y:y+IMG_SIZE[1], x:x+IMG_SIZE[0]] = thumb
         if selected[idx]:
             cv2.rectangle(canvas, (x,y), (x+IMG_SIZE[0], y+IMG_SIZE[1]), (0,255,0),3)
+        # Mostrar cost
+        unit_name = os.path.splitext(unit_files[idx])[0]
+        cost = unit_costs.get(unit_name, "?")
+        cv2.putText(canvas, str(cost), (x+5, y+20), cv2.QT_FONT_NORMAL, 0.6, (0,0,0),2)
     # Botons
     for name, (x0,y0,x1,y1) in BUTTONS.items():
         color = (0,200,0) if (bot_running and name=="start") else (0,0,255) if (not bot_running and name=="stop") else (150,150,150)
