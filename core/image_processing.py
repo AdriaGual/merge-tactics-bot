@@ -50,19 +50,26 @@ class ImageProcessor:
             return max_loc[0]+w//2, max_loc[1]+h//2
         return None
 
-    def find_units_on_screen(self, screen, templates, threshold=0.8, min_dist=40):
+    def find_units_on_screen(self, screen, templates, threshold=0.75, min_dist=40):
         """Detect units on screen using template matching"""
         detected = []
+
+        screen_gray = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY) if screen.ndim == 3 else screen
+
         for i, template in enumerate(templates):
-            res = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
+            template_gray = cv2.cvtColor(template, cv2.COLOR_BGR2GRAY) if template.ndim == 3 else template
+            res = cv2.matchTemplate(screen_gray, template_gray, cv2.TM_CCOEFF_NORMED)
             loc = np.where(res >= threshold)
-            h, w = template.shape[:2]
+            h, w = template_gray.shape[:2]
+
             centers = [(pt[0]+w//2, pt[1]+h//2) for pt in zip(*loc[::-1])]
             final_centers = []
             for c in centers:
                 if all(np.hypot(c[0]-fc[0], c[1]-fc[1]) > min_dist for fc in final_centers):
                     final_centers.append(c)
+
             detected.extend([(i, c) for c in final_centers])
+
         return detected
 
     def read_elixir(self, screen, elixir_rect):

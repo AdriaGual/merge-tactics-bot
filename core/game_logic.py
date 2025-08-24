@@ -126,29 +126,35 @@ class GameLogic:
             else:
                 time.sleep(0.5)
                 screen = self.adb.screenshot()
+
+                shop_detections = self.image_processor.find_units_on_screen(
+                    screen, unit_imgs, threshold=threshold, min_dist=30
+                )
                 
-                all_detections = self.image_processor.find_units_on_screen(screen, relevant_templates, threshold=threshold, min_dist=30)
-                
-                field_units = []
-                bench_units = []
                 available_cards = []
+                for i, center in shop_detections:
+                    unit_name = os.path.splitext(unit_files[i])[0]
+                    available_cards.append((unit_name, cost, center))
                 
-                for i, center in all_detections:
-                    pos_name = self.get_unit_position(center, grid_cells, bench_cells)
-                    template_type, unit_name = relevant_names[i]
-                    
-                    if template_type == 'shop':
-                        cost = unit_costs.get(unit_name, 0)
+                available_compo_cards = [card for card in available_cards if card[0] in composition]
+                logger.info(f"[SHOP] Checking new cards: {available_cards}")
+                ## Si hi ha cartes de composició disponibles, intentar comprar alguna
+                if available_compo_cards:
+                    # Opcional: ordenar per cost descendent
+                    available_compo_cards.sort(key=lambda x: x[1], reverse=True)
+
+                    for unit_name, cost, center in available_compo_cards:
                         if cost <= elixir_amount:
-                            available_cards.append((unit_name, cost, center))
-                    elif template_type == 'field' and pos_name.startswith("camp"):
-                        field_units.append((i, center, unit_name, pos_name))
-                    elif template_type == 'bench' and pos_name.startswith("banquillo"):
-                        bench_units.append((i, center, unit_name, pos_name))
-                
-                elixir_amount = self.image_processor.read_elixir(screen, elixir_rect)
-                print(f"[SUMMARY] Field:{len(field_units)} Bench:{len(bench_units)} Shop:{len(available_cards)} Elixir:{elixir_amount}")
-        
+                            time.sleep(0.4)
+                            print(f"[BUY] {unit_name} (cost: {cost})")
+                            self.adb.tap(*center)
+                            purchases_made += 1
+                            elixir_amount -= cost
+                            purchased = True
+                        else:
+                            break
+            
+            
         print(f"[SUCCESS] {purchases_made} purchases completed")
         return elixir_amount
 
@@ -175,7 +181,8 @@ class GameLogic:
         # Find composition units on bench and non-composition on field
         compo_bench = [unit for unit in bench_units if unit[0] in composition]
         non_compo_field = [unit for unit in field_units if unit[0] not in composition]
-        
+        print("compo_bench", compo_bench)
+        print("non_compo_field", non_compo_field)
         if compo_bench and non_compo_field:
             # Sell cheapest non-composition field unit
             cheapest_field = min(non_compo_field, key=lambda x: unit_costs.get(x[0], 0))
@@ -183,11 +190,12 @@ class GameLogic:
             
             print(f"[OPTIMIZE] Selling {unit_name}")
             self.adb.tap(*center)
-            time.sleep(0.5)
+            time.sleep(0.25)
             
             screen = self.adb.screenshot()
             sell_pos = self.image_processor.find_template(screen, "templates/sell.png")
             if sell_pos:
+                print("Found sell button")
                 self.adb.tap(*sell_pos)
                 time.sleep(0.5)
                 return True

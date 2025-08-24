@@ -22,6 +22,7 @@ from config.constants import (
     THRESHOLD
 )
 from config.logging_config import setup_logging
+import cv2
 
 # Setup logging
 logger = setup_logging()
