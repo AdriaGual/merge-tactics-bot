@@ -127,7 +127,8 @@ class UIManager:
         if composition_display:
             for unit in composition_display:
                 unit_display = os.path.splitext(unit)[0] if isinstance(unit, str) else str(unit)
-                cv2.putText(canvas, f"- {" ".join(word.capitalize() for word in unit_display.split("_"))}", (info_x0+10, y_offset), 
+                display_name = " ".join(word.capitalize() for word in unit_display.split("_"))
+                cv2.putText(canvas,  f"- {display_name}" , (info_x0+10, y_offset), 
                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (50, 50, 50), 1)
                 y_offset += 18
         else:
