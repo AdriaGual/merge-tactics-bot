@@ -66,6 +66,7 @@ SEARCH_THRESHOLD = 0.9
 # bench blocks purchases, so the planner sells a reserve unit to keep buying.
 BENCH_CELLS = [(210, 1280), (315, 1280), (410, 1280), (500, 1280), (585, 1280)]
 
-# Sell button that appears after selecting a unit
+# Sell button that appears after selecting a unit. This is the localised button
+# ("Vender" in Spanish); re-capture it if the game language changes.
 SELL_BUTTON = "templates/sell.png"
 SELL_THRESHOLD = 0.85
