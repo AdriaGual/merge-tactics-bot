@@ -76,7 +76,7 @@ def ensure_art_library():
             if os.path.exists(marker):
                 # Already known to be unavailable; do not retry every start.
                 continue
-            url = ART_HOST + ART_SUBDIR + urllib.parse.quote(filename)
+            url = ART_HOST + ART_SUBDIR + urllib.parse.quote(filename, safe="()")
             result = subprocess.run(
                 ["curl", "-fsSL", "-A", "Mozilla/5.0", "-o", path, url],
                 stdout=subprocess.DEVNULL,

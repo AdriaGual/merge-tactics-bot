@@ -106,12 +106,22 @@ The bot includes a comprehensive GUI that allows you to:
 
 ## ⚙️ Configuration
 
-### Target Composition
+### Target Composition (per season)
 
-There is no manual composition to set. The deploy planner always steers toward
-a ranked target list in `config/target_comp.py`: it merges duplicates first, then
-buys the strongest troop of that list it can afford, and never spends elixir on
-weaker troops outside it. Edit that list to change the composition it forces.
+There is no manual composition to set. The bot reads the current season's troop
+tier list (S/A/B/C/D) from CrownStats and builds its target comp from the S/A/B
+troops in `config/season_tier.json`: it merges duplicates first, then buys the
+strongest target troop it can afford, and never spends elixir on C/D troops, so
+it commits to a good comp instead of diluting the roster.
+
+Refresh the season data whenever the roster changes:
+
+```bash
+python utils/fetch_tier_list.py
+```
+
+If the JSON is missing it falls back to the last known list in
+`config/target_comp.py`.
 
 ## 📸 Screenshots
 
@@ -138,9 +148,12 @@ merge-tactics-bot/
 │   ├── ui_manager.py         # UI component management
 │   └── event_handler.py      # User interaction handling
 ├── ⚙️ config/
+│   ├── target_comp.py        # Season target comp (from the tier list)
+│   ├── season_tier.json      # Current season S/A/B/C/D troop tiers
 │   ├── constants.py          # Game constants and settings
 │   └── logging_config.py     # Logging configuration
 ├── 🛠️ utils/
+│   ├── fetch_tier_list.py    # Refresh season_tier.json from CrownStats
 │   └── cache_manager.py      # Performance optimization
 └── 📁 templates/             # Unit recognition templates
 ```

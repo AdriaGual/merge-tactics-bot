@@ -1,0 +1,89 @@
+{
+    "season": 11,
+    "source": "https://crownstats.com/merge-tactics/tier-list",
+    "fetched": "2026-11-19",
+    "tiers": {
+        "S": [
+            "boss_bandit",
+            "monk",
+            "golden_knight",
+            "pekka",
+            "skeleton_king"
+        ],
+        "A": [
+            "mega_knight",
+            "knight",
+            "electro_giant",
+            "mini_pekka",
+            "valkyrie",
+            "royal_giant"
+        ],
+        "B": [
+            "barbarian",
+            "wizard",
+            "archer",
+            "musketeer",
+            "baby_dragon",
+            "electro_wizard",
+            "bomber",
+            "bandit",
+            "princess",
+            "executioner"
+        ],
+        "C": [
+            "witch",
+            "magic_archer",
+            "royal_ghost",
+            "spear_goblin",
+            "archer_queen",
+            "giant_skeleton",
+            "firecracker",
+            "giant",
+            "dart_goblin",
+            "goblin"
+        ],
+        "D": [
+            "goblin_machine",
+            "goblin_demolisher",
+            "skeleton_dragons",
+            "goblin_cage"
+        ]
+    },
+    "order": [
+        "boss_bandit",
+        "monk",
+        "golden_knight",
+        "pekka",
+        "skeleton_king",
+        "mega_knight",
+        "knight",
+        "electro_giant",
+        "mini_pekka",
+        "valkyrie",
+        "royal_giant",
+        "barbarian",
+        "wizard",
+        "archer",
+        "musketeer",
+        "baby_dragon",
+        "electro_wizard",
+        "bomber",
+        "bandit",
+        "princess",
+        "executioner",
+        "witch",
+        "magic_archer",
+        "royal_ghost",
+        "spear_goblin",
+        "archer_queen",
+        "giant_skeleton",
+        "firecracker",
+        "giant",
+        "dart_goblin",
+        "goblin",
+        "goblin_machine",
+        "goblin_demolisher",
+        "skeleton_dragons",
+        "goblin_cage"
+    ]
+}
