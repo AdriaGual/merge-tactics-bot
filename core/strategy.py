@@ -3,16 +3,23 @@ Purchase planning for a Merge Tactics deploy phase.
 
 What actually wins this mode is merging: buying a duplicate of a troop already
 deployed merges it into the next star and refunds one elixir, so a duplicate is
-almost always the best thing on the shelf. When no duplicate is on offer the
-planner buys the strongest troop of the target composition it can afford (see
-config/target_comp.py) and otherwise keeps the elixir for the next shop.
+almost always the best thing on the shelf. The shop does not reroll on its own;
+a purchase replaces that slot with a new card, so the planner keeps buying - the
+strongest target troop (see config/target_comp.py) or, if none is offered, the
+cheapest card - to cycle the shop and find duplicates faster. When the bench is
+full a purchase has no effect, so it sells one reserve unit and carries on.
 """
 
 import logging
 import time
 from dataclasses import dataclass, field
 
-from config.board_layout import ELIXIR_RECT
+from config.board_layout import (
+    BENCH_CELLS,
+    ELIXIR_RECT,
+    SELL_BUTTON,
+    SELL_THRESHOLD,
+)
 from config.target_comp import TARGET_COMP, target_rank
 
 logger = logging.getLogger(__name__)
@@ -77,17 +84,17 @@ class DeployPlanner:
             duplicates.sort(key=lambda card: (state.copies_to_next_star(card.name), card.cost))
             return duplicates[0]
 
-        # 2. Otherwise strengthen the target comp. The roster is kept narrow so
-        #    merges stay reachable, and weak troops outside the target list are
-        #    never bought: elixir is saved until a target troop shows up.
-        if len(state.copies) >= MAX_DISTINCT_TROOPS:
-            return None
-
+        # 2. Strengthen the target comp if a target troop is on offer.
         targets = [card for card in affordable if card.name in TARGET_COMP]
-        if not targets:
-            return None
-        targets.sort(key=lambda card: (target_rank(card.name), card.cost))
-        return targets[0]
+        if targets:
+            targets.sort(key=lambda card: (target_rank(card.name), card.cost))
+            return targets[0]
+
+        # 3. Nothing we want on the shelf. Buy the cheapest card anyway: a
+        #    purchase replaces that shop slot with a new card, so buying rerolls
+        #    the shop and lets a target/duplicate appear instead of stalling
+        #    with the same three cards every round.
+        return min(affordable, key=lambda card: card.cost)
 
     def play(self, screen, state, max_buys=6, dry_run=False):
         """Play one deploy phase: pop the orbs, then spend the elixir"""
@@ -146,17 +153,37 @@ class DeployPlanner:
                 break
 
             logger.info(f"[BUY] {choice.name} ({choice.cost}) -> {state.star(choice.name)}*")
-            if not dry_run:
-                self.adb.tap(*choice.center)
-                time.sleep(self.tap_delay)
-                screen = self.adb.screenshot()
+            if dry_run:
+                state.buy(choice.name)
+                bought.append(choice.name)
+                elixir -= choice.cost
+                continue
+
+            elixir_before = elixir
+            self.adb.tap(*choice.center)
+            time.sleep(self.tap_delay)
+            screen = self.adb.screenshot()
+            read = self._read_elixir(screen)
+            # A successful buy spends elixir and takes the card off the shelf, so
+            # only treat it as "bench full" when the balance did not drop AND the
+            # same card is still on offer.
+            if read is not None and read >= elixir_before:
+                still_offered = any(
+                    c.name == choice.name and c.cost == choice.cost
+                    for c in self.reader.shop_cards(screen)
+                )
+                if still_offered:
+                    logger.info("[SHOP] buy had no effect (bench full?), selling a bench unit")
+                    if self._sell_one(screen):
+                        screen = self.adb.screenshot()
+                        reason = "bench full"
+                        continue
+                    reason = "bench full, could not sell"
+                    break
+
             state.buy(choice.name)
             bought.append(choice.name)
-            elixir -= choice.cost
-            if not dry_run:
-                read = self._read_elixir(screen)
-                if read is not None:
-                    elixir = read
+            elixir = read if read is not None else elixir_before - choice.cost
 
         units_after = self.reader.own_units(screen) if screen is not None else 0
         summary = {
@@ -173,6 +200,25 @@ class DeployPlanner:
             f"units {units_before}->{units_after} | roster: {state.report()}"
         )
         return summary
+
+    def _sell_one(self, screen):
+        """Sell one reserve (bench) unit to free space; True if one was sold.
+
+        Only bench cells are tapped, never the board, so a merged or deployed
+        troop is never sold.
+        """
+        ip = self.reader.image_processor
+        for cx, cy in BENCH_CELLS:
+            self.adb.tap(cx, cy)
+            time.sleep(0.4)
+            shot = self.adb.screenshot()
+            pos = ip.find_template(shot, SELL_BUTTON, SELL_THRESHOLD)
+            if pos:
+                logger.info(f"[SELL] selling a bench unit at ({cx}, {cy})")
+                self.adb.tap(*pos)
+                time.sleep(0.6)
+                return True
+        return False
 
     def _save_reason(self, cards, elixir, state):
         """Human-readable reason the planner chose to save elixir"""

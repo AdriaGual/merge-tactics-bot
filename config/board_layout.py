@@ -63,3 +63,11 @@ END_BUTTON_THRESHOLD = 0.9
 # Lobby "Batalla" (search match) button word, matched to start a match
 SEARCH_BUTTON = "templates/buttons/search.png"
 SEARCH_THRESHOLD = 0.9
+
+# Bottom bench slots (our reserve), centre points on a 900x1600 capture. A full
+# bench blocks purchases, so the planner sells a reserve unit to keep buying.
+BENCH_CELLS = [(210, 1280), (315, 1280), (410, 1280), (500, 1280), (585, 1280)]
+
+# Sell button that appears after selecting a unit
+SELL_BUTTON = "templates/sell.png"
+SELL_THRESHOLD = 0.85
