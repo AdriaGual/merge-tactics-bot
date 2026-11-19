@@ -40,14 +40,16 @@ PHASE_LABELS = {
 }
 PHASE_THRESHOLD = 0.9
 
-# Quest orbs: translucent spheres that pop up on the arena. They come in more
-# than one colour (cyan, magenta), so several HSV ranges are matched together.
-ORB_HSV_RANGES = [
-    ((80, 40, 180), (105, 145, 255)),    # cyan
-    ((135, 40, 170), (175, 160, 255)),   # magenta / pink
+# Quest orbs: translucent spheres that pop up on the arena. They come in several
+# colours, so each is matched with its own range and size/fill limits. The green
+# orb sits on green grass, so it needs a high brightness floor and a tighter fill
+# (its blob also merges with the bright grass rim, hence the larger diameter).
+ORB_RANGES = [
+    {"low": (80, 40, 180), "high": (105, 145, 255), "min_fill": 0.20, "max_diameter": 120},   # cyan
+    {"low": (135, 40, 170), "high": (175, 160, 255), "min_fill": 0.20, "max_diameter": 120},  # magenta
+    {"low": (33, 110, 212), "high": (52, 200, 255), "min_fill": 0.45, "max_diameter": 170},   # green
 ]
 ORB_MIN_DIAMETER = 40
-ORB_MAX_DIAMETER = 110
 
 # End-of-match buttons (templates/buttons), matched anywhere on screen to walk
 # out of results and start the next match. None of them appear during play.

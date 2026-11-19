@@ -18,9 +18,8 @@ from config.board_layout import (
     ARENA_RECT,
     COST_BADGES,
     ELIXIR_RECT,
-    ORB_HSV_RANGES,
-    ORB_MAX_DIAMETER,
     ORB_MIN_DIAMETER,
+    ORB_RANGES,
     PHASE_LABELS,
     PHASE_LABEL_RECT,
     PHASE_THRESHOLD,
@@ -119,19 +118,18 @@ class BoardReader:
             return []
         x0, y0, x1, y1 = ARENA_RECT
         hsv = cv2.cvtColor(screen[y0:y1, x0:x1], cv2.COLOR_BGR2HSV)
-        mask = None
-        for low, high in ORB_HSV_RANGES:
-            band = cv2.inRange(hsv, low, high)
-            mask = band if mask is None else cv2.bitwise_or(mask, band)
-        count, _, stats, centroids = cv2.connectedComponentsWithStats(mask, 8)
         found = []
-        for i in range(1, count):
-            x, y, w, h, area = stats[i]
-            if not (ORB_MIN_DIAMETER <= w <= ORB_MAX_DIAMETER and ORB_MIN_DIAMETER <= h <= ORB_MAX_DIAMETER):
-                continue
-            if area < 0.2 * w * h:
-                continue
-            found.append((int(centroids[i][0]) + x0, int(centroids[i][1]) + y0))
+        for band in ORB_RANGES:
+            mask = cv2.inRange(hsv, band["low"], band["high"])
+            count, _, stats, centroids = cv2.connectedComponentsWithStats(mask, 8)
+            max_d = band["max_diameter"]
+            for i in range(1, count):
+                x, y, w, h, area = stats[i]
+                if not (ORB_MIN_DIAMETER <= w <= max_d and ORB_MIN_DIAMETER <= h <= max_d):
+                    continue
+                if area < band["min_fill"] * w * h:
+                    continue
+                found.append((int(centroids[i][0]) + x0, int(centroids[i][1]) + y0))
         return found
 
     def own_units(self, screen):
