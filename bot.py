@@ -109,7 +109,11 @@ class MergeTacticsBot:
             if phase == "deploy":
                 if not self._deploy_played:
                     summary = self.handle_deploy_phase(screen)
-                    if summary and summary.get("elixir") is not None:
+                    # Only commit the round when the shop was actually read.
+                    # "no_cards" means recognition failed (e.g. purchase
+                    # animation), so retry on a later frame instead of skipping.
+                    if (summary and summary.get("elixir") is not None
+                            and summary.get("reason") != "no_cards"):
                         self._deploy_played = True
                 time.sleep(0.8)
             elif phase == "battle":

@@ -115,26 +115,33 @@ class DeployPlanner:
         units_before = self.reader.own_units(screen)
 
         bought = []
+        reason = "done"
         for _ in range(max_buys):
             if screen is None or elixir is None:
+                reason = "no_elixir"
                 break
             cards = self.reader.shop_cards(screen)
             if not cards and not dry_run:
                 # The purchase animation briefly hides the shop; retry before
                 # giving up so leftover elixir is not wasted.
-                for _ in range(3):
-                    time.sleep(0.5)
+                for _ in range(5):
+                    time.sleep(0.6)
                     screen = self.adb.screenshot()
                     cards = self.reader.shop_cards(screen)
                     if cards:
                         break
             if not cards:
-                logger.info("[SHOP] no shop cards recognised, stopping")
+                # Could not see the shop at all. Do not treat this as a decision:
+                # the caller retries on a later frame of the same deploy phase.
+                reason = "no_cards"
+                logger.info("[SHOP] no shop cards recognised, will retry")
                 break
             choice = self.choose(cards, elixir, state)
             if choice is None:
+                reason = self._save_reason(cards, elixir, state)
                 logger.info(
-                    f"[SHOP] saving {elixir} elixir | shop {[(c.name, c.cost) for c in cards]}"
+                    f"[SHOP] saving {elixir} elixir ({reason}) | "
+                    f"shop {[(c.name, c.cost) for c in cards]}"
                 )
                 break
 
@@ -159,12 +166,24 @@ class DeployPlanner:
             "units": units_after,
             "units_before": units_before,
             "roster": state.report(),
+            "reason": reason,
         }
         logger.info(
-            f"[DEPLOY] bought {bought or 'nothing'} | elixir left {elixir} | "
+            f"[DEPLOY] bought {bought or 'nothing'} | elixir left {elixir} ({reason}) | "
             f"units {units_before}->{units_after} | roster: {state.report()}"
         )
         return summary
+
+    def _save_reason(self, cards, elixir, state):
+        """Human-readable reason the planner chose to save elixir"""
+        affordable = [card for card in cards if card.cost <= elixir]
+        if not affordable:
+            return "nothing affordable"
+        if len(state.copies) >= MAX_DISTINCT_TROOPS and all(
+            card.name not in state.copies for card in affordable
+        ):
+            return f"roster full ({MAX_DISTINCT_TROOPS} kinds), waiting for duplicates"
+        return "no target troop on offer"
 
     def _read_elixir(self, screen):
         if screen is None:
