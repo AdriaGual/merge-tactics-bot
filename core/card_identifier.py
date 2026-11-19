@@ -17,6 +17,9 @@ import numpy as np
 ART_HOST = "https://crownstats.com"
 ART_SUBDIR = "/icons/merge/cards/"
 ART_CACHE_DIR = os.path.join("debug_images", "cards", "raw")
+# Marker for an art file the host does not serve, so a missing card is not
+# re-downloaded on every start.
+MISSING_SUFFIX = ".missing"
 
 # card template name -> file served by the art library (roster of the season)
 ART_MAP = {
@@ -69,14 +72,20 @@ def ensure_art_library():
     for name, filename in ART_MAP.items():
         path = os.path.join(ART_CACHE_DIR, filename)
         if not (os.path.exists(path) and os.path.getsize(path) > 0):
+            marker = path + MISSING_SUFFIX
+            if os.path.exists(marker):
+                # Already known to be unavailable; do not retry every start.
+                continue
             url = ART_HOST + ART_SUBDIR + urllib.parse.quote(filename)
             result = subprocess.run(
                 ["curl", "-fsSL", "-A", "Mozilla/5.0", "-o", path, url],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
             )
-            if result.returncode != 0 or not os.path.exists(path):
+            if result.returncode != 0 or not os.path.exists(path) or os.path.getsize(path) == 0:
                 print(f"[warn] art not available for {name} ({filename})")
+                with open(marker, "w"):
+                    pass
                 continue
         usable[name] = filename
     return usable

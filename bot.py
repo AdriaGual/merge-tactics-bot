@@ -42,7 +42,7 @@ class MergeTacticsBot:
         self.composition = []
         self.last_elixir_value = 0
         self._last_deploy_ts = 0.0
-        self._last_phase = None
+        self._deploy_played = False
         
         # Load game data
         self._load_game_data()
@@ -133,7 +133,7 @@ class MergeTacticsBot:
             self.adb.tap(*pos)
             if name == "rematch":
                 # A fresh match forgets the troops bought in the previous one.
-                self._last_phase = None
+                self._deploy_played = False
                 self.game_logic.start_run()
             time.sleep(ACTION_DELAY)
             return True
@@ -147,16 +147,19 @@ class MergeTacticsBot:
             return True
 
         phase = self.game_logic.phase(screen)
-        # A deploy phase lasts ~15s and only pays elixir once, so act on the
-        # transition into it instead of on every frame of the phase.
-        changed = phase != self._last_phase
-        self._last_phase = phase
         if phase == "deploy":
-            if changed:
-                self._handle_deploy_phase(screen)
+            # Play each deploy phase once, but if the opening modal still hides
+            # the elixir badge the read comes back empty: retry on the next
+            # frames instead of skipping the whole round.
+            if not self._deploy_played:
+                summary = self._handle_deploy_phase(screen)
+                if summary and summary.get("elixir") is not None:
+                    self._deploy_played = True
             time.sleep(ERROR_DELAY)
             return True
         if phase == "battle":
+            # The next round opens with its own deploy phase.
+            self._deploy_played = False
             time.sleep(BATTLE_WAIT)
             return True
 
@@ -214,6 +217,7 @@ class MergeTacticsBot:
         summary = self.game_logic.deploy_phase(screen, self.composition)
         if summary["elixir"] is not None:
             self.last_elixir_value = summary["elixir"]
+        return summary
 
     def run_gui(self):
         """Run the GUI application"""

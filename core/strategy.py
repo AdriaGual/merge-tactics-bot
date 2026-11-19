@@ -76,11 +76,13 @@ class DeployPlanner:
             duplicates.sort(key=lambda card: (state.copies_to_next_star(card.name), card.cost))
             return duplicates[0]
 
-        # 2. A new troop only while the roster still has room to merge later.
-        if len(state.copies) >= MAX_DISTINCT_TROOPS:
+        # 2. A new troop. Keep the roster narrow so merges stay reachable, but
+        #    a composition card is the player's chosen plan, so it may still
+        #    join past the cap rather than leave elixir unspent.
+        preferred = [card for card in affordable if card.name in composition]
+        if len(state.copies) >= MAX_DISTINCT_TROOPS and not preferred:
             return None
 
-        preferred = [card for card in affordable if card.name in composition]
         pool = preferred or affordable
         # Stronger troops cost more elixir; among equal costs the composition wins.
         pool.sort(key=lambda card: (card.cost, card.name in composition), reverse=True)
