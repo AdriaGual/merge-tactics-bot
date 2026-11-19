@@ -84,6 +84,13 @@ class MergeTacticsBot:
             self.last_elixir_value = summary["elixir"]
         return summary
 
+    def collect_orbs(self, screen):
+        """Tap every quest orb on the arena; they hand out money"""
+        for x, y in self.game_logic.reader.orbs(screen):
+            logger.info(f"[ORB] collect at ({x}, {y})")
+            self.adb.tap(x, y)
+            time.sleep(0.15)
+
     def run(self, auto_search=True, duration=None):
         deadline = time.time() + duration if duration else None
         last_search = 0.0
@@ -106,6 +113,10 @@ class MergeTacticsBot:
                 continue
 
             phase = self.game_logic.phase(screen)
+            # Orbs give money and can show up in any colour during deploy and
+            # battle, so grab any on screen every frame.
+            if phase in ("deploy", "battle"):
+                self.collect_orbs(screen)
             if phase == "deploy":
                 if not self._deploy_played:
                     summary = self.handle_deploy_phase(screen)

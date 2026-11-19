@@ -18,8 +18,11 @@ from config.board_layout import (
     ARENA_RECT,
     COST_BADGES,
     ELIXIR_RECT,
+    ORB_HSV_HIGH,
+    ORB_HSV_LOW,
+    ORB_MAX_DIAMETER,
     ORB_MIN_DIAMETER,
-    ORB_RANGES,
+    ORB_MIN_FILL,
     PHASE_LABELS,
     PHASE_LABEL_RECT,
     PHASE_THRESHOLD,
@@ -113,23 +116,22 @@ class BoardReader:
         return value if value in (1, 2, 3, 4, 5) else None
 
     def orbs(self, screen):
-        """Centres of the quest orbs sitting on the arena"""
+        """Centres of the quest orbs on the arena (any colour)"""
         if screen is None:
             return []
         x0, y0, x1, y1 = ARENA_RECT
         hsv = cv2.cvtColor(screen[y0:y1, x0:x1], cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv, ORB_HSV_LOW, ORB_HSV_HIGH)
+        count, _, stats, centroids = cv2.connectedComponentsWithStats(mask, 8)
         found = []
-        for band in ORB_RANGES:
-            mask = cv2.inRange(hsv, band["low"], band["high"])
-            count, _, stats, centroids = cv2.connectedComponentsWithStats(mask, 8)
-            max_d = band["max_diameter"]
-            for i in range(1, count):
-                x, y, w, h, area = stats[i]
-                if not (ORB_MIN_DIAMETER <= w <= max_d and ORB_MIN_DIAMETER <= h <= max_d):
-                    continue
-                if area < band["min_fill"] * w * h:
-                    continue
-                found.append((int(centroids[i][0]) + x0, int(centroids[i][1]) + y0))
+        for i in range(1, count):
+            x, y, w, h, area = stats[i]
+            if not (ORB_MIN_DIAMETER <= w <= ORB_MAX_DIAMETER
+                    and ORB_MIN_DIAMETER <= h <= ORB_MAX_DIAMETER):
+                continue
+            if area < ORB_MIN_FILL * w * h:
+                continue
+            found.append((int(centroids[i][0]) + x0, int(centroids[i][1]) + y0))
         return found
 
     def own_units(self, screen):
