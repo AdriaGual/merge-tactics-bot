@@ -27,11 +27,7 @@ class BotController:
     def get_last_elixir_value(self):
         """Get the last read elixir value"""
         return getattr(self.bot, 'last_elixir_value', None)
-        
-    def get_composition(self):
-        """Get current composition"""
-        return self.bot.composition
-        
+
     def run_loop(self):
         """Run the bot loop"""
         self.bot.run_loop()

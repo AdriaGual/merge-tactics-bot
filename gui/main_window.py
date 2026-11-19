@@ -12,10 +12,9 @@ from gui.event_handler import EventHandler
 logger = logging.getLogger(__name__)
 
 class MainWindow:
-    def __init__(self, composition_manager, bot_controller):
-        self.composition_manager = composition_manager
+    def __init__(self, bot_controller):
         self.bot_controller = bot_controller
-        self.ui_manager = UIManager(composition_manager)
+        self.ui_manager = UIManager()
         self.event_handler = EventHandler(self.ui_manager, bot_controller)
         self.window_name = "Merge Tactics Bot"
         self.running = True

@@ -28,9 +28,9 @@ class GameLogic:
         self.run_state = RunState()
         logger.info("[RUN] new match state")
 
-    def deploy_phase(self, screen, composition=()):
+    def deploy_phase(self, screen):
         """Play one deploy phase and return a summary of what happened"""
-        return self.planner.play(screen, self.run_state, composition=composition)
+        return self.planner.play(screen, self.run_state)
 
     def phase(self, screen):
         return self.reader.phase(screen)

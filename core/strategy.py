@@ -4,8 +4,8 @@ Purchase planning for a Merge Tactics deploy phase.
 What actually wins this mode is merging: buying a duplicate of a troop already
 deployed merges it into the next star and refunds one elixir, so a duplicate is
 almost always the best thing on the shelf. When no duplicate is on offer the
-planner buys a new troop while the roster is small (composition first, then the
-strongest card it can afford) and otherwise keeps the elixir for the next shop.
+planner buys the strongest troop of the target composition it can afford (see
+config/target_comp.py) and otherwise keeps the elixir for the next shop.
 """
 
 import logging
@@ -13,6 +13,7 @@ import time
 from dataclasses import dataclass, field
 
 from config.board_layout import ELIXIR_RECT
+from config.target_comp import TARGET_COMP, target_rank
 
 logger = logging.getLogger(__name__)
 
@@ -64,7 +65,7 @@ class DeployPlanner:
         self.adb = adb
         self.tap_delay = tap_delay
 
-    def choose(self, cards, elixir, state, composition=()):
+    def choose(self, cards, elixir, state):
         """Pick the card to buy, or None to save the elixir"""
         affordable = [card for card in cards if card.cost <= elixir]
         if not affordable:
@@ -76,19 +77,19 @@ class DeployPlanner:
             duplicates.sort(key=lambda card: (state.copies_to_next_star(card.name), card.cost))
             return duplicates[0]
 
-        # 2. A new troop. Keep the roster narrow so merges stay reachable, but
-        #    a composition card is the player's chosen plan, so it may still
-        #    join past the cap rather than leave elixir unspent.
-        preferred = [card for card in affordable if card.name in composition]
-        if len(state.copies) >= MAX_DISTINCT_TROOPS and not preferred:
+        # 2. Otherwise strengthen the target comp. The roster is kept narrow so
+        #    merges stay reachable, and weak troops outside the target list are
+        #    never bought: elixir is saved until a target troop shows up.
+        if len(state.copies) >= MAX_DISTINCT_TROOPS:
             return None
 
-        pool = preferred or affordable
-        # Stronger troops cost more elixir; among equal costs the composition wins.
-        pool.sort(key=lambda card: (card.cost, card.name in composition), reverse=True)
-        return pool[0]
+        targets = [card for card in affordable if card.name in TARGET_COMP]
+        if not targets:
+            return None
+        targets.sort(key=lambda card: (target_rank(card.name), card.cost))
+        return targets[0]
 
-    def play(self, screen, state, composition=(), max_buys=6, dry_run=False):
+    def play(self, screen, state, max_buys=6, dry_run=False):
         """Play one deploy phase: pop the orbs, then spend the elixir"""
         orbs = self.reader.orbs(screen)
         for x, y in orbs:
@@ -130,7 +131,7 @@ class DeployPlanner:
             if not cards:
                 logger.info("[SHOP] no shop cards recognised, stopping")
                 break
-            choice = self.choose(cards, elixir, state, composition)
+            choice = self.choose(cards, elixir, state)
             if choice is None:
                 logger.info(
                     f"[SHOP] saving {elixir} elixir | shop {[(c.name, c.cost) for c in cards]}"

@@ -23,13 +23,12 @@ from bot import MergeTacticsBot
 from core.adb_controller import ADBController
 from core.image_processing import ImageProcessor
 from core.game_logic import GameLogic
-from core.composition_manager import CompositionManager
-from config.paths import ADB_PATH, COMPOSITION_FILE
+from config.paths import ADB_PATH
+from config.target_comp import TARGET_COMP
 
 adb = ADBController(ADB_PATH)
 ip = ImageProcessor()
 logic = GameLogic(adb, ip)
-composition = CompositionManager(COMPOSITION_FILE).load_composition() or []
 logic.start_run()
 
 
@@ -41,14 +40,13 @@ sh = Shim()
 sh.adb = adb
 sh.image_processor = ip
 sh.game_logic = logic
-sh.composition = composition
 sh.last_elixir_value = 0
 sh._deploy_played = False
 sh._last_deploy_ts = 0.0
 sh._handle_end_screen = types.MethodType(MergeTacticsBot._handle_end_screen, sh)
 sh._handle_deploy_phase = types.MethodType(MergeTacticsBot._handle_deploy_phase, sh)
 
-print(f"[loop] armed, composition={composition}", flush=True)
+print(f"[loop] armed, target comp starts with {TARGET_COMP[:6]}", flush=True)
 last_phase = "?"
 while True:
     try:

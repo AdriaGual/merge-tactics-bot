@@ -10,14 +10,16 @@ import json
 import logging
 from config.constants import IMG_SIZE, MARGIN, COLS, LOG_HEIGHT, INFO_PANEL_WIDTH, BUTTONS_OFFSET, MAX_LOG_ENTRIES
 from config.ui import BUTTONS
+from config.target_comp import TARGET_COMP
 
 logger = logging.getLogger(__name__)
 
+# How many of the target comp entries to show in the info panel
+MAX_DISTINCT_DISPLAY = 6
+
 class UIManager:
-    def __init__(self, composition_manager):
-        self.composition_manager = composition_manager
+    def __init__(self):
         self.logs = []
-        self.selected = []
         self.unit_files = []
         self.unit_imgs = []
         
@@ -25,7 +27,6 @@ class UIManager:
         """Initialize unit data for the UI"""
         self.unit_files = unit_files
         self.unit_imgs = unit_imgs
-        self.selected = [False] * len(unit_files)
         
     def add_log(self, msg):
         """Add a log message and limit the length"""
@@ -68,10 +69,6 @@ class UIManager:
             thumb = cv2.resize(img, IMG_SIZE)
             canvas[y:y+IMG_SIZE[1], x:x+IMG_SIZE[0]] = thumb
             
-            # Draw selection border
-            if self.selected[idx]:
-                cv2.rectangle(canvas, (x, y), (x+IMG_SIZE[0], y+IMG_SIZE[1]), (0, 255, 0), 3)
-            
             # Draw unit cost
             unit_name = os.path.splitext(self.unit_files[idx])[0]
             cost = unit_costs.get(unit_name, "?")
@@ -97,14 +94,14 @@ class UIManager:
                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
 
     def _draw_info_panel(self, canvas, info_x0, y_offset, elixir_value=None):
-        """Draw the information panel with composition and logs"""
+        """Draw the information panel with the target comp and logs"""
         info_x1 = canvas.shape[1] - MARGIN
         canvas_h = canvas.shape[0]
         
         # Draw panel background
         cv2.rectangle(canvas, (info_x0, MARGIN), (info_x1, canvas_h-MARGIN), (245, 245, 245), -1)
         
-        # Draw current composition
+        # Draw the target composition
         y_offset = self._draw_composition_section(canvas, info_x0, y_offset)
         
         # Draw elixir value
@@ -117,25 +114,17 @@ class UIManager:
         self._draw_logs_section(canvas, info_x0, y_offset)
 
     def _draw_composition_section(self, canvas, info_x0, y_offset):
-        """Draw the current composition section"""
-        cv2.putText(canvas, "Actual Composition:", (info_x0+5, y_offset), 
-                   cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 0), 2)
+        """Draw the target composition the bot builds toward"""
+        cv2.putText(canvas, "Target comp (auto):", (info_x0+5, y_offset), 
+                   cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 0, 0), 2)
         y_offset += 25
-        
-        composition_display = self.composition_manager.get_composition_display()
-        
-        if composition_display:
-            for unit in composition_display:
-                unit_display = os.path.splitext(unit)[0] if isinstance(unit, str) else str(unit)
-                display_name = " ".join(word.capitalize() for word in unit_display.split("_"))
-                cv2.putText(canvas,  f"- {display_name}" , (info_x0+10, y_offset), 
-                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (50, 50, 50), 1)
-                y_offset += 18
-        else:
-            cv2.putText(canvas, "  Cap composicio", (info_x0+10, y_offset), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (100, 100, 100), 1)
+
+        for unit in TARGET_COMP[:MAX_DISTINCT_DISPLAY]:
+            display_name = " ".join(word.capitalize() for word in unit.split("_"))
+            cv2.putText(canvas,  f"- {display_name}" , (info_x0+10, y_offset), 
+                       cv2.FONT_HERSHEY_SIMPLEX, 0.5, (50, 50, 50), 1)
             y_offset += 18
-            
+
         return y_offset + 10
 
     def _draw_logs_section(self, canvas, info_x0, y_offset):
@@ -151,30 +140,7 @@ class UIManager:
 
     def handle_click(self, x, y, bot_controller):
         """Handle mouse click events"""
-        # Check unit thumbnail clicks
-        if self._handle_unit_click(x, y):
-            return True
-            
-        # Check button clicks
         return self._handle_button_click(x, y, bot_controller)
-
-    def _handle_unit_click(self, x, y):
-        """Handle clicks on unit thumbnails"""
-        for idx in range(len(self.unit_imgs)):
-            row = idx // COLS
-            col = idx % COLS
-            x0 = col * (IMG_SIZE[0] + MARGIN) + MARGIN
-            y0 = row * (IMG_SIZE[1] + MARGIN) + MARGIN
-            x1 = x0 + IMG_SIZE[0]
-            y1 = y0 + IMG_SIZE[1]
-            
-            if x0 <= x <= x1 and y0 <= y <= y1:
-                self.selected[idx] = not self.selected[idx]
-                unit_name = os.path.splitext(self.unit_files[idx])[0]
-                status = 'selected' if self.selected[idx] else 'deselected'
-                self.add_log(f"{unit_name} {status}")
-                return True
-        return False
 
     def _handle_button_click(self, x, y, bot_controller):
         """Handle clicks on control buttons"""
@@ -190,17 +156,5 @@ class UIManager:
                 elif name == "stop":
                     bot_controller.stop_bot()
                     self.add_log("Bot stopped")
-                elif name == "confirm":
-                    composition = self.composition_manager.save_composition(self.unit_files, self.selected)
-                    self.add_log(f"Composition saved: {composition}")
                 return True
         return False
-
-    def get_selected_units(self):
-        """Get currently selected units"""
-        return [i for i, selected in enumerate(self.selected) if selected]
-
-    def clear_selection(self):
-        """Clear all unit selections"""
-        self.selected = [False] * len(self.selected)
-        self.add_log("Selection cleared")

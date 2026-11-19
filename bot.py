@@ -9,11 +9,10 @@ import logging
 from core.adb_controller import ADBController
 from core.image_processing import ImageProcessor
 from core.game_logic import GameLogic
-from core.composition_manager import CompositionManager
 from gui.main_window import MainWindow
 from utils.cache_manager import CacheManager
 from config.paths import (
-    GRID_FILE, COMPOSITION_FILE, ELIXIR_FILE, BENCH_FILE, ADB_PATH,
+    GRID_FILE, ELIXIR_FILE, BENCH_FILE, ADB_PATH,
     load_unit_images
 )
 from config.game_phases import PHASE_TEMPLATES
@@ -35,11 +34,9 @@ class MergeTacticsBot:
         self.image_processor = ImageProcessor()
         self.cache_manager = CacheManager()
         self.game_logic = GameLogic(self.adb, self.image_processor)
-        self.composition_manager = CompositionManager(COMPOSITION_FILE)
-        
+
         # Bot state
         self.bot_running = False
-        self.composition = []
         self.last_elixir_value = 0
         self._last_deploy_ts = 0.0
         self._deploy_played = False
@@ -48,7 +45,7 @@ class MergeTacticsBot:
         self._load_game_data()
         
         # Initialize GUI
-        self.main_window = MainWindow(self.composition_manager, self)
+        self.main_window = MainWindow(self)
         
     def _load_game_data(self):
         """Load all game data files and images"""
@@ -95,16 +92,7 @@ class MergeTacticsBot:
             
             if self.bot_running:
                 iteration_count += 1
-                
-                # Load composition if not loaded
-                if not self.composition:
-                    self.composition = self.composition_manager.load_composition()
-                    if not self.composition:
-                        logger.error("No composition loaded")
-                        self.bot_running = False
-                        continue
-                    logger.info(f"Loaded composition: {self.composition}")
-                
+
                 try:
                     time.sleep(BOT_LOOP_DELAY)
                     screen = self.adb.screenshot()
@@ -214,7 +202,7 @@ class MergeTacticsBot:
             self.game_logic.start_run()
         self._last_deploy_ts = now
 
-        summary = self.game_logic.deploy_phase(screen, self.composition)
+        summary = self.game_logic.deploy_phase(screen)
         if summary["elixir"] is not None:
             self.last_elixir_value = summary["elixir"]
         return summary

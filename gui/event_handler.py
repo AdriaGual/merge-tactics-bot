@@ -34,12 +34,5 @@ class EventHandler:
         elif key == ord('q'):
             self.bot_controller.stop_bot()
             self.ui_manager.add_log("Bot stopped (keyboard)")
-        elif key == ord('c'):
-            composition = self.ui_manager.composition_manager.save_composition(
-                self.ui_manager.unit_files, self.ui_manager.selected
-            )
-            self.ui_manager.add_log(f"Composition saved (keyboard): {composition}")
-        elif key == ord('r'):
-            self.ui_manager.clear_selection()
             
         return True  # Continue running

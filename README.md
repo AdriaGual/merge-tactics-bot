@@ -30,9 +30,9 @@ Merge Tactics Bot is a sophisticated automation tool that plays Merge Tactics (C
 - **⚡ Real-time Decision Making** - Instant responses to game events and opportunities
 
 ### 🧠 **Strategic Intelligence**
-- **📊 Composition Management** - Customizable unit composition strategies
+- **📊 Auto Target Composition** - Builds a strong composition itself, no setup
 - **💎 Smart Elixir Management** - Optimal resource allocation and spending
-- **🔄 Dynamic Unit Optimization** - Automatically sells non-essential units
+- **🔄 Merge-First Purchasing** - Buys duplicates to upgrade troops to higher stars
 - **🎪 Multi-Phase Handling** - Adapts to different game phases (deploy, battle, rewards)
 
 ### 🛠️ **Technical Excellence**
@@ -93,23 +93,25 @@ python bot.py
 1. **Connect Device**: Ensure your Android device is connected via USB with debugging enabled
 2. **Launch Game**: Open Merge Tactics on your device
 3. **Start Bot**: Run `python bot.py` to launch the GUI interface
-4. **Configure**: Set your preferred unit composition and strategy
+4. **Play**: The bot builds a strong composition on its own (no manual setup)
 5. **Automate**: Click "Start" and watch the bot play autonomously!
 
 ### GUI Interface
 
 The bot includes a comprehensive GUI that allows you to:
 - 📊 Monitor real-time game statistics
-- ⚙️ Configure unit compositions and strategies
+- ⚙️ Show the target composition the bot is building
 - 📝 View detailed logs and performance metrics
 - 🎮 Control bot execution (start/stop/pause)
 
 ## ⚙️ Configuration
 
-### Unit Compositions
+### Target Composition
 
-Create custom strategies by choosing your units on the composition view
-<img width="721" height="571" alt="config" src="https://github.com/user-attachments/assets/f53bf6fa-3e8e-463a-a37b-f6addc57a107" />
+There is no manual composition to set. The deploy planner always steers toward
+a ranked target list in `config/target_comp.py`: it merges duplicates first, then
+buys the strongest troop of that list it can afford, and never spends elixir on
+weaker troops outside it. Edit that list to change the composition it forces.
 
 ## 📸 Screenshots
 
@@ -126,10 +128,11 @@ Create custom strategies by choosing your units on the composition view
 merge-tactics-bot/
 ├── 🤖 bot.py                 # Main bot entry point
 ├── 🎮 core/
-│   ├── game_logic.py         # Core gameplay algorithms
+│   ├── strategy.py           # Deploy planner (target comp + merges)
+│   ├── board_state.py        # Screenshot -> board state (vision)
+│   ├── card_identifier.py    # Shop card recognition (SIFT)
 │   ├── image_processing.py   # Computer vision engine
-│   ├── adb_controller.py     # Android device control
-│   └── composition_manager.py # Strategy management
+│   └── adb_controller.py     # Android device control
 ├── 🖥️ gui/
 │   ├── main_window.py        # Primary GUI interface
 │   ├── ui_manager.py         # UI component management
