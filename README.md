@@ -36,7 +36,7 @@ Merge Tactics Bot is a sophisticated automation tool that plays Merge Tactics (C
 - **🎪 Multi-Phase Handling** - Adapts to different game phases (deploy, battle, rewards)
 
 ### 🛠️ **Technical Excellence**
-- **🖥️ User-Friendly GUI** - Intuitive interface for configuration and monitoring
+- **🖥️ Headless CLI** - Runs with `python bot.py`, no GUI to babysit
 - **📝 Comprehensive Logging** - Detailed logs for debugging and performance tracking
 - **⚡ Performance Optimization** - Caching system for improved speed
 - **🔧 Modular Architecture** - Clean, maintainable codebase
@@ -91,18 +91,15 @@ python bot.py
 ### Basic Operation
 
 1. **Connect Device**: Ensure your Android device is connected via USB with debugging enabled
-2. **Launch Game**: Open Merge Tactics on your device
-3. **Start Bot**: Run `python bot.py` to launch the GUI interface
-4. **Play**: The bot builds a strong composition on its own (no manual setup)
-5. **Automate**: Click "Start" and watch the bot play autonomously!
+2. **Launch Game**: Open Clash Royale and go to the Merge Tactics lobby
+3. **Start Bot**: Run `python bot.py` — it presses "Batalla" to search a match and plays non-stop
+4. **No setup**: The bot builds the season's strong composition on its own
 
-### GUI Interface
-
-The bot includes a comprehensive GUI that allows you to:
-- 📊 Monitor real-time game statistics
-- ⚙️ Show the target composition the bot is building
-- 📝 View detailed logs and performance metrics
-- 🎮 Control bot execution (start/stop/pause)
+```bash
+python bot.py                 # search for a match and play forever
+python bot.py --no-search     # already in a match: just play it
+python bot.py --duration 1800 # stop after 30 minutes
+```
 
 ## ⚙️ Configuration
 
@@ -143,10 +140,6 @@ merge-tactics-bot/
 │   ├── card_identifier.py    # Shop card recognition (SIFT)
 │   ├── image_processing.py   # Computer vision engine
 │   └── adb_controller.py     # Android device control
-├── 🖥️ gui/
-│   ├── main_window.py        # Primary GUI interface
-│   ├── ui_manager.py         # UI component management
-│   └── event_handler.py      # User interaction handling
 ├── ⚙️ config/
 │   ├── target_comp.py        # Season target comp (from the tier list)
 │   ├── season_tier.json      # Current season S/A/B/C/D troop tiers

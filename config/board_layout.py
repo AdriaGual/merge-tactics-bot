@@ -59,3 +59,7 @@ END_BUTTONS = {
     "leave": "templates/buttons/leave.png",      # "Salir" while spectating survivors
 }
 END_BUTTON_THRESHOLD = 0.9
+
+# Lobby "Batalla" (search match) button word, matched to start a match
+SEARCH_BUTTON = "templates/buttons/search.png"
+SEARCH_THRESHOLD = 0.9
