@@ -18,8 +18,7 @@ from config.board_layout import (
     ARENA_RECT,
     COST_BADGES,
     ELIXIR_RECT,
-    ORB_HSV_HIGH,
-    ORB_HSV_LOW,
+    ORB_HSV_RANGES,
     ORB_MAX_DIAMETER,
     ORB_MIN_DIAMETER,
     PHASE_LABELS,
@@ -106,18 +105,24 @@ class BoardReader:
             for glyph in self.image_processor.extract_glyphs(badge)
             if 15 <= glyph.shape[0] <= 28 and glyph.shape[1] <= 22
         ]
-        if len(glyphs) != 1:
+        if not glyphs:
             return None
-        value = self.image_processor.recognise_glyphs(glyphs)
+        # The badge crop can still catch a sliver of bright card art; the digit
+        # is the largest remaining blob, so it wins the tie.
+        glyph = max(glyphs, key=lambda g: g.shape[0] * g.shape[1])
+        value = self.image_processor.recognise_glyphs([glyph])
         return value if value in (1, 2, 3, 4, 5) else None
 
     def orbs(self, screen):
-        """Centres of the cyan quest orbs sitting on the arena"""
+        """Centres of the quest orbs sitting on the arena"""
         if screen is None:
             return []
         x0, y0, x1, y1 = ARENA_RECT
         hsv = cv2.cvtColor(screen[y0:y1, x0:x1], cv2.COLOR_BGR2HSV)
-        mask = cv2.inRange(hsv, ORB_HSV_LOW, ORB_HSV_HIGH)
+        mask = None
+        for low, high in ORB_HSV_RANGES:
+            band = cv2.inRange(hsv, low, high)
+            mask = band if mask is None else cv2.bitwise_or(mask, band)
         count, _, stats, centroids = cv2.connectedComponentsWithStats(mask, 8)
         found = []
         for i in range(1, count):

@@ -17,6 +17,7 @@ from config.paths import (
     load_unit_images
 )
 from config.game_phases import PHASE_TEMPLATES
+from config.board_layout import END_BUTTONS, END_BUTTON_THRESHOLD
 from config.constants import (
     BOT_LOOP_DELAY, ERROR_DELAY, ACTION_DELAY, BATTLE_WAIT,
     THRESHOLD
@@ -120,8 +121,31 @@ class MergeTacticsBot:
             else:
                 time.sleep(ACTION_DELAY)
 
+    def _handle_end_screen(self, screen):
+        """Leave the results/elimination screens and start the next match"""
+        for name in ("rematch", "view", "leave"):
+            pos = self.image_processor.find_template(
+                screen, END_BUTTONS[name], END_BUTTON_THRESHOLD
+            )
+            if not pos:
+                continue
+            logger.info(f"[END] tapping {name} button at {pos}")
+            self.adb.tap(*pos)
+            if name == "rematch":
+                # A fresh match forgets the troops bought in the previous one.
+                self._last_phase = None
+                self.game_logic.start_run()
+            time.sleep(ACTION_DELAY)
+            return True
+        return False
+
     def _handle_game_phases(self, screen):
         """Handle different game phases"""
+        # End-of-match screens come first: while spectating survivors the phase
+        # label still reads "deploy", so these buttons must win over phase logic.
+        if self._handle_end_screen(screen):
+            return True
+
         phase = self.game_logic.phase(screen)
         # A deploy phase lasts ~15s and only pays elixir once, so act on the
         # transition into it instead of on every frame of the phase.

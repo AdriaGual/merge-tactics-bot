@@ -98,6 +98,17 @@ class DeployPlanner:
             screen = self.adb.screenshot()
 
         elixir = self._read_elixir(screen)
+        if elixir is None and not dry_run:
+            # A round opens with a modal notification that covers the elixir
+            # badge and the shop for a few seconds, so poll until it clears.
+            for _ in range(10):
+                time.sleep(0.7)
+                fresh = self.adb.screenshot()
+                if fresh is not None:
+                    screen = fresh
+                    elixir = self._read_elixir(screen)
+                if elixir is not None:
+                    break
         units_before = self.reader.own_units(screen)
 
         bought = []
@@ -105,6 +116,15 @@ class DeployPlanner:
             if screen is None or elixir is None:
                 break
             cards = self.reader.shop_cards(screen)
+            if not cards and not dry_run:
+                # The purchase animation briefly hides the shop; retry before
+                # giving up so leftover elixir is not wasted.
+                for _ in range(3):
+                    time.sleep(0.5)
+                    screen = self.adb.screenshot()
+                    cards = self.reader.shop_cards(screen)
+                    if cards:
+                        break
             if not cards:
                 logger.info("[SHOP] no shop cards recognised, stopping")
                 break

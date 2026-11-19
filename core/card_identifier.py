@@ -100,14 +100,38 @@ class CardIdentifier:
         self.library = library
         self.sift = cv2.SIFT_create()
         self.descriptors = {}
+        self.art_gray = {}
         for name, img in library.items():
             gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
             keypoints, desc = self.sift.detectAndCompute(gray, None)
             if desc is not None and len(keypoints) > 0:
                 self.descriptors[name] = (keypoints, desc)
+                self.art_gray[name] = gray
         self.matcher = cv2.BFMatcher()
 
-    def identify(self, tile, min_inliers=12):
+    @staticmethod
+    def _warp_correlation(art_gray, homography, tile_gray):
+        """Correlate the art warped through the homography with the tile.
+
+        Raw RANSAC inlier counts can favour the wrong card when two arts share
+        repetitive textures, so the geometry is only trusted once the warped
+        art actually looks like the tile. Returns None when there is too little
+        overlap to judge.
+        """
+        h, w = tile_gray.shape[:2]
+        warped = cv2.warpPerspective(art_gray, homography, (w, h))
+        valid = cv2.warpPerspective(
+            np.full(art_gray.shape, 255, np.uint8), homography, (w, h)
+        ) > 0
+        if valid.sum() < 0.15 * h * w:
+            return None
+        a = warped[valid].astype(np.float32)
+        b = tile_gray[valid].astype(np.float32)
+        if a.std() < 1e-3 or b.std() < 1e-3:
+            return None
+        return float(np.corrcoef(a, b)[0, 1])
+
+    def identify(self, tile, min_inliers=12, min_corr=0.45):
         """Return (card name, inliers) for a shop tile, or (None, inliers)"""
         if tile is None or tile.size == 0:
             return None, 0
@@ -116,7 +140,7 @@ class CardIdentifier:
         if desc is None or len(keypoints) < 8:
             return None, 0
 
-        best_name, best_inliers = None, 0
+        best = None  # (correlation, inliers, name)
         for name, (art_kp, art_desc) in self.descriptors.items():
             matches = self.matcher.knnMatch(art_desc, desc, k=2)
             good = [m for pair in matches if len(pair) == 2 for m, n in [pair] if m.distance < 0.75 * n.distance]
@@ -124,13 +148,18 @@ class CardIdentifier:
                 continue
             src = np.float32([art_kp[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
             dst = np.float32([keypoints[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
-            _, mask = cv2.findHomography(src, dst, cv2.RANSAC, 5.0)
-            if mask is None:
+            homography, mask = cv2.findHomography(src, dst, cv2.RANSAC, 5.0)
+            if homography is None or mask is None:
                 continue
             inliers = int(mask.sum())
-            if inliers > best_inliers:
-                best_name, best_inliers = name, inliers
+            if inliers < min_inliers:
+                continue
+            corr = self._warp_correlation(self.art_gray[name], homography, gray)
+            if corr is None:
+                continue
+            if best is None or (corr, inliers) > (best[0], best[1]):
+                best = (corr, inliers, name)
 
-        if best_inliers < min_inliers:
-            return None, best_inliers
-        return best_name, best_inliers
+        if best is None or best[0] < min_corr:
+            return None, best[1] if best else 0
+        return best[2], best[1]
