@@ -3,7 +3,7 @@ elixir_debug/
 utils/bot_debug.log
 bot_debug.log
 regio.json
-core/__pycache__/
-config/__pycache__/
-gui/__pycache__/
-utils/__pycache__/
+__pycache__/
+*.py[cod]
+.commandcode/
+.freebuff/

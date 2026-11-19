@@ -14,7 +14,7 @@ from gui.main_window import MainWindow
 from utils.cache_manager import CacheManager
 from config.paths import (
     GRID_FILE, COMPOSITION_FILE, ELIXIR_FILE, BENCH_FILE, ADB_PATH,
-    load_unit_images, load_field_images, load_bench_images
+    load_unit_images
 )
 from config.game_phases import PHASE_TEMPLATES
 from config.constants import (
@@ -40,6 +40,8 @@ class MergeTacticsBot:
         self.bot_running = False
         self.composition = []
         self.last_elixir_value = 0
+        self._last_deploy_ts = 0.0
+        self._last_phase = None
         
         # Load game data
         self._load_game_data()
@@ -49,30 +51,29 @@ class MergeTacticsBot:
         
     def _load_game_data(self):
         """Load all game data files and images"""
-        # Load unit images
+        # Load unit images (shop card templates, also shown in the GUI)
         self.unit_files, self.unit_imgs, _ = load_unit_images()
-        self.field_files, self.field_imgs = load_field_images()
-        self.bench_files, self.bench_imgs = load_bench_images()
-        
+
         # Load coordinate data
         with open(GRID_FILE, "r") as f:
             grid_data = json.load(f)
         self.grid_cells = [item for item in grid_data if item["name"].startswith("camp")]
         self.bench_cells = [item for item in grid_data if item["name"].startswith("banquillo")]
-        
+
         with open(ELIXIR_FILE, "r") as f:
             elixir_data = json.load(f)
         self.elixir_rect = next(item["rect"] for item in elixir_data if item["name"]=="elixir")
-        
+
         with open(BENCH_FILE, "r") as f:
             bench_data = json.load(f)
         self.bench_rect = next(item["rect"] for item in bench_data if item["name"]=="bench")
-        
+
         logger.info("Game data loaded successfully")
 
     def start_bot(self):
         """Start the bot"""
         self.bot_running = True
+        self.game_logic.start_run()
         logger.info(f"[DEBUG] Bot started - bot_running set to: {self.bot_running}")
 
     def stop_bot(self):
@@ -121,6 +122,20 @@ class MergeTacticsBot:
 
     def _handle_game_phases(self, screen):
         """Handle different game phases"""
+        phase = self.game_logic.phase(screen)
+        # A deploy phase lasts ~15s and only pays elixir once, so act on the
+        # transition into it instead of on every frame of the phase.
+        changed = phase != self._last_phase
+        self._last_phase = phase
+        if phase == "deploy":
+            if changed:
+                self._handle_deploy_phase(screen)
+            time.sleep(ERROR_DELAY)
+            return True
+        if phase == "battle":
+            time.sleep(BATTLE_WAIT)
+            return True
+
         # Check for reward
         reward_pos = self.image_processor.find_template(screen, PHASE_TEMPLATES['reward'], THRESHOLD)
         if reward_pos:
@@ -161,46 +176,20 @@ class MergeTacticsBot:
             time.sleep(ACTION_DELAY)
             return True
 
-        # Check for deploy phase
-        deploy = self.image_processor.find_template(screen, PHASE_TEMPLATES['phase_deploy'], THRESHOLD)
-        if deploy:
-            logger.info("Deploy phase detected")
-            self._handle_deploy_phase(screen)
-            time.sleep(ERROR_DELAY)
-            return True
-
-        # Check for battle phase
-        battle_phase = self.image_processor.find_template(screen, PHASE_TEMPLATES['phase_battle'], THRESHOLD)
-        if battle_phase:
-            logger.info("Battle phase - waiting")
-            time.sleep(BATTLE_WAIT)
-            return True
-
         return False
 
     def _handle_deploy_phase(self, screen):
-        """Handle the deploy phase"""
-        elixir_value = self.image_processor.read_elixir(screen, self.elixir_rect)
-        
-        if elixir_value is not None:
-            self.last_elixir_value = elixir_value
-        else:
-            logger.warning("Failed to read elixir, using fallback taps")
-            # Fallback: tap some common positions
-            self.adb.tap(200, 1500)
-            self.adb.tap(400, 1500)
-            self.adb.tap(550, 1500)
-            return
+        """Play the deploy phase: pop the orbs, then buy and merge"""
+        now = time.time()
+        # Rounds are ~25s apart: a much longer gap means a new match started and
+        # the troops remembered from the previous one are gone.
+        if now - self._last_deploy_ts > 90:
+            self.game_logic.start_run()
+        self._last_deploy_ts = now
 
-        if self.last_elixir_value > 0:
-            self.last_elixir_value = self.game_logic.deploy_units(
-                screen, self.composition, self.last_elixir_value,
-                self.unit_files, self.unit_imgs, self.field_imgs, self.bench_imgs,
-                self.field_files, self.bench_files, self.grid_cells, self.bench_cells,
-                self.elixir_rect, THRESHOLD
-            )
-        else:
-            logger.info("No elixir available")
+        summary = self.game_logic.deploy_phase(screen, self.composition)
+        if summary["elixir"] is not None:
+            self.last_elixir_value = summary["elixir"]
 
     def run_gui(self):
         """Run the GUI application"""
